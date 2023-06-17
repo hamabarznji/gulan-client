@@ -7,16 +7,16 @@ export default withSessionRoute(createSessionRoute);
 
 async function createSessionRoute(req: any, res: any) {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     const user = await axios.post("http://localhost:3001/api/users/login", {
-      email: email,
+      username: username,
       password: password
     });
 
     if (user.status === 200) {
       req.session.user = {
-        username: email,
+        username: username,
         isAdmin: true,
         id: user.data.id
       };
@@ -24,7 +24,7 @@ async function createSessionRoute(req: any, res: any) {
       res.send({ status: 200, user: user.data });
     } else {
      throw new Error("Invalid credentials");
-    }
+    } 
   } catch (error) {
     return res.status(404).send(error);
   }

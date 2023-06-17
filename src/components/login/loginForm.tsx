@@ -20,11 +20,11 @@ export default function LoginForm() {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [email, setEmail] = React.useState<string>("");
+  const [username, serUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
-  const onEmailChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setEmail(e.target.value);
+  const onUsernameChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    serUsername(e.target.value);
   };
   const onPasswordChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setPassword(e.target.value);
@@ -35,7 +35,7 @@ export default function LoginForm() {
     event.preventDefault(); // Prevent default form submission
 
     try {
-      const user = await UserServiceInstance.login(email, password);
+      const user = await UserServiceInstance.login(username, password);
       const { status, token } = user;
       const isUser = status === 200;
 
@@ -82,9 +82,9 @@ export default function LoginForm() {
             </CardContent>
             <CardContent>
               <LoginInputs
-                email={email}
+                email={username}
                 password={password}
-                onChangeEmail={onEmailChange}
+                onChangeEmail={onUsernameChange}
                 onChangePassword={onPasswordChange}
               />
             </CardContent>

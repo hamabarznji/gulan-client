@@ -5,10 +5,10 @@ import Cookies from 'js-cookie';
 class UserService{
 
  
-    async login(email:string,password:string){
+    async login(username:string,password:string){
         try{
             const response:AxiosResponse=await axios.post(`http://localhost:3000/api/auth`,{
-                email:email,
+                username:username,
                 password:password
             },)
             Cookies.set('token',response?.data?.user?.token)

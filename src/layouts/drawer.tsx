@@ -182,8 +182,7 @@ export default function MiniDrawer({
               component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              System Template
-            </Typography>
+GUL GUL            </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
