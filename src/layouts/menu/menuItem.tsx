@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 const menuItems: { title: string; icon: React.FC; path: string }[] = [
   { title: "Dashboard", icon: DashboardIcon, path: "/" },
   { title: "Profile", icon: PersonIcon, path: "/profile" },
+  { title: "Users", icon: PersonIcon, path: "/users" },
 
 ];
 
