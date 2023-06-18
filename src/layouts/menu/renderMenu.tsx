@@ -3,6 +3,7 @@ import UserServiceInstance from "../../../services/user";
 import { enqueueSnackbar } from "notistack";
 import { AxiosResponse } from "axios";
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
 const menuId: string = "primary-search-account-menu";
 
@@ -23,9 +24,8 @@ const RenderMenu: React.FC<RenderMenuProps> = ({
   const handleLogut = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     try {
-      console.log("logout");
       const res = await UserServiceInstance.logout();
-
+      Cookies.remove('token')
       handleMenuClose();
       enqueueSnackbar("Logout success", { variant: "success" });
       if (res as AxiosResponse) {
