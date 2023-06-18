@@ -6,6 +6,14 @@ import { darkTheme, lightTheme } from "../styles/theme";
 import { useState, useEffect } from "react";
 import RootLayout from "../src/layouts/RootLayout";
 import { SnackbarProvider } from "notistack";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query' 
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [themeMode, setThemeMode] = useState<true | false>(true);
@@ -22,11 +30,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <QueryClientProvider client={queryClient}>
+
       <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
         <RootLayout toggleTheme={toggleTheme} themeMode={themeMode}>
           <Component {...pageProps} />
         </RootLayout>
       </SnackbarProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }
