@@ -23,6 +23,7 @@ import { useSnackbar } from "notistack";
 import RenderMenu from "../layouts/menu/renderMenu";
 import RenderMobileMenu from "../layouts/menu/renderMobileMenu";
 import CustomList from "./menu/menuItem";
+import COLORS from "../../public/COLORS";
 
 const mobileMenuId: string = "primary-search-account-menu-mobile";
 
@@ -123,6 +124,7 @@ export default function MiniDrawer({
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleDrawerOpen = () => {
+  
     setOpen(true);
   };
 
@@ -164,7 +166,11 @@ export default function MiniDrawer({
   return (
     <Box sx={{ display: "flex" }}>
       <Box style={{ marginLeft: "2rem" }}>
-        <AppBar position="fixed" open={open}>
+        <AppBar
+          position="fixed"
+          open={open}
+          style={{ color: "black", backgroundColor: "white" }}
+        >
           <Toolbar>
             <IconButton
               size="large"
@@ -172,7 +178,9 @@ export default function MiniDrawer({
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 2 }}
-              onClick={handleDrawerOpen}
+              onClick={
+                open ? handleDrawerClose : handleDrawerOpen
+              }
             >
               <MenuIcon />
             </IconButton>
@@ -180,9 +188,11 @@ export default function MiniDrawer({
               variant="h6"
               noWrap
               component="div"
+              color={COLORS.primary}
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-GUL GUL            </Typography>
+              GUL GUL{" "}
+            </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
