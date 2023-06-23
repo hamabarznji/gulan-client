@@ -1,7 +1,8 @@
 
 import axios, { AxiosResponse } from 'axios';
-const  base_url:string="http://localhost:3001/api/users"
+const  base_url:string="http://localhost:3001/api"
 import Cookies from 'js-cookie';
+import axiosInstance from '../utils/axiosInstance';
 class UserService{
 
  
@@ -19,6 +20,16 @@ class UserService{
         }
         catch(error){
             // return error?.response?.data?.status
+            return error
+        }
+
+    }
+    async getUsers(){
+        try{
+            const response:AxiosResponse=await axiosInstance.get(`${base_url}/users`,)
+            return response
+        }
+        catch(error){
             return error
         }
 

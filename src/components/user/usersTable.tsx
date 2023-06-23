@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { blue } from '@mui/material/colors';
+import { useQuery,QueryKey } from '@tanstack/react-query'
+import UserServiceInstance from '../../../services/user';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,47 +31,48 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
+function createData(username: string, role: string) {
+  return { username, role };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  
+  createData('Hama', 'admin'),
+  createData('Gulan', 'admin'),
+  createData('Sara', 'user'),
 ];
+const queryKey: QueryKey = ['users']; 
 
 export default function CustomizedTables() {
+
+  const fetchUsers = async () => {
+    try {
+     return await UserServiceInstance.getUsers();
+    } catch (error) {
+      throw new Error('Failed to fetch users');
+    }
+  };
+  
+    const {  data:users } = useQuery(queryKey, fetchUsers);
+  //     const rows = users?.map((user: any) => createData(user.username, user.role));
+
+  console.log(users)
   return (
     <TableContainer component={Paper} sx={{ width: '100%' }}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Username</StyledTableCell>
+            <StyledTableCell align="right">Role</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+            <StyledTableRow key={row.username}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.username}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
+              <StyledTableCell align="right">{row.role}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
