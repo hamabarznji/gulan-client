@@ -1,21 +1,23 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { ThemeProvider } from "@emotion/react";
+import { ThemeProvider,  } from "@emotion/react";
+import {useTheme, } from "@mui/material/styles";
+
 import { CssBaseline } from "@mui/material";
 import { darkTheme, lightTheme } from "../styles/theme";
 import { useState, useEffect } from "react";
 import RootLayout from "../src/layouts/RootLayout";
 import { SnackbarProvider } from "notistack";
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query' 
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
+  // const themeMode2=useTheme()
+  // console.log(themeMode2);
+
   const [themeMode, setThemeMode] = useState<true | false>(true);
   const theme = themeMode === true ? lightTheme : darkTheme;
   const toggleTheme = () => {
