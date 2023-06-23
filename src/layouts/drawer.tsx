@@ -124,7 +124,6 @@ export default function MiniDrawer({
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleDrawerOpen = () => {
-  
     setOpen(true);
   };
 
@@ -169,7 +168,7 @@ export default function MiniDrawer({
         <AppBar
           position="fixed"
           open={open}
-          style={{ color: "black", backgroundColor: "white" }}
+          style={{ color: "black", backgroundColor: theme.palette.mode==="light" ? "white" : "black" }}
         >
           <Toolbar>
             <IconButton
@@ -178,9 +177,7 @@ export default function MiniDrawer({
               color="inherit"
               aria-label="open drawer"
               sx={{ mr: 2 }}
-              onClick={
-                open ? handleDrawerClose : handleDrawerOpen
-              }
+              onClick={open ? handleDrawerClose : handleDrawerOpen}
             >
               <MenuIcon />
             </IconButton>
