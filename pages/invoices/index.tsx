@@ -1,11 +1,12 @@
 import React from "react";
 import { Typography, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import InvoiceCard from "../src/components/invoice/InvoiceCard";
-import { withSessionSsr } from "../utils/withSession";
-import Button from "../src/components/customComponents/Button";
+import InvoiceCard from "../../src/components/invoice/InvoiceCard";
+import { withSessionSsr } from "../../utils/withSession";
+import Button from "../../src/components/customComponents/Button";
 import AddIcon from "@mui/icons-material/Add";
-import Table from "../src/components/invoice/Table";
+import Table from "../../src/components/invoice/Table";
+import { useRouter } from "next/router";
 
 type ToggleThemeFunction = () => void;
 
@@ -16,7 +17,7 @@ interface HomePageProps {
 
 const Invoice = ({ toggleTheme, user }: HomePageProps) => {
   const theme = useTheme();
-
+  const router = useRouter();
   return (
     <Grid
       container
@@ -31,7 +32,7 @@ const Invoice = ({ toggleTheme, user }: HomePageProps) => {
           icon={<AddIcon />}
           variant="contained"
           title="Add Invoice"
-          onClick={() => console.log("here")}
+          onClick={() => router.push("/invoices/add")}
         />
       </Grid>
       <Grid
