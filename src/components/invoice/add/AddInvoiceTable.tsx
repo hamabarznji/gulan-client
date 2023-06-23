@@ -2,11 +2,11 @@ import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "./table/TableHead";
+import TableHead from "./invoiceTable/TableHead";
 
 import { Button } from "@mui/material";
-import CustomTableRow from "./table/TableRow";
-import InvoiceSummaryRow from "./table/InvoiceSummaryRow";
+import CustomTableRow from "./invoiceTable/TableRow";
+import InvoiceSummaryRow from "./invoiceTable/InvoiceSummaryRow";
 
 interface Row {
   num: string;
