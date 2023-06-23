@@ -168,7 +168,7 @@ export default function MiniDrawer({
         <AppBar
           position="fixed"
           open={open}
-          style={{ color: "black", backgroundColor: theme.palette.mode==="light" ? "white" : "black" }}
+          style={{ color: "white", backgroundColor: theme.palette.mode==="light" ? "#448A7A" : "black" }}
         >
           <Toolbar>
             <IconButton
@@ -185,7 +185,6 @@ export default function MiniDrawer({
               variant="h6"
               noWrap
               component="div"
-              color={COLORS.primary}
               sx={{ display: { xs: "none", sm: "block" } }}
             >
               GUL GUL{" "}
