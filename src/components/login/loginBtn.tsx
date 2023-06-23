@@ -13,7 +13,7 @@ const LoginBtn: React.FC = () => {
         size="large"
         fullWidth
         style={{
-          backgroundColor: "#2941bc",
+          backgroundColor: "#397568",
           color: "#fff",
           width: "100%",
         }}

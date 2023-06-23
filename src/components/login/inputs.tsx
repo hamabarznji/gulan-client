@@ -1,6 +1,6 @@
-import { Box, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
-
+import TextField from "../customComponents/TextField";
 interface LoginInputsProps {
   email: string;
   password: string;
@@ -18,15 +18,15 @@ const LoginInputs: React.FC<LoginInputsProps> = ({
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <TextField
-            label="User Name"
-            variant="outlined"
-            fullWidth
-            value={email}
-            onChange={onChangeEmail}
-            id='userEmail'
+        <TextField
+  label="User Name"
+  variant="outlined"
+  fullWidth
+  value={email}
+  onChange={onChangeEmail}
+  id="userEmail"
+/>
 
-          />
         </Grid>
         <Grid item xs={12}>
           <TextField
