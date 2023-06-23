@@ -1,8 +1,11 @@
-import { Button } from "@mui/material";
+import React from "react";
+import { Typography, Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Link from "next/link";
+import InvoiceCard from "../src/components/invoice/InvoiceCard";
 import { withSessionSsr } from "../utils/withSession";
-import { NextApiRequest, NextApiResponse } from "next";
+import Button from "../src/components/customComponents/Button";
+import AddIcon from "@mui/icons-material/Add";
+import Table from "../src/components/invoice/Table";
 
 type ToggleThemeFunction = () => void;
 
@@ -11,41 +14,43 @@ interface HomePageProps {
   user: string;
 }
 
-const HomePage = ({ toggleTheme, user }: HomePageProps) => {
+const Invoice = ({ toggleTheme, user }: HomePageProps) => {
   const theme = useTheme();
-  return (
-    <div>
-      <h1>Welcome to my Next.js App!</h1>
-     
-      <Link href="/profile">profile</Link>
 
-      <p>Current mode: {theme.palette.mode}</p>
-    </div>
+  return (
+    <Grid
+      container
+      justifyContent="flex-start"
+      sx={{}}
+      spacing={2}
+      direction="row"
+    >
+    
+      <Grid item container justifyContent="flex-start">
+        <Button
+          icon={<AddIcon />}
+          variant="contained"
+          title="Add Invoice"
+          onClick={() => console.log("here")}
+        />
+      </Grid>
+      <Grid
+        item
+        container
+        direction="row"
+        spacing={theme.spacing(2)}
+        justifyContent="center"
+      >
+        <InvoiceCard />
+        <InvoiceCard />
+        <InvoiceCard />
+        <InvoiceCard />
+      </Grid>
+      <Grid item container direction="row" justifyContent="center">
+        <Table />
+      </Grid>
+    </Grid>
   );
 };
 
-export default HomePage;
-
-export const getServerSideProps = withSessionSsr(
-  async ({
-    req,
-    res,
-  }: {
-    req: NextApiRequest & { session: { user?: string } };
-    res: NextApiResponse;
-  }) => {
-    const user = req.session.user;
-
-    if (!user) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: true,
-        },
-      };
-    }
-    return {
-      props: { user },
-    };
-  }
-);
+export default Invoice;
