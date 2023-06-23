@@ -1,17 +1,18 @@
 import TextField, { TextFieldProps } from '@mui/material/TextField';
+import COLORS from '../../../public/COLORS';
 const inputStyles = {
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: '#397568',
+        borderColor: COLORS.primary,
       },
       '& input::placeholder': {
         color: '#999999',
       },
       '&:hover fieldset': {
-        borderColor: '#397568',
+        borderColor:  COLORS.primary,
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#397568',
+        borderColor:  COLORS.primary,
       },
       '& input': {
         color: 'black', // Set the desired text color
@@ -19,15 +20,6 @@ const inputStyles = {
     },
   };
 
-  const labelStyles = {
-    color: '#999999', // Set the desired default label color
-    '&.Mui-focused': {
-      color: '#397568', // Set the desired label color when focused
-    },
-    '&.MuiInputLabel-shrink': {
-      color: '#397568', // Set the desired label color when the label moves up
-    },
-  };
 const CustomTextField: React.FC<TextFieldProps> = (props) => {
   return (
     <TextField
@@ -36,7 +28,7 @@ const CustomTextField: React.FC<TextFieldProps> = (props) => {
       InputLabelProps={{
         className: 'Mui-focused', // Add Mui-focused class when focused
         style: {
-          color: '#397568', // Set the desired label color when focused
+          color:  COLORS.primary, // Set the desired label color when focused
         },
       }}  />
   );
