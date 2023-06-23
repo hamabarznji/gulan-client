@@ -15,11 +15,7 @@ const HomePage = ({ toggleTheme, user }: HomePageProps) => {
   const theme = useTheme();
   return (
     <div>
-      <h1>Welcome to my Next.js App!</h1>
-     
-      <Link href="/profile">profile</Link>
-
-      <p>Current mode: {theme.palette.mode}</p>
+      
     </div>
   );
 };
