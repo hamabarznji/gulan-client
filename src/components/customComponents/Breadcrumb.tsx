@@ -33,20 +33,18 @@ export default function IconBreadcrumbs() {
   const onClickHandler = (path: string) => {
     router.push(`/${path}`);
   }
-
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb" style={{ marginBottom: "1rem" }}>
         {pathsArray.map((item, index) => {
-          const isActive = router.asPath === `/${item}`;
-          const icon = getIconForPath(item);
 
+          const icon = getIconForPath(item);
           return (
             <Link
               key={item}
-              underline={isActive ? "none" : "hover"}
+              underline={index==pathsArray.length-1 ? "none" : "hover"}
               sx={{ display: 'flex', alignItems: 'center' }}
-              color={isActive ? 'text.primary' : 'inherit'}
+              color={index==0? 'inherit' : 'black'}
               href={item}
               onClick={() => onClickHandler(item)}
             >
@@ -57,6 +55,8 @@ export default function IconBreadcrumbs() {
               )}
 
               <Typography variant="h5" component="span">
+               
+               {index==0&&'/'}
                 {item}
               </Typography>
             </Link>
