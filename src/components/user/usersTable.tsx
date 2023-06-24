@@ -1,41 +1,49 @@
-import * as React from "react";
-
+import React from "react";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import UserServiceInstance from "../../../services/user";
 import UsersTable from "../customComponents/Table";
+import Modal from "../customComponents/Modal";
 
-
-
-const columns:any[] = [
+const columns = [
   { id: "id", label: "ID", align: "center" },
   { id: "name", label: "Name", align: "center" },
   { id: "role", label: "Role", align: "center" },
+  { id: "actions", label: "Actions", align: "center" },
 ];
 
-const rows:any[] = [
-  {
-    id: 1,
-    name: "John Doe",
-    role: "Admin",
-  },
-  {
-    id: 2,
-    name: "Jane Doe",
-    role: "User",
-  },
-];
 const queryKey: QueryKey = ["users"];
 
 export default function CustomizedTables() {
   const fetchUsers = async () => {
     try {
-      return await UserServiceInstance.getUsers();
+      const response = await UserServiceInstance.getUsers();
+      return response.data;
     } catch (error) {
       throw new Error("Failed to fetch users");
     }
   };
 
-  const { data: users } = useQuery(queryKey, fetchUsers);
+  const { data } = useQuery(queryKey, fetchUsers);
 
-  return <UsersTable rows={rows} columns={columns} />;
+  const transformedRows = data?.map((user: any, index: number) => ({
+    id: index + 1,
+    longId: user.id,
+    name: user.name,
+    role: user.role,
+    actions: (
+      <Modal
+        processTitle="Update User"
+        modalTitle="Update User"
+        modalType={false}
+      />
+    ),
+  }));
+
+  return (
+    <UsersTable
+      isPagination={false}
+      rows={transformedRows || []}
+      columns={columns}
+    />
+  );
 }
