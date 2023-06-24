@@ -1,11 +1,10 @@
 import React from "react";
-import { Typography, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import InvoiceCard from "../../src/components/invoice/InvoiceCard";
-import { withSessionSsr } from "../../utils/withSession";
 import Button from "../../src/components/customComponents/Button";
 import AddIcon from "@mui/icons-material/Add";
-import Table from "../../src/components/invoice/Table";
+import Table from "../../src/components/invoice/InvoicesTable";
 import { useRouter } from "next/router";
 
 type ToggleThemeFunction = () => void;
