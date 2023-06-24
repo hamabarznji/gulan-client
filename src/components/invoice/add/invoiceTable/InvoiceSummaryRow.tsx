@@ -2,7 +2,6 @@ import React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import COLORS from "../../../../../public/COLORS";
-import { Button } from "@mui/material";
 
 interface RowProps {
   rows: Row[];
