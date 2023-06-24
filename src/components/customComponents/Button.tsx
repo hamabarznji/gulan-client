@@ -14,7 +14,7 @@ const styles = {
 };
 
 interface CustomButtonProps extends ButtonProps {
-  title: string;
+  title?: string;
   icon?: React.ReactNode;
 }
 
@@ -23,7 +23,7 @@ const CustomButton: React.FC<CustomButtonProps> = (props) => {
 
   return (
     <Button {...rest} style={styles} startIcon={icon ? <Icon>{icon}</Icon> : null}>
-      <Typography>{title}</Typography>
+     {title&& <Typography>{title}</Typography>}
     </Button>
   );
 };
