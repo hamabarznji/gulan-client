@@ -4,12 +4,14 @@ import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper
 interface TableProps {
   rows: any[];
   columns: any[];
+  isPagination?: boolean;
 }
 
 
 const CustomeTable:React.FC<TableProps> = ({
     rows,
     columns,
+    isPagination=true
 }:TableProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -77,7 +79,7 @@ const CustomeTable:React.FC<TableProps> = ({
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
+      {isPagination &&    <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={rows.length}
@@ -85,7 +87,7 @@ const CustomeTable:React.FC<TableProps> = ({
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      />}
     </Paper>
   );
 };
