@@ -41,7 +41,7 @@ export default function LoginForm() {
 
       if (isUser) {
         enqueueSnackbar("Login success", { variant: "success" });
-        router.push("/");
+        router.push("/dashboard");
       } else {
         throw new Error("Login failed. Invalid Credentials!");
       }
