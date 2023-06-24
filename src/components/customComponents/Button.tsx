@@ -29,7 +29,7 @@ return (
 };
 
 interface CustomButtonProps extends ButtonProps {
-title: string;
+title?: string;
 icon?: React.ReactNode;
 }
 
