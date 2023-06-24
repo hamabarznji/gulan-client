@@ -1,5 +1,5 @@
 import * as React from "react";
-import UsersTable from "./usersTable";
+import UsersTable from "./UsersTable";
 import Grid from "@mui/material/Grid";
 import Item from "../item";
 import Box from "@mui/material/Box";
