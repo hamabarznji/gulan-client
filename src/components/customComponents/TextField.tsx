@@ -2,9 +2,7 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 import COLORS from '../../../public/COLORS';
 const inputStyles = {
     '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: COLORS.primary,
-      },
+    
       '& input::placeholder': {
         color: '#999999',
       },
@@ -31,6 +29,9 @@ const CustomTextField: React.FC<TextFieldProps> = (props) => {
           color:  COLORS.primary, // Set the desired label color when focused
         },
       }}  />
+
+
+      
   );
 };
 
