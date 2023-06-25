@@ -187,7 +187,7 @@ export default function MiniDrawer({
               component="div"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              GUL GUL{" "}
+              GULAN
             </Typography>
 
             <Box sx={{ flexGrow: 1 }} />
