@@ -1,5 +1,4 @@
 import * as React from "react";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,15 +8,16 @@ import AddIcon from "@mui/icons-material/Add";
 import COLORS from "../../../public/COLORS";
 import EditIcon from "@mui/icons-material/Edit";
 
-
 interface Props {
   title?: string;
   processTitle: string;
   modalTitle: string;
-  submitHandler?: () => void;
+  submitHandler?: () => any;
   modalType?: boolean;
+  children?: React.ReactNode;
 }
 export default function FormDialog({
+  children,
   title,
   processTitle,
   modalTitle,
@@ -35,7 +35,10 @@ export default function FormDialog({
   };
 
   return (
-    <div>
+    <form
+      onSubmit={submitHandler}
+      style={{ display: "flex", justifyContent: "center" }}
+    >
       <CustomButton
         icon={modalType ? <AddIcon /> : <EditIcon />}
         variant="contained"
@@ -45,22 +48,16 @@ export default function FormDialog({
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle color={COLORS.primary}>{modalTitle}</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
+        <DialogContent>{children}</DialogContent>
         <DialogActions>
           <CustomButton onClick={handleClose} title="Cancel" />
-          <CustomButton onClick={submitHandler} title={processTitle} />
+          <CustomButton
+            type="submit"
+            title={processTitle}
+            onClick={submitHandler}
+          />
         </DialogActions>
       </Dialog>
-    </div>
+    </form>
   );
 }
