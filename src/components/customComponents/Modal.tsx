@@ -8,14 +8,6 @@ import AddIcon from "@mui/icons-material/Add";
 import COLORS from "../../../public/COLORS";
 import EditIcon from "@mui/icons-material/Edit";
 
-interface Props {
-  title?: string;
-  processTitle: string;
-  modalTitle: string;
-  submitHandler?: () => any;
-  modalType?: boolean;
-  children?: React.ReactNode;
-}
 export default function FormDialog({
   children,
   title,
@@ -47,17 +39,44 @@ export default function FormDialog({
       />
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle color={COLORS.primary}>{modalTitle}</DialogTitle>
-        <DialogContent>{children}</DialogContent>
+        <DialogTitle color={COLORS.primary} sx={styles.dialogTitle}>
+          {modalTitle}
+        </DialogTitle>
+        <DialogContent sx={styles.contentStyle}>{children}</DialogContent>
         <DialogActions>
           <CustomButton onClick={handleClose} title="Cancel" />
           <CustomButton
             type="submit"
             title={processTitle}
-            onClick={submitHandler}
+            onClick={() => {
+              handleClose();
+              submitHandler();
+            }}
           />
         </DialogActions>
       </Dialog>
     </form>
   );
+}
+
+const styles = {
+  dialogTitle: {
+    backgroundColor: COLORS.primary,
+    textAlign: "center",
+    color: "white",
+    fontWeight: "bold",
+  },
+  contentStyle: {
+    minWidth: "600px",
+    minHeight: "300px",
+    marginTop: "1rem",
+  },
+};
+interface Props {
+  title?: string;
+  processTitle: string;
+  modalTitle: string;
+  submitHandler?: () => any;
+  modalType?: boolean;
+  children?: React.ReactNode;
 }
