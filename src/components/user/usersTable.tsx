@@ -3,17 +3,34 @@ import { useQuery, QueryKey } from "@tanstack/react-query";
 import UserServiceInstance from "../../../services/user";
 import UsersTable from "../customComponents/Table";
 import Modal from "../customComponents/Modal";
-
-const columns = [
-  { id: "id", label: "ID", align: "center" },
-  { id: "name", label: "Name", align: "center" },
-  { id: "role", label: "Role", align: "center" },
-  { id: "actions", label: "Actions", align: "center" },
-];
+import * as yup from "yup";
+import TextField from "../customComponents/TextField";
+import { useForm } from "react-hook-form";
+import { Button, Grid } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import COLORS from "../../../public/COLORS";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller } from "react-hook-form";
 
 const queryKey: QueryKey = ["users"];
 
 export default function CustomizedTables() {
+  const schema = yup.object().shape({
+    username: yup.string().required(),
+  });
+
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const fetchUsers = async () => {
     try {
       const response = await UserServiceInstance.getUsers();
@@ -22,7 +39,9 @@ export default function CustomizedTables() {
       throw new Error("Failed to fetch users");
     }
   };
-
+  const submitHandler = async (data: any) => {
+    console.log("submitting", data);
+  };
   const { data } = useQuery(queryKey, fetchUsers);
 
   const transformedRows = data?.map((user: any, index: number) => ({
@@ -32,11 +51,18 @@ export default function CustomizedTables() {
     role: user.role,
     actions: (
       <Modal
+      key={user.id}
         processTitle="Update User"
         modalTitle="Update User"
         modalType={false}
-      />
-    ),
+        submitHandler={handleSubmit(submitHandler)}
+      >
+        <Inputs 
+        user={user}
+        control={control}
+        register={register}
+        />
+      </Modal>    ),
   }));
 
   return (
@@ -47,3 +73,50 @@ export default function CustomizedTables() {
     />
   );
 }
+
+
+const Inputs = ({user,control,register}) => {
+  return (
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+      <Controller
+            name="username"
+            control={control}
+            defaultValue={user.name}
+            register={register}
+            rules={{ required: "Username is required" }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                label="Username"
+                fullWidth
+                value={value}
+                onChange={onChange}
+                variant="standard"
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            )}
+          />      </Grid>
+      <Grid item xs={12}>
+           </Grid>
+      {/* <Grid item xs={12}>
+        <FormControl fullWidth>
+          <InputLabel id="role-label" sx={inputStyles}>
+            Role
+          </InputLabel>
+          <Select labelId="role-label" label="Role" sx={inputStyles}>
+            <MenuItem value="admin">Admin</MenuItem>
+            <MenuItem value="user">User</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid> */}
+    </Grid>
+  );
+};
+
+const columns = [
+  { id: "id", label: "ID", align: "center" },
+  { id: "name", label: "Name", align: "center" },
+  { id: "role", label: "Role", align: "center" },
+  { id: "actions", label: "Actions", align: "center" },
+];
