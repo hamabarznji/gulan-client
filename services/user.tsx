@@ -35,6 +35,17 @@ class UserService{
 
     }
 
+    async addUser(data:any){
+        try{
+            const response:AxiosResponse=await axiosInstance.post(`${base_url}/users`,data)
+            return response
+        }
+        catch(error){
+            return error
+        }
+
+    }
+
     
     async logout(){
         try{
