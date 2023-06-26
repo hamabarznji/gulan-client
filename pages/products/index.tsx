@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import ProductsTable from "../../src/components/products/ProductsTable";
 import AddProducts from "../../src/components/customComponents/InputFieldsWithValidation";
 
-import inputFields from "../../src/interfaces/inputFields";
+import inputFields from "../../src/interfaces/user/add";
 
 type ToggleThemeFunction = () => void;
 
