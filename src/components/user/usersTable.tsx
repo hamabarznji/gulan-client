@@ -25,7 +25,7 @@ export default function CustomizedTables() {
   const transformedRows = data?.map((user: any, index: number) => ({
     id: index + 1,
     longId: user.id,
-    name: user.name,
+    username: user.name,
     role: user.role,
     actions: <UpdateUser user={user} />,
   }));
@@ -40,8 +40,7 @@ export default function CustomizedTables() {
 
 const columns = [
   { id: "id", label: "ID", align: "center" },
-  { id: "name", label: "Name", align: "center" },
+  { id: "username", label: "Name", align: "center" },
   { id: "role", label: "Role", align: "center" },
-  { id: "themeColor", label: "themeColor", align: "center" },
   { id: "actions", label: "Actions", align: "center" },
 ];
