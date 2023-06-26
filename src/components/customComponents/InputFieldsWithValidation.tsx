@@ -33,7 +33,7 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
     reset,
   } = useForm({
     resolver: yupResolver(yupSchema),
-    defaultValues: updateData, // Set the default values based on updateData
+    defaultValues: updateData,
   });
 
   const onSubmit = (data: any) => {
