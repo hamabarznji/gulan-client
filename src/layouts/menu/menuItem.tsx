@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { UserContext } from "../../context/UserContext";
+import useUserContext from "../../context/useUserContext";
 
 import { useRouter } from "next/router";
 import COLORS from "../../../public/COLORS";
@@ -17,10 +17,11 @@ interface ListComponentProps {
 const activePath = (current: string, path: string) =>
   current == path ? COLORS.primary : COLORS.gray;
 
-const ListComponent: React.FC<ListComponentProps> = ({ open }: ListComponentProps) => {
-  const { user } = useContext(UserContext);
+const ListComponent: React.FC<ListComponentProps> = ({
+  open,
+}: ListComponentProps) => {
+  const { user } = useUserContext();
   const userRole = user?.role;
-console.log(userRole)
   const router = useRouter();
   const currentPath = router.pathname;
 
@@ -60,7 +61,10 @@ console.log(userRole)
               >
                 <item.icon />
               </ListItemIcon>
-              <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={item.title}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
         ) : null
