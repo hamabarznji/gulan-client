@@ -8,7 +8,7 @@ import useUserContext from "../../context/useUserContext";
 
 import { useRouter } from "next/router";
 import COLORS from "../../../public/COLORS";
-import menuItems from "../menuItems";
+import menuItems from "../../interfaces/menuItems";
 
 interface ListComponentProps {
   open: boolean;

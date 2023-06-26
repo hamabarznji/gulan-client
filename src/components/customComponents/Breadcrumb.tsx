@@ -5,7 +5,7 @@ import Link from "@mui/material/Link";
 import HomeIcon from "@mui/icons-material/Home";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import GrainIcon from "@mui/icons-material/Grain";
-import menuItems from "../../layouts/menuItems";
+import menuItems from "../../interfaces/menuItems";
 import { useRouter } from "next/router";
 
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
