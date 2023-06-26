@@ -7,25 +7,11 @@ import AddIcon from "@mui/icons-material/Add";
 import Table from "../../src/components/invoice/InvoicesTable";
 import { useRouter } from "next/router";
 
-type ToggleThemeFunction = () => void;
-
-interface HomePageProps {
-  toggleTheme: ToggleThemeFunction;
-  user: string;
-}
-
-const Invoice = ({ toggleTheme, user }: HomePageProps) => {
+const Invoice = () => {
   const theme = useTheme();
   const router = useRouter();
   return (
-    <Grid
-      container
-      justifyContent="flex-start"
-      sx={{}}
-      spacing={2}
-      direction="row"
-    >
-    
+    <Grid container justifyContent="flex-start" spacing={2} direction="row">
       <Grid item container justifyContent="flex-start">
         <Button
           icon={<AddIcon />}
