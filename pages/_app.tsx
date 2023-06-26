@@ -1,13 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider,  } from "@emotion/react";
-import {useTheme, } from "@mui/material/styles";
-
 import { CssBaseline } from "@mui/material";
 import { darkTheme, lightTheme } from "../styles/theme";
 import { useState, useEffect } from "react";
 import RootLayout from "../src/layouts/RootLayout";
 import { SnackbarProvider } from "notistack";
+import {UserProvider} from "../src/context/UserContext"
 import {
   QueryClient,
   QueryClientProvider,
@@ -15,8 +14,7 @@ import {
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
-  // const themeMode2=useTheme()
-  // console.log(themeMode2);
+ 
 
   const [themeMode, setThemeMode] = useState<true | false>(true);
   const theme = themeMode === true ? lightTheme : darkTheme;
@@ -35,9 +33,11 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
 
       <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
-        <RootLayout toggleTheme={toggleTheme} themeMode={themeMode}>
+        <UserProvider>        <RootLayout toggleTheme={toggleTheme} themeMode={themeMode}>
           <Component {...pageProps} />
         </RootLayout>
+        </UserProvider>
+
       </SnackbarProvider>
       </QueryClientProvider>
     </ThemeProvider>
