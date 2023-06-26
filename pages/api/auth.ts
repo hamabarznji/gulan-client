@@ -17,7 +17,7 @@ async function createSessionRoute(req: any, res: any) {
     if (user.status === 200) {
       req.session.user = {
         username: username,
-        isAdmin: true,
+        role: user.data.role,
         id: user.data.id
       };
        await req.session.save();
