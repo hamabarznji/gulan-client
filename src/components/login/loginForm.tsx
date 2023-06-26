@@ -9,7 +9,7 @@ import LoginBtn from "./loginBtn";
 import LoginInputs from "./inputs";
 import UserServiceInstance from "../../../services/user";
 import { useSnackbar } from "notistack";
-
+import useUserContext from "../../context/useUserContext";
 const FormContainer = styled("form")({
   position: "relative",
 
@@ -17,6 +17,7 @@ const FormContainer = styled("form")({
   transform: "translateY(-50%)",
 });
 export default function LoginForm() {
+  const { fetchUserData } = useUserContext();
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -36,10 +37,10 @@ export default function LoginForm() {
 
     try {
       const user = await UserServiceInstance.login(username, password);
-      const { status, token } = user;
+      const { status } = user;
       const isUser = status === 200;
-
       if (isUser) {
+        await fetchUserData();
         enqueueSnackbar("Login success", { variant: "success" });
         router.push("/dashboard");
       } else {
