@@ -8,6 +8,8 @@ interface InputsFieldInterface {
     helperText: string;
     min?: number;
     max?: number;
+    isMenu: boolean;
+    options?: any[]
   }
 
 
