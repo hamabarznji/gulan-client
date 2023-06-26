@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { Grid, Button } from "@mui/material";
-import generateSchema from "./SchemaGenerator";
+import generateSchema from "../../utils/SchemaGenerator";
 import TextField from "./TextField";
 import  inputFields  from "../../interfaces/inputFields";
 interface InputFieldsWithValidationProps {
