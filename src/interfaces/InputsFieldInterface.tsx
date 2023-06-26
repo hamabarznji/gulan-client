@@ -9,7 +9,9 @@ interface InputsFieldInterface {
     min?: number;
     max?: number;
     isMenu: boolean;
-    options?: any[]
+    options?: any[],
+    defaultValue?: any,
+    isSensitive: boolean,
   }
 
 
