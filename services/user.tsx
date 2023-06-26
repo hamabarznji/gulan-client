@@ -46,7 +46,17 @@ class UserService{
 
     }
 
-    
+    async updateUser(data:any){
+        console.log({data})
+        try{
+            const response:AxiosResponse=await axiosInstance.patch(`${base_url}/users/${data.id}`,data)
+            return response
+        }
+        catch(error){
+            return error
+        }
+
+    }
     async logout(){
         try{
             const response:AxiosResponse<{token:string}>=await axios.get('http://localhost:3000/api/logout')
