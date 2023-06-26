@@ -14,6 +14,7 @@ interface InputFieldsWithValidationProps {
   modalType?: boolean;
   children?: React.ReactNode;
   inputFields: any[];
+  updateData?: any;
 }
 
 const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
@@ -21,6 +22,8 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
   submitHandler,
   processTitle,
   inputFields,
+  modalType = true,
+  updateData,
 }) => {
   const yupSchema = generateSchema(inputFields);
   const {
@@ -30,6 +33,7 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
     reset,
   } = useForm({
     resolver: yupResolver(yupSchema),
+    defaultValues: updateData, // Set the default values based on updateData
   });
 
   const onSubmit = (data: any) => {
@@ -37,11 +41,14 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
     reset();
   };
 
+  // ...
+
   return (
     <Modal
       processTitle={processTitle}
       modalTitle={modalTitle}
       submitHandler={handleSubmit(onSubmit)}
+      modalType={modalType}
     >
       {inputFields.map((field) => (
         <Grid
@@ -56,7 +63,6 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
             <Controller
               name={field.name}
               control={control}
-              defaultValue=""
               render={({ field: inputField }) => {
                 let CommonProps = {
                   ...inputField,
@@ -64,6 +70,7 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
                   error: !!errors[field.name],
                   helperText: errors[field.name]?.message?.toString(),
                   ref: null,
+                  defaultValue: !field.isSensitive ? inputField.value : "",
                 };
 
                 return field.isMenu ? (
