@@ -23,7 +23,6 @@ import { useSnackbar } from "notistack";
 import RenderMenu from "../layouts/menu/renderMenu";
 import RenderMobileMenu from "../layouts/menu/renderMobileMenu";
 import CustomList from "./menu/menuItem";
-import COLORS from "../../public/COLORS";
 
 const mobileMenuId: string = "primary-search-account-menu-mobile";
 
