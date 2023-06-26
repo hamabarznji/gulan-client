@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import PersistentDrawerLeft from "./drawer";
 import Breadcrumb from "../components/customComponents/Breadcrumb";
+
 interface LayoutProps {
   children: React.ReactNode;
   toggleTheme: () => void;
@@ -15,10 +16,10 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   const router = useRouter();
   const title =
-    router?.asPath == "/"
+    router.asPath === "/"
       ? "Home"
-      : router?.asPath?.split("/")[1].charAt(0).toUpperCase() +
-        router?.asPath?.split("/")[1].slice(1);
+      : router.asPath.split("/")[1].charAt(0).toUpperCase() +
+        router.asPath.split("/")[1].slice(1);
 
   return (
     <>
@@ -31,7 +32,7 @@ const Layout: React.FC<LayoutProps> = ({
           children
         ) : (
           <PersistentDrawerLeft toggleTheme={toggleTheme} themeMode={themeMode}>
-            <Breadcrumb/>
+            <Breadcrumb />
             {children}
           </PersistentDrawerLeft>
         )}
