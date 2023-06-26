@@ -1,5 +1,4 @@
 import React from "react";
-import SelectCustome from "../customComponents/SelectInput";
 import UserServiceInstance from "../../../services/user";
 import { useSnackbar } from "notistack";
 import InputFields from "../customComponents/InputFieldsWithValidation";
@@ -10,7 +9,6 @@ const AddUser: React.FC = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
-    console.log(data, "here");
 
     try {
       const newUser: any = await UserServiceInstance.addUser(data);
@@ -23,7 +21,6 @@ const AddUser: React.FC = () => {
         throw new Error("Something went wrong");
       }
     } catch (error: any) {
-      console.error(error);
       enqueueSnackbar("Error: " + error.message, {
         variant: "error",
       });
