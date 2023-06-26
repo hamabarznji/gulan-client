@@ -16,7 +16,7 @@ const addUserInputs: InputsFieldInterface[] = [
     label: "Password",
     name: "password",
     type: "string",
-    required: true,
+    required: false,
     helperText: "Password is required",
     isMenu: false,
     isSensitive: true,
