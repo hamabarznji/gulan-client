@@ -1,14 +1,13 @@
-import React, { FormEvent } from "react";
+import React from "react";
 import { Grid } from "@mui/material";
-
-import Button from "../../src/components/customComponents/Button";
-import AddIcon from "@mui/icons-material/Add";
-import { useRouter } from "next/router";
 import ProductsTable from "../../src/components/products/ProductsTable";
 import AddProducts from "../../src/components/customComponents/InputFieldsWithValidation";
 
 import inputFields from "../../src/interfaces/user/add";
+import redirectUnauthorizedToLogin from "../../src/utils/Redirect";
 
+
+export const getServerSideProps = redirectUnauthorizedToLogin;
 type ToggleThemeFunction = () => void;
 
 interface HomePageProps {
@@ -17,7 +16,6 @@ interface HomePageProps {
 }
 
 const Products = ({ toggleTheme, user }: HomePageProps) => {
-  const router = useRouter();
   return (
     <Grid container justifyContent="flex-start" spacing={2} direction="row">
       <Grid item container justifyContent="flex-start">
