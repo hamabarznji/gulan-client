@@ -7,12 +7,11 @@ const UpdateUser: React.FC = ({ user }: any) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
-    console.log(data);
-
     try {
       const updatedUser: any = await UserServiceInstance.updateUser({
         id: user.id,
         username: data.name,
+        role: data.role,
         password: data.password,
       });
 
