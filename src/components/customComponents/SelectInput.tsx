@@ -6,7 +6,6 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { styled } from '@mui/system';
 
 import COLORS from "../../../public/COLORS";
 const inputStyles = {
@@ -24,6 +23,7 @@ interface CustomSelectProps {
   options: { value: string; label: string }[];
   error?: boolean; 
   onChange?: (event: SelectChangeEvent<string>, child: React.ReactNode) => void; // Update the onChange prop type
+  defaultValue?: string;
 }
 
 
@@ -33,7 +33,9 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   options,
   error,
   onChange,
+  defaultValue,
   ...props
+  
 }) => {
   return (
     <FormControl fullWidth error={!!error}>
@@ -43,9 +45,10 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         value={value}
         onChange={onChange}
         renderValue={(selected) => selected}
+        defaultValue={defaultValue?defaultValue:""}
       >
         {options.map((option,index) => (
-          <MenuItem key={option.value} value={option.value} sx={inputStyles} >
+          <MenuItem defaultValue={defaultValue} key={option.value} value={option.value} sx={inputStyles} >
             {option.label}
           </MenuItem>
         ))}
