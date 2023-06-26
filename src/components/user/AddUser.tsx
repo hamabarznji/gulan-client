@@ -3,8 +3,12 @@ import UserServiceInstance from "../../../services/user";
 import { useSnackbar } from "notistack";
 import InputFields from "../customComponents/InputFieldsWithValidation";
 import addUserInputs from "../../interfaces/user/add";
+import { QueryObserverResult } from 'react-query';
 
-const AddUser: React.FC = ({reFetchUsers}:any) => {
+type AddUserProps = {
+  reFetchUsers: () => Promise<QueryObserverResult<any, unknown>>;
+};
+const AddUser: React.FC<any> = ({reFetchUsers}:AddUserProps) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
