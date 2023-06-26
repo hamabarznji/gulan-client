@@ -4,11 +4,12 @@ const addUserInputs: InputsFieldInterface[] = [
   {
     id: 1,
     label: "User Name",
-    name: "username",
+    name: "name",
     type: "string",
     required: true,
     helperText: "Username is required",
     isMenu: false,
+    isSensitive: false,
   },
   {
     id: 2,
@@ -18,6 +19,8 @@ const addUserInputs: InputsFieldInterface[] = [
     required: true,
     helperText: "Password is required",
     isMenu: false,
+    isSensitive: true,
+
   },
   {
     id: 3,
@@ -27,6 +30,8 @@ const addUserInputs: InputsFieldInterface[] = [
     required: true,
     helperText: "Role is required",
     isMenu: true,
+    isSensitive: false,
+
     options: [
       {
         id: 1,
@@ -40,6 +45,7 @@ const addUserInputs: InputsFieldInterface[] = [
       },
     ],
   },
+
 ];
 
 export default addUserInputs;
