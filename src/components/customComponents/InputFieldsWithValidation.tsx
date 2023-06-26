@@ -1,11 +1,12 @@
 import React from "react";
 import Modal from "./Modal";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { Grid } from "@mui/material";
 import generateSchema from "../../utils/SchemaGenerator";
 import TextField from "./TextField";
+import DropDownMenu from "../customComponents/DropDownMenu";
+
 interface InputFieldsWithValidationProps {
   processTitle: string;
   modalTitle: string;
@@ -13,14 +14,6 @@ interface InputFieldsWithValidationProps {
   modalType?: boolean;
   children?: React.ReactNode;
   inputFields: any[];
-  yupSchema?:
-    | yup.StringSchema
-    | yup.NumberSchema
-    | yup.BooleanSchema
-    | yup.ArraySchema<any, any>
-    | yup.ObjectSchema<any, any>
-    | yup.MixedSchema<any>
-    | yup.DateSchema;
 }
 
 const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
@@ -64,17 +57,21 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
               name={field.name}
               control={control}
               defaultValue=""
-              render={({ field: inputField }) => (
-                <TextField
-                  {...inputField}
-                  label={field.label}
-                  fullWidth
-                  variant="outlined"
-                  error={!!errors[field.name]}
-                  helperText={errors[field.name]?.message?.toString()}
-                  ref={null}
-                />
-              )}
+              render={({ field: inputField }) => {
+                let CommonProps = {
+                  ...inputField,
+                  label: field.label,
+                  error: !!errors[field.name],
+                  helperText: errors[field.name]?.message?.toString(),
+                  ref: null,
+                };
+
+                return field.isMenu ? (
+                  <DropDownMenu {...CommonProps} options={field?.options} />
+                ) : (
+                  <TextField {...CommonProps} fullWidth />
+                );
+              }}
             />
           </Grid>
         </Grid>
