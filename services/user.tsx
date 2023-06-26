@@ -47,7 +47,6 @@ class UserService{
     }
 
     async updateUser(data:any){
-        console.log({data})
         try{
             const response:AxiosResponse=await axiosInstance.patch(`${base_url}/users/${data.id}`,data)
             return response
