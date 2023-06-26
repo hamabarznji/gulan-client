@@ -5,7 +5,7 @@ import Button from "../../src/components/customComponents/Button";
 import AddIcon from "@mui/icons-material/Add";
 import { useRouter } from "next/router";
 import ProductsTable from "../../src/components/products/ProductsTable";
-
+import AddProducts from "../../src/components/customComponents/InputFieldsWithValidation";
 type ToggleThemeFunction = () => void;
 
 interface HomePageProps {
@@ -18,12 +18,12 @@ const Products = ({ toggleTheme, user }: HomePageProps) => {
   return (
     <Grid container justifyContent="flex-start" spacing={2} direction="row">
       <Grid item container justifyContent="flex-start">
-        <Button
-          icon={<AddIcon />}
-          variant="contained"
-          title="Add Product"
-          onClick={() => router.push("/products/add")}
-        />
+      <AddProducts 
+      processTitle="Add Product"
+      modalTitle="Add Product"
+      submitHandler={(data: any) => console.log(data)}
+      modalType={true}
+      />
       </Grid>
 
       <Grid item container direction="row" justifyContent="center">
