@@ -4,14 +4,15 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import UserServiceInstance from "../../../services/user";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { enqueueSnackbar } from "notistack";
 import { AxiosResponse } from "axios";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
+import useUserContext from "../../context/useUserContext";
 
-const mobileMenuId:string = "primary-search-account-menu-mobile";
+const mobileMenuId: string = "primary-search-account-menu-mobile";
 
 interface RenderMobileMenuProps {
   mobileMoreAnchorEl: HTMLElement | null;
@@ -25,13 +26,15 @@ const RenderMobileMenu: React.FC<RenderMobileMenuProps> = ({
   isMobileMenuOpen,
   handleMobileMenuClose,
 }) => {
-  const router=useRouter()
+  const { clearContext } = useUserContext();
+
+  const router = useRouter();
   const handleLogut = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     try {
       const res = await UserServiceInstance.logout();
-      Cookies.remove('token')
-   
+      Cookies.remove("token");
+      clearContext();
       enqueueSnackbar("Logout success", { variant: "success" });
       if (res as AxiosResponse) {
         await router.push("/login");
@@ -76,24 +79,19 @@ const RenderMobileMenu: React.FC<RenderMobileMenuProps> = ({
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem           onClick={handleLogut}
->
+      <MenuItem onClick={handleLogut}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge  >
+          <Badge>
             <LogoutIcon />
           </Badge>
         </IconButton>
         <p>Logout</p>
       </MenuItem>
-
     </Menu>
-
-
-
   );
 };
 

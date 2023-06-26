@@ -5,6 +5,8 @@ import { AxiosResponse } from "axios";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 
+import useUserContext from "../../context/useUserContext";
+
 const menuId: string = "primary-search-account-menu";
 
 interface RenderMenuProps {
@@ -20,9 +22,11 @@ const RenderMenu: React.FC<RenderMenuProps> = ({
   handleMenuClose,
   handleProfile,
 }) => {
+  const { clearContext } = useUserContext()
   const router = useRouter();
   const handleLogut = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
+    clearContext();
     try {
       const res = await UserServiceInstance.logout();
       Cookies.remove('token')
