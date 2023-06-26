@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import { Grid } from "@mui/material";
 import TextField from "../customComponents/TextField";
-import SelectCustome from "../customComponents/SelectInput";
+import SelectCustome from "../customComponents/DropDownMenu";
 import UserServiceInstance from "../../../services/user";
 import { useSnackbar } from "notistack";
 const UpdateUser: React.FC = ({ user }) => {
@@ -47,7 +47,6 @@ const UpdateUser: React.FC = ({ user }) => {
       });
     }
   });
-console.log({errors})
   return (
     <>
       <Modal
