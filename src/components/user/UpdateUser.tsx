@@ -8,50 +8,53 @@ import TextField from "../customComponents/TextField";
 import SelectCustome from "../customComponents/SelectInput";
 import UserServiceInstance from "../../../services/user";
 import { useSnackbar } from "notistack";
-const AddUser: React.FC = () => {
+const UpdateUser: React.FC = ({ user }) => {
   const { enqueueSnackbar } = useSnackbar();
-
   const schema = yup.object().shape({
     username: yup.string().required(),
-    password: yup.string().required(),
-    role: yup.string().oneOf(["admin", "user"]).required(),
+    password: yup.string(),
+    role: yup.string().oneOf(["admin", "user"]),
   });
 
   const {
     control,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const submitHandler = handleSubmit(async (data) => {
     try {
-      const newUser:any = await UserServiceInstance.addUser(data);
-  
+      const newUser: any = await UserServiceInstance.updateUser({
+        id: user.id,
+        ...data,
+      });
+
       if (newUser.status === 200) {
-        reset()
-        enqueueSnackbar("New User Added Successfully!", {
+        reset();
+        enqueueSnackbar("New User Updated Successfully!", {
           variant: "success",
         });
       } else {
         throw new Error("Something went wrong");
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.error(error);
       enqueueSnackbar("Error: " + error.message, {
         variant: "error",
       });
     }
   });
-  
+console.log({errors})
   return (
     <>
       <Modal
-        processTitle="Add New User"
-        modalTitle="Add New User"
+        processTitle="Update User"
+        modalTitle="Update User"
         submitHandler={submitHandler}
+        modalType={false}
       >
         <Grid
           container
@@ -65,6 +68,7 @@ const AddUser: React.FC = () => {
               name="username"
               control={control}
               rules={{ required: "Username is required" }}
+              defaultValue={user.name}
               render={({
                 field: { onChange, value },
                 fieldState: { error },
@@ -83,6 +87,7 @@ const AddUser: React.FC = () => {
           <Grid item xs={12}>
             <Controller
               name="password"
+              defaultValue={user.username}
               control={control}
               rules={{ required: "Password is required" }}
               render={({
@@ -112,6 +117,7 @@ const AddUser: React.FC = () => {
                   fieldState: { error },
                 }) => (
                   <SelectCustome
+                    defaultValue={user.role}
                     onChange={onChange}
                     value={value}
                     error={!!error}
@@ -132,4 +138,4 @@ const AddUser: React.FC = () => {
   );
 };
 
-export default AddUser;
+export default UpdateUser;
