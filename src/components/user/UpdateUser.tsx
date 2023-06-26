@@ -3,7 +3,7 @@ import UserServiceInstance from "../../../services/user";
 import InputFields from "../customComponents/InputFieldsWithValidation";
 import addUserInputs from "../../interfaces/user/add";
 import { useSnackbar } from "notistack";
-const UpdateUser: React.FC = ({ user }: any) => {
+const UpdateUser: React.FC = ({ user,reFetchUsers }: any) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -16,7 +16,8 @@ const UpdateUser: React.FC = ({ user }: any) => {
       });
 
       if (updatedUser.status === 200) {
-        enqueueSnackbar("New User Updated Successfully!", {
+        reFetchUsers();
+        enqueueSnackbar("User Updated Successfully!", {
           variant: "success",
         });
       } else {
