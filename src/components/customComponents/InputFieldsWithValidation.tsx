@@ -3,17 +3,16 @@ import Modal from "./Modal";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import { Grid, Button } from "@mui/material";
+import { Grid } from "@mui/material";
 import generateSchema from "../../utils/SchemaGenerator";
 import TextField from "./TextField";
-import  inputFields  from "../../interfaces/inputFields";
 interface InputFieldsWithValidationProps {
   processTitle: string;
   modalTitle: string;
   submitHandler: (data: any) => void;
   modalType?: boolean;
   children?: React.ReactNode;
-  //inputFields?: InputField[];
+  inputFields: any[];
   yupSchema?:
     | yup.StringSchema
     | yup.NumberSchema
@@ -24,13 +23,11 @@ interface InputFieldsWithValidationProps {
     | yup.DateSchema;
 }
 
-
-
-
 const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
   modalTitle,
   submitHandler,
   processTitle,
+  inputFields,
 }) => {
   const yupSchema = generateSchema(inputFields);
   const {
@@ -75,6 +72,7 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
                   variant="outlined"
                   error={!!errors[field.name]}
                   helperText={errors[field.name]?.message?.toString()}
+                  ref={null}
                 />
               )}
             />

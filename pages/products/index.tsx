@@ -6,6 +6,9 @@ import AddIcon from "@mui/icons-material/Add";
 import { useRouter } from "next/router";
 import ProductsTable from "../../src/components/products/ProductsTable";
 import AddProducts from "../../src/components/customComponents/InputFieldsWithValidation";
+
+import inputFields from "../../src/interfaces/inputFields";
+
 type ToggleThemeFunction = () => void;
 
 interface HomePageProps {
@@ -19,6 +22,8 @@ const Products = ({ toggleTheme, user }: HomePageProps) => {
     <Grid container justifyContent="flex-start" spacing={2} direction="row">
       <Grid item container justifyContent="flex-start">
       <AddProducts 
+      inputFields={inputFields}
+      
       processTitle="Add Product"
       modalTitle="Add Product"
       submitHandler={(data: any) => console.log(data)}

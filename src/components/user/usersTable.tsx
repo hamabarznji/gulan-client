@@ -14,7 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import COLORS from "../../../public/COLORS";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller } from "react-hook-form";
-
+import UpdateUser from "./UpdateUser";
 const queryKey: QueryKey = ["users"];
 
 export default function CustomizedTables() {
@@ -50,19 +50,11 @@ export default function CustomizedTables() {
     name: user.name,
     role: user.role,
     actions: (
-      <Modal
-      key={user.id}
-        processTitle="Update User"
-        modalTitle="Update User"
-        modalType={false}
-        submitHandler={handleSubmit(submitHandler)}
-      >
-        <Inputs 
-        user={user}
-        control={control}
-        register={register}
-        />
-      </Modal>    ),
+     <UpdateUser user={user}
+     
+     
+     
+     />  ),
   }));
 
   return (
