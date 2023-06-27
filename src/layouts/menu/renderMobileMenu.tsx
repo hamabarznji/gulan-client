@@ -5,7 +5,7 @@ import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LogoutIcon from "@mui/icons-material/Logout";
-import UserServiceInstance from "../../../services/user";
+import UserServiceInstance from "../../../services/UserService";
 import Cookies from "js-cookie";
 import { enqueueSnackbar } from "notistack";
 import { AxiosResponse } from "axios";

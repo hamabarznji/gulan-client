@@ -16,7 +16,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import Badge from "@mui/material/Badge";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import UserServiceInstance from "../../services/user";
+import UserServiceInstance from "../../services/UserService";
 import { useRouter } from "next/router";
 import { AxiosResponse } from "axios";
 import { useSnackbar } from "notistack";

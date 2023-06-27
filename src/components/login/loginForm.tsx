@@ -7,7 +7,7 @@ import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import LoginBtn from "./loginBtn";
 import LoginInputs from "./inputs";
-import UserServiceInstance from "../../../services/user";
+import UserServiceInstance from "../../../services/UserService";
 import { useSnackbar } from "notistack";
 import useUserContext from "../../context/useUserContext";
 const FormContainer = styled("form")({

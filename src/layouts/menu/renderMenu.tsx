@@ -1,5 +1,5 @@
 import { Menu, MenuItem } from "@mui/material";
-import UserServiceInstance from "../../../services/user";
+import UserServiceInstance from "../../../services/UserService";
 import { enqueueSnackbar } from "notistack";
 import { AxiosResponse } from "axios";
 import { useRouter } from "next/router";

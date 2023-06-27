@@ -1,5 +1,5 @@
 import React from "react";
-import UserServiceInstance from "../../../services/user";
+import UserServiceInstance from "../../../services/UserService";
 import { useSnackbar } from "notistack";
 import InputFields from "../customComponents/InputFieldsWithValidation";
 import addUserInputs from "../../interfaces/user/add";

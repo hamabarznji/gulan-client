@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, QueryKey } from "@tanstack/react-query";
-import UserServiceInstance from "../../../services/user";
+import UserServiceInstance from "../../../services/UserService";
 import UsersTable from "../customComponents/Table";
 import { Grid } from "@mui/material";
 import UpdateUser from "./UpdateUser";
