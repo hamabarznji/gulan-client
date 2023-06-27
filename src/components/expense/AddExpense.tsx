@@ -2,8 +2,9 @@ import React from "react";
 import ExpenseService from "../../../services/ExpenseService";
 import { useSnackbar } from "notistack";
 import InputFields from "../customComponents/InputFieldsWithValidation";
-import addUserInputs from "../../interfaces/user/add";
+import addExpenseInputs from "../../interfaces/expense/add";
 import { QueryObserverResult } from 'react-query';
+import moment from "moment";
 
 type AddUserProps = {
   reFetchUsers: () => Promise<QueryObserverResult<any, unknown>>;
@@ -13,8 +14,13 @@ const AddExpense: React.FC<any> = ({reFetchUsers}:AddUserProps) => {
 
   const submitHandler = async (data: any) => {
 
+
     try {
-      const newUser: any = await ExpenseService.addExpense(data);
+      const newUser: any = await ExpenseService.addExpense({
+        ...data,
+        createdAt:moment(data.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS"),
+     
+      });
 
       if (newUser.status === 200) {
         reFetchUsers();
@@ -37,7 +43,7 @@ const AddExpense: React.FC<any> = ({reFetchUsers}:AddUserProps) => {
         processTitle="Add New Expense"
         modalTitle="Add New Expense"
         submitHandler={submitHandler}
-        inputFields={addUserInputs}
+        inputFields={addExpenseInputs}
       />
     </>
   );

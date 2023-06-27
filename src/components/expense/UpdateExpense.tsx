@@ -1,7 +1,7 @@
 import React from "react";
-import UserServiceInstance from "../../../services/UserService";
+import ExpenseService from "../../../services/ExpenseService";
 import InputFields from "../customComponents/InputFieldsWithValidation";
-import addUserInputs from "../../interfaces/user/add";
+import updateExpenseInputs from "../../interfaces/expense/add";
 import { useSnackbar } from "notistack";
 import { QueryObserverResult } from "react-query";
 
@@ -14,14 +14,9 @@ const UpdateUser: React.FC<any> = ({ user, reFetchUsers }: Props) => {
 
   const submitHandler = async (data: any) => {
     try {
-      const updatedUser: any = await UserServiceInstance.updateUser({
-        id: user.id,
-        username: data.name,
-        role: data.role,
-        password: data.password,
-      });
+      const updatedExpense: any = await ExpenseService.updateExpense(data);
 
-      if (updatedUser.status === 200) {
+      if (updatedExpense.status === 200) {
         reFetchUsers();
         enqueueSnackbar("Expense Updated Successfully!", {
           variant: "success",
@@ -42,9 +37,10 @@ const UpdateUser: React.FC<any> = ({ user, reFetchUsers }: Props) => {
         processTitle="Update Expense"
         modalTitle="Update Expense"
         submitHandler={submitHandler}
-        inputFields={addUserInputs}
+        inputFields={updateExpenseInputs}
         modalType={false}
         updateData={user}
+        
       />
     </>
   );

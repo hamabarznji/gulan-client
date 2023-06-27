@@ -6,6 +6,7 @@ import { Grid } from "@mui/material";
 import UpdateExpense from "./UpdateExpense";
 import AddExpense from "./AddExpense";
 import moment from "moment";
+import Chips from "../customComponents/Chip";
 const queryKey: QueryKey = ["users"];
 
 interface ExpenseData {
@@ -34,7 +35,8 @@ export default function CustomizedTables() {
   const transformedRows = data?.map((expense: any, index: number) => ({
     index: index + 1,
     description: expense.description,
-    amount: expense.amount,
+    categoryName: expense.categoryName,
+    amount: <Chips label={expense.amount} />,
     createdAt:moment(expense.createdAt).format("YYYY-MM-DD"),
     actions: <UpdateExpense user={expense} reFetchUsers={refetch} />,
   }));
@@ -50,7 +52,6 @@ export default function CustomizedTables() {
           rows={transformedRows || []}
           columns={columns}
 
-          
         />
       </Grid>
     </Grid>
@@ -59,6 +60,7 @@ export default function CustomizedTables() {
 const columns = [
   { id: "index", label: "ID", align: "center" },
   { id: "description", label: "Description", align: "center" },
+  { id: "categoryName", label: "Category Name", align: "center" },
   { id: "amount", label: "Amount", align: "center" },
   { id: "createdAt", label: "Created At", align: "center" },
   { id: "actions", label: "Actions", align: "center" },
