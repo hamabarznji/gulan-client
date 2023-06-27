@@ -4,7 +4,7 @@ interface InputField {
   id: number;
   label: string;
   name: string;
-  type: 'string' | 'number' | 'boolean' | 'array';
+  type: 'string' | 'number' | 'boolean' | 'array'|'date' | 'datetime' ;
   required: boolean;
   helperText: string;
   min?: number;
@@ -22,6 +22,9 @@ const generateSchema = (fields: InputField[]): Yup.ObjectSchema<any> => {
     switch (type) {
       case 'string':
         fieldSchema = Yup.string();
+        break;
+      case 'date':
+        fieldSchema = Yup.date();
         break;
       case 'number':
         fieldSchema = Yup.number();
