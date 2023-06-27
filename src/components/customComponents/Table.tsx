@@ -100,6 +100,7 @@ const CustomeTable: React.FC<TableProps> = ({
       </TableContainer>
       {isPagination && (
         <TablePagination
+          style={{ color: "black" }}
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={rows.length}
