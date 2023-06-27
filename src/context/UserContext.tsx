@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import UserServiceInstance from "../../services/user";
+import UserServiceInstance from "../../services/UserService";
 
 interface UserData {
   id: string;
@@ -34,9 +34,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     }
   };
   useEffect(() => {
-    console.log("UserProvider mounted");
-   
-
     fetchUserData();
   }, []);
 
@@ -45,6 +42,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user,clearContext,fetchUserData }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ user, clearContext, fetchUserData }}>
+      {children}
+    </UserContext.Provider>
   );
 };
