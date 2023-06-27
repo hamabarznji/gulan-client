@@ -23,6 +23,7 @@ const CustomTextField: React.FC<TextFieldProps> = (props) => {
     <TextField
       {...props}
       sx={inputStyles}
+      fullWidth
       InputLabelProps={{
         className: 'Mui-focused', // Add Mui-focused class when focused
         style: {
