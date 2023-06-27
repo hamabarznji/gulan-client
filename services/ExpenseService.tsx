@@ -7,7 +7,26 @@ class ExpenseService {
       const response: AxiosResponse = await axiosInstance.get(
         `${base_url}/expenses`
       );
-      console.log({response});
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+  async addExpense(data:any) {
+    try {
+      const response: AxiosResponse = await axiosInstance.post(
+        `${base_url}/expenses`,data
+      );
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+  async updateExpense(data:any) {
+    try {
+      const response: AxiosResponse = await axiosInstance.patch(
+        `${base_url}/expenses`,data
+      );
       return response;
     } catch (error) {
       return error;
