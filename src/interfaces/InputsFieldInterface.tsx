@@ -3,7 +3,7 @@ interface InputsFieldInterface {
     id: number;
     label: string;
     name: string;
-    type: "string" | "number" | "boolean" | "array";
+    type: "string" | "number" | "boolean" | "array"|"date" | "datetime" 
     required: boolean;
     helperText: string;
     min?: number;
