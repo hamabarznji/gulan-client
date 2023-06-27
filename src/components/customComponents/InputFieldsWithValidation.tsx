@@ -41,14 +41,13 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
     reset();
   };
 
-  // ...
-
   return (
     <Modal
       processTitle={processTitle}
       modalTitle={modalTitle}
       submitHandler={handleSubmit(onSubmit)}
       modalType={modalType}
+      isEdit={updateData ? true : false}
     >
       {inputFields.map((field) => (
         <Grid
@@ -76,7 +75,11 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
                 return field.isMenu ? (
                   <DropDownMenu {...CommonProps} options={field?.options} />
                 ) : (
-                  <TextField {...CommonProps} fullWidth />
+                  <TextField
+                    {...CommonProps}
+                    type={field.type}
+                    isDate={field.type == "date" ? true : false}
+                  />
                 );
               }}
             />
