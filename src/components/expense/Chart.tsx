@@ -25,27 +25,25 @@ Chart.register(
 );
 
 const PieChartPage = () => {
-const [chartData,setChartData]=useState(null)
-const [labels,setLabels]=useState(null)
+  const [chartData, setChartData] = useState(null);
+  const [labels, setLabels] = useState(null);
 
-useEffect(() => {
-  const fetchChartData = async () => {
-    try {
-      const res = await ExpenseServiceInstance.getTopExpenses();
+  useEffect(() => {
+    const fetchChartData = async () => {
+      try {
+        const res = await ExpenseServiceInstance.getTopExpenses();
 
-      setChartData(res.data.slice(0,3).map((item:any)=>item.sum));
-      setLabels(res.labels.slice(0,3))
-    } catch (err) {
-      console.error('Error fetching chart data:', err);
-    }
-  };
+        setChartData(res.data.slice(0, 3).map((item: any) => item.sum));
+        setLabels(res.labels.slice(0, 3));
+      } catch (err) {
+        console.error("Error fetching chart data:", err);
+      }
+    };
 
-  fetchChartData();
-}, []);
+    fetchChartData();
+  }, []);
 
-
-
-console.log(labels)
+  console.log(labels);
   const data = {
     labels: labels,
     datasets: [
