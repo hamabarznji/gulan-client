@@ -32,6 +32,14 @@ class ExpenseService {
       return error;
     }
   }
+  async getTopExpenses(data:any) {
+    try {
+      const response: AxiosResponse = await axiosInstance.get(`${base_url}/expenses/top`)
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
 
   // async addExpense(expense:any):Promise<AxiosResponse<any>>{}
 
