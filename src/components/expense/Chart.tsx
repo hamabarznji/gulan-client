@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart,
@@ -11,6 +11,7 @@ import {
   Title,
   Decimation,
 } from "chart.js";
+import ExpenseServiceInstance from "../../../services/ExpenseService";
 
 Chart.register(
   ArcElement,
@@ -24,12 +25,33 @@ Chart.register(
 );
 
 const PieChartPage = () => {
+const [chartData,setChartData]=useState(null)
+const [labels,setLabels]=useState(null)
+
+useEffect(() => {
+  const fetchChartData = async () => {
+    try {
+      const res = await ExpenseServiceInstance.getTopExpenses();
+
+      setChartData(res.data.slice(0,3).map((item:any)=>item.sum));
+      setLabels(res.labels.slice(0,3))
+    } catch (err) {
+      console.error('Error fetching chart data:', err);
+    }
+  };
+
+  fetchChartData();
+}, []);
+
+
+
+console.log(labels)
   const data = {
-    labels: ["Red", "Blue", "Yellow"],
+    labels: labels,
     datasets: [
       {
-        label: "My First Dataset",
-        data: [500, 300, 50],
+        label: "Top Three Expenses",
+        data: chartData,
         backgroundColor: [
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
