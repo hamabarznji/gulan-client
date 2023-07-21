@@ -32,20 +32,15 @@ class ExpenseService {
       return error;
     }
   }
-  async getTopExpenses(data:any) {
+  async getTopExpenses() {
     try {
-      const response: AxiosResponse = await axiosInstance.get(`${base_url}/expenses/top`)
-      return response;
+      const response: AxiosResponse = await axiosInstance.get('http://localhost:3001/api/expenses/top')
+      return response.data
     } catch (error) {
       return error;
     }
   }
 
-  // async addExpense(expense:any):Promise<AxiosResponse<any>>{}
-
-  // async updateExpense(expense:any):Promise<AxiosResponse<any>>{}
-
-  // async deleteExpense(expense:any):Promise<AxiosResponse<any>>{}
 }
 
 const ExpenseServiceInstance = new ExpenseService();
