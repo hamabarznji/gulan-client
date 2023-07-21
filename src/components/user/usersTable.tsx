@@ -2,10 +2,11 @@ import React from "react";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import UserServiceInstance from "../../../services/UserService";
 import UsersTable from "../customComponents/Table";
-import { Grid } from "@mui/material";
+import { Chip, Grid } from "@mui/material";
 import UpdateUser from "./UpdateUser";
 import AddUser from "./AddUser";
-
+import PersonIcon from "@mui/icons-material/Person";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 const queryKey: QueryKey = ["users"];
 
 interface UserData {
@@ -35,7 +36,15 @@ export default function CustomizedTables() {
     id: index + 1,
     longId: user.id,
     username: user.name,
-    role: user.role,
+    role: (
+      <Chip
+        label={user.role}
+        color={user.role === "admin" ? "error" : "warning"}
+        icon={
+          user.role == "admin" ? <AdminPanelSettingsIcon /> : <PersonIcon />
+        }
+      />
+    ),
     actions: <UpdateUser user={user} reFetchUsers={refetch} />,
   }));
 
