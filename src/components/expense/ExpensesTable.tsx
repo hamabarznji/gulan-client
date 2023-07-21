@@ -61,7 +61,7 @@ const columns = [
   { id: "index", label: "ID", align: "center" },
   { id: "description", label: "Description", align: "center" },
   { id: "categoryName", label: "Category Name", align: "center" },
+  { id: "createdAt", label: "Expense Date", align: "center" },
   { id: "amount", label: "Amount", align: "center" },
-  { id: "createdAt", label: "Created At", align: "center" },
   { id: "actions", label: "Actions", align: "center" },
 ];
