@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Table from '../../components/customComponents/Table';
+import Table from '../customComponents/Table';
 import ItemsServiceInstance from '../../../services/ItemService';
 import { useQuery, QueryKey } from "@tanstack/react-query";
 const queryKey: QueryKey = ["items"];
@@ -25,7 +25,7 @@ const InvoiceTable: React.FC = () => {
     }
   };
   const { data, refetch } = useQuery(queryKey, fetchItems);
-const rows=data.map((item:any,index:any)=>{
+const rows=data?.map((item:any,index:any)=>{
   return {
     ...item,
     index:index+1,
@@ -41,7 +41,7 @@ const rows=data.map((item:any,index:any)=>{
   return (
     <>
       <Table 
-        rows={rows}
+        rows={rows||[]}
         columns={columns}
       
       />

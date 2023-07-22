@@ -14,7 +14,7 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   { title: "Dashboard", icon: DashboardIcon, path: "/dashboard", roles: ["admin"],isImage: false },
   { title: "Invoices", icon: ReceiptLongIcon, path: "/invoices", roles: ["admin", "user"],isImage: false },
-  { title: "Products", icon: InventoryIcon, path: "/products", roles: ["admin"],isImage: false },
+  { title: "Items", icon: InventoryIcon, path: "/items", roles: ["admin"],isImage: false },
   { title: "Users", icon: PersonIcon, path: "/users", roles: ["admin"] },
   { title: "Expenses", icon: PointOfSaleIcon, path: "/expenses", roles: ["admin"],isImage: true },
 ];

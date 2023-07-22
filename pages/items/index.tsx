@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import ProductsTable from "../../src/components/products/ProductsTable";
+import ProductsTable from "../../src/components/items/ItemsTable";
 import AddProducts from "../../src/components/customComponents/InputFieldsWithValidation";
 
 import inputFields from "../../src/interfaces/user/add";
