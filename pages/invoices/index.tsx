@@ -16,7 +16,6 @@ const Invoice = () => {
         <Button
           icon={<AddIcon />}
           variant="contained"
-          title="Add Invoice"
           onClick={() => router.push("/invoices/add")}
         />
       </Grid>
