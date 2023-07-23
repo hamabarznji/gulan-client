@@ -17,22 +17,8 @@ interface HomePageProps {
 
 const Products = ({ toggleTheme, user }: HomePageProps) => {
   return (
-    <Grid container justifyContent="flex-start" spacing={2} direction="row">
-      <Grid item container justifyContent="flex-start">
-      <AddProducts 
-      inputFields={inputFields}
-      
-      processTitle="Add Product"
-      modalTitle="Add Product"
-      submitHandler={(data: any) => console.log(data)}
-      modalType={true}
-      />
-      </Grid>
+    <ProductsTable />
 
-      <Grid item container direction="row" justifyContent="center">
-        <ProductsTable />
-      </Grid>
-    </Grid>
   );
 };
 
