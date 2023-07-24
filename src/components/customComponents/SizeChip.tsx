@@ -6,7 +6,7 @@ interface ChipsProps {
 }
 
 export default function Chips({ label }: ChipsProps) {
-  let color = "default";
+  let color:string = "default";
   const colorMap = new Map([
     ["small", "default"],
     ["medium", "secondary"],
@@ -14,13 +14,13 @@ export default function Chips({ label }: ChipsProps) {
     ["Xl", "warning"],
   ]);
 
-  color = colorMap.get(label.toString().toLowerCase()) || "warning";
+  color = colorMap.get(label?.toString()?.toLowerCase()) || "warning";
 
-  if (label.toString().toLowerCase() !== "xl") {
-    label = label.toString().toUpperCase().charAt(0);
+  if (label?.toString()?.toLowerCase() !== "xl") {
+    label = label?.toString()?.toUpperCase()?.charAt(0);
   } else {
-    label = label.toString().toUpperCase();
+    label = label?.toString()?.toUpperCase();
   }
 
-  return <Chip color={color} label={label} />;
+  return <Chip color={color} label={label?label:""} />;
 }
