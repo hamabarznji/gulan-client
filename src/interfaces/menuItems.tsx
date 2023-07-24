@@ -5,14 +5,15 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import CategoryIcon from '@mui/icons-material/Category';
 import BusinessIcon from '@mui/icons-material/Business';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import StoreIcon from '@mui/icons-material/Store';
 interface MenuItem {
   title: string;
   icon: React.ComponentType;
   path: string;
   roles: string[];
   nestedLinks?: boolean;
-  nestedLinksItems?: [];
+  nestedLinksItems?: MenuItem[];
 }
 
 const menuItems: MenuItem[] = [
@@ -31,7 +32,7 @@ const menuItems: MenuItem[] = [
   },
   {
     title: "Items",
-    icon: InventoryIcon,
+    icon: StoreIcon,
     path: "/items",
     roles: ["admin"],
     nestedLinks: true,
@@ -40,16 +41,22 @@ const menuItems: MenuItem[] = [
         title: "Categories",
         icon: CategoryIcon,
         path: "/items/category",
-        roles: ["admin"],
-        isImage: false,
+        roles: ["admin"]
       },
       {
         title: "Vendors",
         icon: BusinessIcon,
         path: "/items/vendors",
-        roles: ["admin"],
+        roles: ["admin"]
       },
     ],
+  },
+  {
+    title: "Purchased Items",
+    icon: ShoppingCartIcon,
+    path: "/purchased-items",
+    nestedLinks: false,
+    roles: ["admin"],
   },
   {
     title: "Users",
