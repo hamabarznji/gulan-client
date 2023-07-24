@@ -3,14 +3,15 @@ import Table from "../customComponents/Table";
 import ItemsServiceInstance from "../../../services/ItemService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import AddCategory from "./category/AddCategory";
-import { Grid } from "@mui/material";
+import { Chip, Grid } from "@mui/material";
 import SizeChip from "../customComponents/SizeChip";
 const queryKey: QueryKey = ["items"];
 const columns = [
   { id: "index", label: "#", align: "center" },
   { id: "name", label: "Name", align: "center" },
-  { id: "sellingPrice", label: "Selling Price", align: "center" },
   { id: "price", label: "Pruchased Price", align: "center" },
+
+  { id: "sellingPrice", label: "Selling Price", align: "center" },
   { id: "qty", label: "Quantity", align: "center" },
 
   { id: "color", label: "Color", align: "center" },
@@ -34,8 +35,18 @@ const InvoiceTable: React.FC = () => {
       ...item,
       index: index + 1,
       name: item.itemName,
-      price: `$${item.price} `,
-      sellingPrice: `$${item.sellingPrice} `,
+      price: (
+        <Chip key={`price-${item.id}`} variant="outlined" color="default" label={`$${item.price} `} />
+      ),
+  
+      sellingPrice: (
+        <Chip
+          key={`sellingPrice-${item.id}`}
+          variant="outlined"
+          color="secondary"
+          label={`$${item.sellingPrice} `}
+        />
+      ),
       code: item.itemCode,
       color: item.itemColor,
       size: <SizeChip label={item.itemSize} />,
