@@ -5,6 +5,7 @@ import { useQuery, QueryKey } from "@tanstack/react-query";
 import AddCategory from "./category/AddCategory";
 import { Chip, Grid } from "@mui/material";
 import SizeChip from "../customComponents/SizeChip";
+import UpdateItem from "./UpdateItem";
 const queryKey: QueryKey = ["items"];
 const columns = [
   { id: "index", label: "#", align: "center" },
@@ -51,6 +52,10 @@ const InvoiceTable: React.FC = () => {
       color: item.itemColor,
       size: <SizeChip label={item.itemSize} />,
       categoryName: item.categoryName,
+      actions:<UpdateItem
+      item={item}
+      reFetchItems={refetch}
+      />
     };
   });
   return (
