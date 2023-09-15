@@ -7,7 +7,8 @@ import UpdateExpense from "./UpdateExpense";
 import AddExpense from "./AddExpense";
 import moment from "moment";
 import Chips from "../customComponents/Chip";
-const queryKey: QueryKey = ["expenses"];
+const expensesQueryKey: QueryKey = ["expenses"];
+
 
 interface ExpenseData {
   id: string;
@@ -30,7 +31,11 @@ export default function CustomizedTables() {
     }
   };
 
-  const { data, refetch } = useQuery(queryKey, fetchExpenses);
+
+  const { data, refetch } = useQuery(expensesQueryKey, fetchExpenses);
+
+
+
 
   const transformedRows = data?.map((expense: any, index: number) => ({
     index: index + 1,
@@ -44,7 +49,6 @@ export default function CustomizedTables() {
 
     }} reFetchExpenses={refetch} />,
   }));
-
   return (
     <Grid container justifyContent="flex-start" spacing={3} direction="row">
       <Grid item container justifyContent="flex-start">

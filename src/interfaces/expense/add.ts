@@ -13,6 +13,17 @@ const addExpenseInputs: InputsFieldInterface[] = [
   },
   {
     id: 2,
+    label: "Category",
+    name: "categoryId",
+    type: "string",
+    required: true,
+    helperText: "Category is required",
+    isMenu: true,
+    isSensitive: false,
+    options: []
+  },
+  {
+    id: 3,
     label: "Amount",
     name: "amount",
     type: "number",
@@ -23,7 +34,7 @@ const addExpenseInputs: InputsFieldInterface[] = [
 
   },
   {
-    id: 3,
+    id: 4,
     label: "",
     name: "createdAt",
     type: "date",

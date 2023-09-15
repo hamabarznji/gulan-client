@@ -3,7 +3,7 @@ import ExpenseService from "../../../services/ExpenseService";
 import { useSnackbar } from "notistack";
 import InputFields from "../customComponents/InputFieldsWithValidation";
 import addExpenseInputs from "../../interfaces/expense/add";
-import { QueryObserverResult } from 'react-query';
+import { QueryObserverResult } from "react-query";
 import moment from "moment";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 const expenseCategoriesQueryKey: QueryKey = ["expenseCategories"];
@@ -11,14 +11,14 @@ type AddUserProps = {
   reFetchUsers: () => Promise<QueryObserverResult<any, unknown>>;
 };
 
-const AddExpense: React.FC<any> = ({reFetchUsers}:AddUserProps) => {
+const AddExpense: React.FC<any> = ({ reFetchUsers }: AddUserProps) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
     try {
       const newUser: any = await ExpenseService.addExpense({
         ...data,
-        createdAt:moment(data.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS"),
+        createdAt: moment(data.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS"),
       });
 
       if (newUser.status === 200) {
@@ -43,13 +43,17 @@ const AddExpense: React.FC<any> = ({reFetchUsers}:AddUserProps) => {
     } catch (error) {
       throw new Error("Failed to fetch expenseCategorise");
     }
-  }
+  };
 
-  const { data:expenseCategorise } = useQuery(expenseCategoriesQueryKey, fetchExpenseCategorise);
+  const { data: expenseCategorise } = useQuery(
+    expenseCategoriesQueryKey,
+    fetchExpenseCategorise
+  );
 
   // Update options property in the second element of addExpenseInputs
   const updatedInputs = addExpenseInputs.map((input, index) => {
-    if (index === 1) { // Assuming you want to update the second element
+    if (index === 1) {
+      // Assuming you want to update the second element
       return {
         ...input,
         options: expenseCategorise || [], // Use the data from the query or an empty array as fallback

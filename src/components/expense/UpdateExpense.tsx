@@ -31,7 +31,6 @@ const UpdateUser: React.FC<any> = ({ expense, reFetchExpenses }: Props) => {
       });
     }
   };
-  console.log({expense});
   return (
     <>
       <InputFields
