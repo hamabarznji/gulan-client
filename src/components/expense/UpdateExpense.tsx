@@ -6,10 +6,10 @@ import { useSnackbar } from "notistack";
 import { QueryObserverResult } from "react-query";
 
 interface Props {
-  user: any;
-  reFetchUsers: () => Promise<QueryObserverResult>;
+  expense: any;
+  reFetchExpenses: () => Promise<QueryObserverResult>;
 }
-const UpdateUser: React.FC<any> = ({ user, reFetchUsers }: Props) => {
+const UpdateUser: React.FC<any> = ({ expense, reFetchExpenses }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -17,7 +17,7 @@ const UpdateUser: React.FC<any> = ({ user, reFetchUsers }: Props) => {
       const updatedExpense: any = await ExpenseService.updateExpense(data);
 
       if (updatedExpense.status === 200) {
-        reFetchUsers();
+        reFetchExpenses();
         enqueueSnackbar("Expense Updated Successfully!", {
           variant: "success",
         });
@@ -31,6 +31,7 @@ const UpdateUser: React.FC<any> = ({ user, reFetchUsers }: Props) => {
       });
     }
   };
+  console.log({expense});
   return (
     <>
       <InputFields
@@ -39,7 +40,7 @@ const UpdateUser: React.FC<any> = ({ user, reFetchUsers }: Props) => {
         submitHandler={submitHandler}
         inputFields={updateExpenseInputs}
         modalType={false}
-        updateData={user}
+        updateData={expense}
         
       />
     </>
