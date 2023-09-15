@@ -40,6 +40,14 @@ class ExpenseService {
       return error;
     }
   }
+  async getExpenseCategories() {
+    try {
+      const response: AxiosResponse = await axiosInstance.get('http://localhost:3001/api/expenses/categories')
+      return response.data
+    } catch (error) {
+      return error;
+    }
+  }
 
 }
 
