@@ -7,7 +7,7 @@ import UpdateExpense from "./UpdateExpense";
 import AddExpense from "./AddExpense";
 import moment from "moment";
 import Chips from "../customComponents/Chip";
-const queryKey: QueryKey = ["users"];
+const queryKey: QueryKey = ["expenses"];
 
 interface ExpenseData {
   id: string;
@@ -21,16 +21,16 @@ interface ExpenseResponse {
 }
 
 export default function CustomizedTables() {
-  const fetchUsers = async () => {
+  const fetchExpenses = async () => {
     try {
       const response = await ExpenseService.getExpenses();
       return (response as ExpenseResponse).data;
     } catch (error) {
-      throw new Error("Failed to fetch users");
+      throw new Error("Failed to fetch expenses");
     }
   };
 
-  const { data, refetch } = useQuery(queryKey, fetchUsers);
+  const { data, refetch } = useQuery(queryKey, fetchExpenses);
 
   const transformedRows = data?.map((expense: any, index: number) => ({
     index: index + 1,
@@ -38,7 +38,11 @@ export default function CustomizedTables() {
     categoryName: expense.categoryName,
     amount: <Chips label={expense.amount} />,
     createdAt:moment(expense.createdAt).format("YYYY-MM-DD"),
-    actions: <UpdateExpense user={expense} reFetchUsers={refetch} />,
+    actions: <UpdateExpense expense={{
+      ...expense,
+      createdAt: moment(expense.createdAt).format("YYYY-MM-DD"),
+
+    }} reFetchExpenses={refetch} />,
   }));
 
   return (
