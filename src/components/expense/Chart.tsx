@@ -43,7 +43,6 @@ const PieChartPage = () => {
     fetchChartData();
   }, []);
 
-  console.log(labels);
   const data = {
     labels: labels,
     datasets: [
