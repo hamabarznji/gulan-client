@@ -1,17 +1,19 @@
 import React from "react";
-import ExpenseService from "../../../services/ExpenseService";
 import { useSnackbar } from "notistack";
-import InputFields from "../customComponents/InputFieldsWithValidation";
-import addExpenseInputs from "../../interfaces/expense/add";
 import { QueryObserverResult } from "react-query";
 import moment from "moment";
 import { useQuery, QueryKey } from "@tanstack/react-query";
-const expenseCategoriesQueryKey: QueryKey = ["expenseCategories"];
-type AddUserProps = {
-  reFetchUsers: () => Promise<QueryObserverResult<any, unknown>>;
+import addExpenseInputs from "../../interfaces/expense/add";
+
+import ExpenseService from "../../../services/ExpenseService";
+import InputFields from "../customComponents/InputFieldsWithValidation";
+
+type AddExpenseProps = {
+  reFetchExpenses: () => Promise<QueryObserverResult<any, unknown>>;
+  expenseCategories: any[]; // Assuming it's an array of expense categories
 };
 
-const AddExpense: React.FC<any> = ({ reFetchUsers }: AddUserProps) => {
+const AddExpense: React.FC<AddExpenseProps> = ({ reFetchExpenses, expenseCategories }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -22,53 +24,29 @@ const AddExpense: React.FC<any> = ({ reFetchUsers }: AddUserProps) => {
       });
 
       if (newUser.status === 200) {
-        reFetchUsers();
+        reFetchExpenses();
         enqueueSnackbar("New Expense Added Successfully!", {
           variant: "success",
         });
       } else {
         throw new Error("Something went wrong");
       }
-    } catch (error: any) {
+    } catch (error: Error) {
       enqueueSnackbar("Error: " + error.message, {
         variant: "error",
       });
     }
   };
 
-  const fetchExpenseCategorise = async () => {
-    try {
-      const response = await ExpenseService.getExpenseCategories();
-      return response.data; // Assuming the data you need is inside response.data
-    } catch (error) {
-      throw new Error("Failed to fetch expenseCategorise");
-    }
-  };
-
-  const { data: expenseCategorise } = useQuery(
-    expenseCategoriesQueryKey,
-    fetchExpenseCategorise
-  );
-
   // Update options property in the second element of addExpenseInputs
-  const updatedInputs = addExpenseInputs.map((input, index) => {
-    if (index === 1) {
-      // Assuming you want to update the second element
-      return {
-        ...input,
-        options: expenseCategorise || [], // Use the data from the query or an empty array as fallback
-      };
-    }
-    return input;
-  });
-
+console.log(expenseCategories);
   return (
     <>
       <InputFields
         processTitle="Add New Expense"
         modalTitle="Add New Expense"
         submitHandler={submitHandler}
-        inputFields={updatedInputs} // Use the updatedInputs
+        inputFields={expenseCategories||[]} // Use the updatedInputs
       />
     </>
   );
