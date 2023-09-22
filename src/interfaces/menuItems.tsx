@@ -54,7 +54,7 @@ const menuItems: MenuItem[] = [
   {
     title: "Purchased Items",
     icon: ShoppingCartIcon,
-    path: "/purchased-items",
+    path: "orders/purchased",
     nestedLinks: false,
     roles: ["admin"],
   },
