@@ -26,7 +26,6 @@ interface DropDownMenuProps {
   defaultValue?: string;
 }
 
-
 const DropDownMenu: React.FC<DropDownMenuProps> = ({
   label,
   value,
@@ -35,8 +34,9 @@ const DropDownMenu: React.FC<DropDownMenuProps> = ({
   onChange,
   defaultValue,
   ...props
-  
 }) => {
+  const selectedLabel = options.find(option => option.value === value)?.label || '';
+
   return (
     <FormControl fullWidth error={!!error}>
       <InputLabel sx={{ color: COLORS.primary }}>{label}</InputLabel>
@@ -44,11 +44,11 @@ const DropDownMenu: React.FC<DropDownMenuProps> = ({
         {...props}
         value={value}
         onChange={onChange}
-        renderValue={(selected) => selected}
-        defaultValue={defaultValue?defaultValue:""}
+        renderValue={() => selectedLabel} // Render the selected label
+        defaultValue={defaultValue ? defaultValue : ""}
       >
-        {options.map((option,index) => (
-          <MenuItem defaultValue={defaultValue} key={option.value} value={option.value} sx={inputStyles} >
+        {options.map((option, index) => (
+          <MenuItem key={option.value} value={option.value} sx={inputStyles}>
             {option.label}
           </MenuItem>
         ))}
