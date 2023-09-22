@@ -2,9 +2,6 @@ import React from "react";
 import { useSnackbar } from "notistack";
 import { QueryObserverResult } from "react-query";
 import moment from "moment";
-import { useQuery, QueryKey } from "@tanstack/react-query";
-import addExpenseInputs from "../../interfaces/expense/add";
-
 import ExpenseService from "../../../services/ExpenseService";
 import InputFields from "../customComponents/InputFieldsWithValidation";
 
@@ -39,7 +36,6 @@ const AddExpense: React.FC<AddExpenseProps> = ({ reFetchExpenses, expenseCategor
   };
 
   // Update options property in the second element of addExpenseInputs
-console.log(expenseCategories);
   return (
     <>
       <InputFields
