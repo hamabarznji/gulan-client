@@ -4,12 +4,12 @@ import InputFields from "../customComponents/InputFieldsWithValidation";
 import updateExpenseInputs from "../../interfaces/expense/add";
 import { useSnackbar } from "notistack";
 import { QueryObserverResult } from "react-query";
-
 interface Props {
   expense: any;
   reFetchExpenses: () => Promise<QueryObserverResult>;
+  expenseCategories: any[];
 }
-const UpdateUser: React.FC<any> = ({ expense, reFetchExpenses }: Props) => {
+const UpdateUser: React.FC<any> = ({ expense, reFetchExpenses,expenseCategories }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -37,7 +37,7 @@ const UpdateUser: React.FC<any> = ({ expense, reFetchExpenses }: Props) => {
         processTitle="Update Expense"
         modalTitle="Update Expense"
         submitHandler={submitHandler}
-        inputFields={updateExpenseInputs}
+        inputFields={expenseCategories||[]}
         modalType={false}
         updateData={expense}
         

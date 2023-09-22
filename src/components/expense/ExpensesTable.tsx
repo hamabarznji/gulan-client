@@ -74,6 +74,7 @@ export default function CustomizedTables() {
     createdAt: moment(expense.createdAt).format("YYYY-MM-DD"),
     actions: (
       <UpdateExpense
+      expenseCategories={expenseCategories}
         expense={{
           ...expense,
           createdAt: moment(expense.createdAt).format("YYYY-MM-DD"),
