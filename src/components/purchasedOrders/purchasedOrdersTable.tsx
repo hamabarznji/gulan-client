@@ -42,7 +42,7 @@ export default function CustomizedTables() {
   const transformedRows = data?.map((order: any, index: number) => ({
     ...order,
     index: index + 1,
-    purchased_at: order.purchased_at.split("T")[0],
+    purchased_at: order?.purchased_at?.split("T")[0],
     actions: (
       <Button
         title="View"
