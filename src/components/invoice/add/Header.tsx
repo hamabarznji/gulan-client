@@ -2,12 +2,15 @@ import React from "react";
 import { Typography, Grid } from "@mui/material";
 import Image from "next/image";
 import icon from "../../../../public/icon.png";
+import useUserContext from "../../../context/useUserContext";
 interface HeaderProps {
   date: string;
   id: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ id, date }) => {
+  const user = useUserContext().user?.username
+
   return (
     <>
       <Grid item xs={12} sm={6}>
@@ -39,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ id, date }) => {
           Date: {date}
         </Typography>
         <Typography variant="h6" align="right" color="black">
-          Issued By: MB
+          Issued By: {user}
         </Typography>
       </Grid>
 
