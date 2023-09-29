@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import ItemsServiceInstance from "../../services/ItemService";
 
 const useBarcodeScanner = () => {
   const [id, setId] = useState("");
+  const [item, setItem] = useState();
+
   const [scannedValues, setScannedValues] = useState<string[]>([]);
 
   useEffect(() => {
@@ -19,7 +22,8 @@ const useBarcodeScanner = () => {
       const dateMatch = dateRegex.exec(concatedChars);
 
       if (!dateMatch) {
-        console.log("Invalid barcode format");
+        // Add more structured error handling here
+        console.error("Invalid barcode format");
         setScannedValues([]);
         setId("");
         return;
@@ -29,14 +33,23 @@ const useBarcodeScanner = () => {
 
       setId(lastElementIsTheID);
       setScannedValues([]);
+      ItemsServiceInstance.getItemById(lastElementIsTheID)
+        .then((res) => {
+          setItem(res);
+        })
+        .catch((error) => {
+          // Add more structured error handling here
+          console.error("Error fetching item:", error);
+        });
     };
+
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [scannedValues, id]);
-  return id;
+  });
+  return item||null;
 };
 
 export default useBarcodeScanner;
