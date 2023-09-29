@@ -13,6 +13,17 @@ class ItemsService {
     }
   }
   
+  async getItemById(id:string) {
+    try {
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/items/${id}/purchased`
+      );
+      return response.data
+    } catch (error) {
+      return error;
+    }
+  }
+  
 
 }
 
