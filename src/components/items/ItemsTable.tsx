@@ -6,6 +6,7 @@ import AddCategory from "./category/AddCategory";
 import { Chip, Grid } from "@mui/material";
 import SizeChip from "../customComponents/SizeChip";
 import UpdateItem from "./UpdateItem";
+import BarcodeGenerator from "./BarcodeGenerator";
 const queryKey: QueryKey = ["items"];
 const columns = [
   { id: "index", label: "#", align: "center" },
@@ -19,6 +20,7 @@ const columns = [
   { id: "size", label: "Size", align: "center" },
   { id: "categoryName", label: "Category", align: "center" },
   { id: "actions", label: "Action", align: "center" },
+  { id: "barcode", label: "Barcode", align: "center" },
 ];
 
 const InvoiceTable: React.FC = () => {
@@ -37,9 +39,14 @@ const InvoiceTable: React.FC = () => {
       index: index + 1,
       name: item.itemName,
       price: (
-        <Chip key={`price-${item.id}`} variant="outlined" color="default" label={`$${item.price} `} />
+        <Chip
+          key={`price-${item.id}`}
+          variant="outlined"
+          color="default"
+          label={`$${item.price} `}
+        />
       ),
-  
+
       sellingPrice: (
         <Chip
           key={`sellingPrice-${item.id}`}
@@ -52,10 +59,13 @@ const InvoiceTable: React.FC = () => {
       color: item.itemColor,
       size: <SizeChip label={item.itemSize} />,
       categoryName: item.categoryName,
-      actions:<UpdateItem
-      item={item}
-      reFetchItems={refetch}
-      />
+
+      actions: (
+        <>
+          <UpdateItem item={item} reFetchItems={refetch} />
+        </>
+      ),
+      barcode: <BarcodeGenerator price={item.sellingPrice} id={item.id} />,
     };
   });
   return (
