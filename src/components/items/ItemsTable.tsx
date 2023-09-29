@@ -65,7 +65,7 @@ const InvoiceTable: React.FC = () => {
           <UpdateItem item={item} reFetchItems={refetch} />
         </>
       ),
-      barcode: <BarcodeGenerator price={item.sellingPrice} id={item.id} />,
+      barcode: <BarcodeGenerator price={item.sellingPrice} id={item.itemId} />,
     };
   });
   return (
