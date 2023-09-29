@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import COLORS from "../../../../../public/COLORS";
-
+import Textfield from "../../../customComponents/TextField";
 interface RowProps {
-  rows: Row[];
+  items: Row[];
 }
 
 interface Row {
@@ -16,9 +16,47 @@ interface Row {
   action: React.ReactNode;
 }
 
-const CustomTableRow: React.FC<RowProps> = ({ rows }) => {
+const CustomTableRow: React.FC<RowProps> = ({ items }) => {
+  const [discount,setDiscount]=useState(0)
   return (
     <>
+      <TableRow>
+        <TableCell
+          rowSpan={1}
+          sx={{
+            fontSize: "1rem",
+            padding: "8px",
+            color: COLORS.secondary,
+            fontWeight: "bold",
+          }}
+        />
+        <TableCell
+          colSpan={2}
+          sx={{
+            fontSize: "1rem",
+            padding: "8px",
+            color: COLORS.secondary,
+            fontWeight: "bold",
+          }}
+        >
+          Discount:
+        </TableCell>
+        <TableCell
+          align="center"
+          sx={{
+            fontSize: "1rem",
+            padding: "8px",
+            color: COLORS.secondary,
+            fontWeight: "bold",
+          }}
+        >
+<Textfield
+onChange={(e)=>setDiscount(e?.target?.value)}
+defaultValue={0}
+
+/>
+        </TableCell>
+      </TableRow>
       <TableRow>
         <TableCell
           rowSpan={3}
@@ -49,7 +87,7 @@ const CustomTableRow: React.FC<RowProps> = ({ rows }) => {
             fontWeight: "bold",
           }}
         >
-          {rows.reduce((sum, i) => sum + i.price * i.qty, 0)}
+          {items.reduce((sum, i) => sum +  i.total, 0)}
         </TableCell>
       </TableRow>
 
@@ -74,8 +112,8 @@ const CustomTableRow: React.FC<RowProps> = ({ rows }) => {
           }}
           align="right"
         >
-          {rows.reduce((sum, i) => sum + i.price * i.qty, 0) -
-            rows.reduce((sum, i) => sum + i.price * i.qty, 0) * 0.1}
+          {items.reduce((sum, i) => sum + i.total , 0) -
+            items.reduce((sum, i) => sum + i.total  , 0) * (discount/100)}
         </TableCell>
       </TableRow>
     </>
