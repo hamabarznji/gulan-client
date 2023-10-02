@@ -15,12 +15,12 @@ const AddExpense: React.FC<AddExpenseProps> = ({ reFetchExpenses, expenseCategor
 
   const submitHandler = async (data: any) => {
     try {
-      const newUser: any = await ExpenseService.addExpense({
+      const newExpense: any = await ExpenseService.addExpense({
         ...data,
         createdAt: moment(data.createdAt).format("YYYY-MM-DD HH:mm:ss.SSS"),
       });
 
-      if (newUser.status === 200) {
+      if (newExpense.status === 200) {
         reFetchExpenses();
         enqueueSnackbar("New Expense Added Successfully!", {
           variant: "success",
