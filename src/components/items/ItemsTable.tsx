@@ -12,10 +12,8 @@ const columns = [
   { id: "index", label: "#", align: "center" },
   { id: "name", label: "Name", align: "center" },
   { id: "price", label: "Pruchased Price", align: "center" },
-
-  { id: "sellingPrice", label: "Selling Price", align: "center" },
+  { id: "selling_price", label: "Selling Price", align: "center" },
   { id: "qty", label: "Quantity", align: "center" },
-
   { id: "color", label: "Color", align: "center" },
   { id: "size", label: "Size", align: "center" },
   { id: "categoryName", label: "Category", align: "center" },
@@ -37,7 +35,7 @@ const InvoiceTable: React.FC = () => {
     return {
       ...item,
       index: index + 1,
-      name: item.itemName,
+      name: item.name,
       price: (
         <Chip
           key={`price-${item.id}`}

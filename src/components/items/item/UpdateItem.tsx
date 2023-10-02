@@ -3,6 +3,7 @@ import ItemCategoryService from "../../../../services/ItemCategoryService";
 import InputFields from "../../customComponents/InputFieldsWithValidation";
 import { useSnackbar } from "notistack";
 import { QueryObserverResult } from 'react-query';
+import updateItemInputs from '../../../interfaces/item/add';
 
 
 interface Props {
@@ -42,7 +43,7 @@ const UpdateItem: React.FC<any> = ({ item,reFetchItems }: Props) => {
         processTitle="Update Item"
         modalTitle="Update Item"
         submitHandler={submitHandler}
-        inputFields={[{ name: "name", label: "Item Name", type: "text" }]}
+        inputFields={updateItemInputs}
         modalType={false}
         updateData={item}
       />
