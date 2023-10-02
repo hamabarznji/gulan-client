@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Table from "../customComponents/Table";
 import ItemsServiceInstance from "../../../services/ItemService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
-import AddCategory from "./category/AddCategory";
+import AddItem from "./item/AddItem";
 import { Chip, Grid } from "@mui/material";
 import SizeChip from "../customComponents/SizeChip";
-import UpdateItem from "./UpdateItem";
+import UpdateItem from "./item/UpdateItem";
 import BarcodeGenerator from "./BarcodeGenerator";
 const queryKey: QueryKey = ["items"];
 const columns = [
@@ -72,7 +72,7 @@ const InvoiceTable: React.FC = () => {
     <>
       <Grid container justifyContent="flex-start" spacing={2} direction="row">
         <Grid item container justifyContent="flex-start">
-          <AddCategory reFetchCategories={refetch} />
+          <AddItem reFetchCategories={refetch} />
         </Grid>
 
         <Grid item container direction="row" justifyContent="center">
