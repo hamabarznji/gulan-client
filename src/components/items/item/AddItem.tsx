@@ -19,7 +19,7 @@ const AddItem: React.FC<any> = ({ reFetchItems }: AddItemProps) => {
     try {
       const newItem: any = await ItemService.addItem(data);
       if (newItem.status === 200) {
-       // reFetchItems();
+       reFetchItems();
         enqueueSnackbar("New Item Successfully Added!", {
           variant: "success",
         });

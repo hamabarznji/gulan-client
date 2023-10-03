@@ -70,7 +70,7 @@ const InvoiceTable: React.FC = () => {
     <>
       <Grid container justifyContent="flex-start" spacing={2} direction="row">
         <Grid item container justifyContent="flex-start">
-          <AddItem reFetchCategories={refetch} />
+          <AddItem reFetchItems={refetch} />
         </Grid>
 
         <Grid item container direction="row" justifyContent="center">
