@@ -38,6 +38,16 @@ class ItemsService {
       throw new Error(`Failed to get item info: ${error.message}`);
     }
   }
+
+  async updateItem(id:string,item:any): Promise<any> {
+    console.log(item);
+    try {
+      const response: AxiosResponse = await axiosInstance.patch(`${base_url}/items/update/${id}`,item);
+      return response;
+    } catch (error:any) {
+      throw new Error(`Failed to update item: ${error.message}`);
+    }
+  }
 }
 
 const ItemsServiceInstance = new ItemsService();
