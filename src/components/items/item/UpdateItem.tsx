@@ -1,42 +1,45 @@
 import React from "react";
-import ItemCategoryService from "../../../../services/ItemCategoryService";
+import ItemService from "../../../../services/ItemService";
 import InputFields from "../../customComponents/InputFieldsWithValidation";
 import { useSnackbar } from "notistack";
-import { QueryObserverResult } from 'react-query';
-import updateItemInputs from '../../../interfaces/item/add';
-
+import { QueryObserverResult } from "react-query";
+import updateItemInputs from "../../../interfaces/item/add";
 
 interface Props {
   item: any;
   reFetchItems: () => Promise<QueryObserverResult>;
 }
-const UpdateItem: React.FC<any> = ({ item,reFetchItems }: Props) => {
+const UpdateItem: React.FC<any> = ({ item, reFetchItems }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
-    return
-    // try {
-    //   const updatedUser: any = await ItemCategoryService.updateCategory({
-    //     id: data.id,
-    //     name: data.name,
+    try {
+      const id = data?.itemId;
+      const updateItem: any = await ItemService.updateItem(id, {
+        selling_price:data.selling_price,
+        category_id:data.category_id,
+        color_id:data.color_id,
+        size_id:data.size_id,
+        name:data.name,
 
-    //   });
-
-    //   if (updatedUser.status === 200) {
-    //     reFetchCategories();
-    //     enqueueSnackbar("Category Updated Successfully!", {
-    //       variant: "success",
-    //     });
-    //   } else {
-    //     throw new Error("Something went wrong");
-    //   }
-    // } catch (error: any) {
-    //   console.error(error);
-    //   enqueueSnackbar("Error: " + error.message, {
-    //     variant: "error",
-    //   });
-    // }
+      });
+console.log(updateItem);
+      if (updateItem.status === 200) {
+        reFetchItems();
+        enqueueSnackbar("Item Updated Successfully!", {
+          variant: "success",
+        });
+      } else {
+        throw new Error("Something went wrong");
+      }
+    } catch (error: any) {
+      console.error(error);
+      enqueueSnackbar("Error: " + error.message, {
+        variant: "error",
+      });
+    }
   };
+
   return (
     <>
       <InputFields
