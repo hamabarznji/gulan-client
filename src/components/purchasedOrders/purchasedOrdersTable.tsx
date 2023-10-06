@@ -1,11 +1,12 @@
 import React from "react";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import PurchasesServiceInstance from "../../../services/orders/PurchasesService";
-import UsersTable from "../customComponents/Table";
+import OrdersTable from "../customComponents/Table";
 import {  Chip, Grid } from "@mui/material";
 import UpdateUser from "../user/UpdateUser";
 import AddUser from "../user/AddUser";
-import { useRouter } from "next/router";import Button from "../customComponents/Button";
+import { useRouter } from "next/router";
+import Button from "../customComponents/Button";
 
 
 const queryKey: QueryKey = ["users"];
@@ -37,7 +38,7 @@ export default function CustomizedTables() {
     router.push(`/orders/purchased/${id}`); // Replace 'your-page' with your actual route
   };
 
-  const { data, refetch } = useQuery(queryKey, fetchOrders);
+  const { data } = useQuery(queryKey, fetchOrders);
 
   const transformedRows = data?.map((order: any, index: number) => ({
     ...order,
@@ -61,7 +62,7 @@ export default function CustomizedTables() {
       </Grid> */}
 
       <Grid item container direction="row" justifyContent="center">
-        <UsersTable
+        <OrdersTable
           isPagination={false}
           rows={transformedRows || []}
           columns={columns}

@@ -23,7 +23,6 @@ const UpdateItem: React.FC<any> = ({ item, reFetchItems }: Props) => {
         name:data.name,
 
       });
-console.log(updateItem);
       if (updateItem.status === 200) {
         reFetchItems();
         enqueueSnackbar("Item Updated Successfully!", {
