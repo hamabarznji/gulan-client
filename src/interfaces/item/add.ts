@@ -1,6 +1,6 @@
 import InputsFieldInterface from "../InputsFieldInterface";
 
-const addExpenseInputs: InputsFieldInterface[] = [
+const addItemInputs: InputsFieldInterface[] = [
   {
     id: 1,
     label: "Item Name",
@@ -63,4 +63,4 @@ const addExpenseInputs: InputsFieldInterface[] = [
 
 ];
 
-export default addExpenseInputs;
+export default addItemInputs;
