@@ -1,10 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import Button from "../../../src/components/customComponents/Button";
-import AddIcon from "@mui/icons-material/Add";
-import Table from "../../../src/components/color/ColorsTable";
-import { useRouter } from "next/router";
+import Table from "../../../src/components/items/color/ColorsTable";
 
 const Color = () => {
   const theme = useTheme();

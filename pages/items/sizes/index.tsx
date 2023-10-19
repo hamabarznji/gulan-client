@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Table from "../../../src/components/items/size/SizesTable";
 
-const Color = () => {
+const Size = () => {
   const theme = useTheme();
   return (
     <Grid container justifyContent="flex-start" spacing={2} direction="row">
@@ -24,4 +24,4 @@ const Color = () => {
   );
 };
 
-export default Color;
+export default Size;
