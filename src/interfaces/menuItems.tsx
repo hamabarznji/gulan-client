@@ -7,6 +7,8 @@ import CategoryIcon from '@mui/icons-material/Category';
 import BusinessIcon from '@mui/icons-material/Business';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StoreIcon from '@mui/icons-material/Store';
+import ColorLensIcon from '@mui/icons-material/ColorLens';
+import CropIcon from '@mui/icons-material/Crop';
 interface MenuItem {
   title: string;
   icon: React.ComponentType;
@@ -47,6 +49,18 @@ const menuItems: MenuItem[] = [
         title: "Vendors",
         icon: BusinessIcon,
         path: "/items/vendors",
+        roles: ["admin"]
+      },
+      {
+        title: "Colors",
+        icon: ColorLensIcon,
+        path: "/items/colors",
+        roles: ["admin"]
+      },
+      {
+        title: "Sizes",
+        icon: CropIcon,
+        path: "/items/sizes",
         roles: ["admin"]
       },
     ],
