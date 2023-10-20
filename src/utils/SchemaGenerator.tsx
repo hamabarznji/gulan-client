@@ -14,7 +14,7 @@ interface InputField {
 const generateSchema = (fields: InputField[]): Yup.ObjectSchema<any> => {
   const schemaFields: { [key: string]: Yup.Schema<any> } = {};
 
-  fields.forEach((field) => {
+  fields?.forEach((field) => {
     const { name, label, type, required, helperText, min, max } = field;
 
     let fieldSchema: Yup.Schema<any>;
