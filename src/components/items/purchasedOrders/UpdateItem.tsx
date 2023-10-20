@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import ItemService from "../../../services/ItemService";
-import InputFields from "../customComponents/InputFieldsWithValidation";
+import ItemService from "../../../../services/ItemService";
+import InputFields from "../../customComponents/InputFieldsWithValidation";
 import { useSnackbar } from "notistack";
 import { QueryObserverResult } from "react-query";
-import updateItemInputs from "../../interfaces/purchasesItems/update";
-import ItemsServiceInstance from "../../../services/ItemService";
+import updateItemInputs from "../../../interfaces/purchasesItems/update";
+import ItemsServiceInstance from "../../../../services/ItemService";
 
 interface Props {
   item: any;
