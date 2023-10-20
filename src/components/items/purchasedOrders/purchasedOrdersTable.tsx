@@ -66,7 +66,6 @@ export default function CustomizedTables() {
 
       <Grid item container direction="row" justifyContent="center">
         <OrdersTable
-          isPagination={false}
           rows={transformedRows || []}
           columns={columns}
         />
