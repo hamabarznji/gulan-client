@@ -24,6 +24,7 @@ interface DropDownMenuProps {
   error?: boolean; 
   onChange?: (event: SelectChangeEvent<string>, child: React.ReactNode) => void; // Update the onChange prop type
   defaultValue?: string;
+  isValueAndName?: boolean;
 }
 
 const DropDownMenu: React.FC<DropDownMenuProps> = ({
@@ -33,6 +34,7 @@ const DropDownMenu: React.FC<DropDownMenuProps> = ({
   error,
   onChange,
   defaultValue,
+  isValueAndName=false,
   ...props
 }) => {
   const selectedLabel = options.find(option => option.value === value)?.label || '';
@@ -48,9 +50,14 @@ const DropDownMenu: React.FC<DropDownMenuProps> = ({
         defaultValue={defaultValue ? defaultValue : ""}
       >
         {options.map((option, index) => (
-          <MenuItem key={option.value} value={option.value} sx={inputStyles}>
-            {option.label}
-          </MenuItem>
+       <MenuItem 
+       key={option.value} 
+       value={isValueAndName ? `${option.value},${option.label}` : option.value} 
+       sx={inputStyles}
+     >
+       {option.label}
+     </MenuItem>
+     
         ))}
       </Select>
     </FormControl>
