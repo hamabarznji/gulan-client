@@ -11,6 +11,14 @@ class ItemsService {
       throw new Error(`Failed to get items: ${error.message}`);
     }
   }
+  async getItemsForPurchaseInvoice(): Promise<any> {
+    try {
+      const response: AxiosResponse = await axiosInstance.get(`${base_url}/items/for_pruchase_invoice`);
+      return response.data;
+    } catch (error) {
+      throw new Error(`Failed to get items: ${error.message}`);
+    }
+  }
 
   async addItem(data: any): Promise<AxiosResponse | AxiosError> {
     try {
@@ -40,7 +48,6 @@ class ItemsService {
   }
 
   async updateItem(id:string,item:any): Promise<any> {
-    console.log(item);
     try {
       const response: AxiosResponse = await axiosInstance.patch(`${base_url}/items/update/${id}`,item);
       return response;
@@ -48,6 +55,16 @@ class ItemsService {
       throw new Error(`Failed to update item: ${error.message}`);
     }
   }
+  async addPurchaseOrderInvoice(data:any): Promise<any> {
+    try {
+      const response: AxiosResponse = await axiosInstance.post(`${base_url}/orders/purchase/add`,data);
+      return response;
+    } catch (error:any) {
+      throw new Error(`Failed to add items: ${error.message}`);
+    }
+  }
+
+
 }
 
 const ItemsServiceInstance = new ItemsService();
