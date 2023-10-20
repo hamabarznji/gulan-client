@@ -1,8 +1,7 @@
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import PersonIcon from "@mui/icons-material/Person";
-import InventoryIcon from "@mui/icons-material/Inventory";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import CategoryIcon from '@mui/icons-material/Category';
 import BusinessIcon from '@mui/icons-material/Business';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -40,6 +39,12 @@ const menuItems: MenuItem[] = [
     nestedLinks: true,
     nestedLinksItems: [
       {
+        title: "Purchase Order",
+        icon: AddShoppingCartIcon,
+        path: "/items/orders/purchased",
+        roles: ["admin"]
+      },
+      {
         title: "Categories",
         icon: CategoryIcon,
         path: "/items/category",
@@ -64,13 +69,6 @@ const menuItems: MenuItem[] = [
         roles: ["admin"]
       },
     ],
-  },
-  {
-    title: "Purchased Items",
-    icon: ShoppingCartIcon,
-    path: "orders/purchased",
-    nestedLinks: false,
-    roles: ["admin"],
   },
   {
     title: "Users",
