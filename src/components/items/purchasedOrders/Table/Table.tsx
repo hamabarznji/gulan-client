@@ -8,70 +8,95 @@ import {
   TableCell,
   TableBody,
   Grid,
+ 
 } from "@mui/material";
+import AddInvoiceModal from "./AddInvoiceModal";
 import Header from "./Header";
 import Inputs from "./Inputs";
 
 const currentDate = moment().format("DD/MM/YYYY");
 
-const CustomeTable: React.FC<{ rows: any[]; onAddItem: (data: any) => void }> = ({ rows, onAddItem }) => {
+const CustomeTable: React.FC<{
+  rows: any[];
+  onAddItem: (data: any) => void;
+  onSumitInvoice: (data: any) => void;
+  itemsLength: number;
+}> = ({ rows, onAddItem,onSumitInvoice,itemsLength }) => {
   return (
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-        alignContent="center"
-        alignItems="center"
+    <Grid
+      container
+      spacing={2}
+      justifyContent="center"
+      alignContent="center"
+      alignItems="center"
+    >
+      <Inputs onAddItem={onAddItem} />
+      <Header id={"truncatedUuid"} date={currentDate} />
+      <TableContainer
+        sx={{
+          maxHeight: "calc(100vh - 200px)",
+          "@media (max-width: 600px)": {
+            maxHeight: "calc(100vh - 300px)",
+          },
+        }}
       >
-        <Inputs onAddItem={onAddItem} />
-        <Header id={"truncatedUuid"} date={currentDate} />
-        <TableContainer
-          sx={{
-            maxHeight: "calc(100vh - 200px)",
-            "@media (max-width: 600px)": {
-              maxHeight: "calc(100vh - 300px)",
-            },
-          }}
-        >
-          <Table>
-            <TableHead
-              sx={{
-                backgroundColor: "#d3d3d3",
-                color: "#ff7f50",
+        <Table>
+          <TableHead
+            sx={{
+              backgroundColor: "#d3d3d3",
+              color: "#ff7f50",
+              fontWeight: "bold",
+              fontSize: "1.2rem",
+              "& th": {
+                color: "black",
                 fontWeight: "bold",
-                fontSize: "1.2rem",
-                "& th": {
-                  color: "black",
-                  fontWeight: "bold",
-                },
-              }}
-            >
-              <TableRow>
+              },
+            }}
+          >
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  sx={{ fontSize: "1rem", padding: "20px" }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, index) => (
+              <TableRow hover tabIndex={-1} key={row.id}>
                 {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    sx={{ fontSize: "1rem", padding: "20px" }}
-                  >
-                    {column.label}
+                  <TableCell key={column.id} align="center">
+                    {row[column?.name]}
                   </TableCell>
                 ))}
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row, index) => (
-                <TableRow hover tabIndex={-1} key={row.id}>
-                  {columns.map((column) => (
-                    <TableCell key={column.id} align="center">
-                      {row[column?.name]}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Grid>
+            ))}
+{itemsLength>0 && <TableRow>
+              <TableCell
+                colSpan={6}
+                sx={{
+                  fontSize: "1rem",
+                  padding: "8px",
+                  fontWeight: "bold",
+                }}
+              >
+                <AddInvoiceModal
+                  processTitle="Add Invoice"
+                  modalTitle="Add Pruchase Order Invoice"
+                  title="Add Invoice"
+                  submitHandler={onSumitInvoice}
+                />
+              </TableCell>
+            </TableRow> }
+           
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
   );
 };
 
