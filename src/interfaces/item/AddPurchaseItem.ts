@@ -4,7 +4,7 @@ const addPurchasedItems: InputsFieldInterface[] = [
   {
     id: 1,
     label: "Item Name",
-    name: "item_id",
+    name: "id",
     type: "string",
     required: true,
     helperText: "Item Name is required",
