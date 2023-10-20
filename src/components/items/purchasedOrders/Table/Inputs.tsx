@@ -7,27 +7,20 @@ import TextField from "../../../customComponents/TextField";
 import inputFields from "../../../../interfaces/item/AddPurchaseItem";
 import DropDownMenu from "../../../customComponents/DropDownMenu";
 import Butoon from "../../../customComponents/Button";
-interface InputField {
-  id: string;
-  name: string;
-  label: string;
-  isSensitive: boolean;
-  isMenu: boolean;
-  options?: any[];
-  type: string;
-}
+import ItemsServiceInstance from "../../../../../services/ItemService";
+import { useQuery, QueryKey } from "@tanstack/react-query";
+
 
 interface InputFieldsWithValidationProps {
   submitHandler?: (data: any) => void;
   modalType?: boolean;
   children?: React.ReactNode;
-  updateData?: any;
   onAddItem?: (data:any) => void;
 }
 
+// ... (other imports)
+
 const Inputs: React.FC<InputFieldsWithValidationProps> = ({
-  submitHandler,
-  updateData,
   onAddItem,
 }) => {
   const yupSchema = generateSchema(inputFields);
@@ -41,24 +34,42 @@ const Inputs: React.FC<InputFieldsWithValidationProps> = ({
   });
 
   const onSubmit = (data: any) => {
+    console.log({data})
     onAddItem(data);
     reset({
-      item_id: "",
+      id: "",
       qty: "",
       price: "",
-    }); // Reset the form after submission
+    }); 
   };
+  const fetchItems = async () => {
+    try {
+      const response = await ItemsServiceInstance.getItemsForPurchaseInvoice();
+      return response
+    } catch (error) {
+      throw new Error("Failed to fetch users");
+    }
+  };
+
+  const { data, refetch } = useQuery(["getItems"], fetchItems);
+  const updatedInputs = inputFields.map((input) => {
+    if (input.name === "id") {
+      input.options = data || [];
+    }
+    return input;
+  });
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2} direction={"row"}>
-        {inputFields.map((field, index) => (
+        {updatedInputs?.map((field, index) => (
           <Grid item xs={3} key={field.name}>
             <Controller
               name={field.name}
               control={control}
               render={({ field: inputField }) => {
-                let inputProps = {
+                let CommonProps = {
                   ...inputField,
                   label: field.label,
                   error: !!errors[field.name],
@@ -68,9 +79,15 @@ const Inputs: React.FC<InputFieldsWithValidationProps> = ({
                 };
 
                 return field.isMenu ? (
-                  <DropDownMenu {...inputProps} options={[]} />
+                  <DropDownMenu
+                    options={field?.options || []}
+                    {...CommonProps}  
+                    isValueAndName={true}
+                 
+                 
+                  />
                 ) : (
-                  <TextField {...inputProps} type={field.type} isDate={false} />
+                  <TextField {...CommonProps} type={field.type} isDate={false} />
                 );
               }}
             />
