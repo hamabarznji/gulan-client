@@ -4,13 +4,15 @@ const addPurchasedItems: InputsFieldInterface[] = [
   {
     id: 1,
     label: "Item Name",
-    name: "id",
+    name: "name",
     type: "string",
-    required: true,
+    required: false,
     helperText: "Item Name is required",
-    isMenu: true,
+    isMenu: false,
     isSensitive: false,
-    options: []
+    defaultValue:""
+
+    
   }, {
     id: 2,
     label: "Price",
@@ -33,10 +35,6 @@ const addPurchasedItems: InputsFieldInterface[] = [
     isSensitive: false,
   
   },
-
- 
- 
-
 ];
 
 export default addPurchasedItems;
