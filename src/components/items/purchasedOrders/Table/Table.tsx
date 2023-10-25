@@ -12,39 +12,15 @@ import {
 import AddInvoiceModal from "./AddInvoiceModal";
 import Header from "./Header";
 import useBarcodeScanner from "../../../../hook/useBarcodeScanner";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import TextField from "../../../customComponents/TextField";
-import Button from "../../../customComponents/Button"; // Make sure this import is correct
+import { Button } from "@mui/material";
 import ItemsServiceInstance from "../../../../../services/ItemService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import columns from "./columns";
 import * as yup from "yup";
-import { title } from "process";
-const DeleteButton = ({ onClick }) => (
-  <Button
-    variant="contained"
-    color="error"
-    style={{ justifyContent: "center", alignItems: "center" }}
-    onClick={onClick}
-  >
-    <DeleteIcon style={{ justifyContent: "center", alignItems: "center" }} />
-  </Button>
-);
-const schema = yup.object().shape({
-  rows: yup.array().of(
-    yup.object().shape({
-      name: yup.string(),
-      // price: yup.number().required('Price is required for every rows'),
-      // qty: yup.number().required('QTY is required for every rows'),
-      price: yup.number(),
-      qty: yup.number(),
-  
-    })
-  ),
-});
-const currentDate = moment().format("DD/MM/YYYY");
+import DeleteButton from "./DeleteBtn";
 
 const CustomeTable: React.FC<{
   rows: any[];
@@ -53,7 +29,6 @@ const CustomeTable: React.FC<{
   itemsLength: number;
 }> = () => {
   const scannedItem = useBarcodeScanner();
-
 
   const {
     formState: { errors },
@@ -67,19 +42,33 @@ const CustomeTable: React.FC<{
 
   const submitHandler = (data: any) => {
     const { rows } = data;
-    console.log(rows);
+    console.log({ rows });
+    const newData = rows.map((row) => {
+      return {
+        item_id: row.input4,
+        name: row.input1,
+        price: row.input2,
+        qty: row.input3,
+      };
+    });
+    console.log({ newData });
   };
-console.log(errors)
+  // console.log({errors});
   useEffect(() => {
+    let index =newRows.length;
+    let rowIndex = newRows.length +1;
+
     if (scannedItem) {
       const newRow = {
-        index: newRows.length + 1,
-        item_id: scannedItem[0]?.itemId,
-        name: (
-          <Grid item xs={12} key={scannedItem[0]?.itemId}>
+        index: index,
+        rowIndex: rowIndex,
+        item_id: scannedItem?.itemId,
+
+        id: (
+          <Grid item xs={12} key={scannedItem?.itemId}>
             <Controller
-              defaultValue={scannedItem[0]?.itemName}
-              name={`rows[${newRows.length + 1}].input1`}
+              defaultValue={scannedItem?.itemName}
+              name={`rows[${index}].input1`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
               render={({ field: inputField }) => {
@@ -102,12 +91,39 @@ console.log(errors)
             />
           </Grid>
         ),
-        price: (
-          <Grid item xs={12} key={scannedItem[0]?.itemId}>
+        name: (
+          <Grid item xs={12} key={scannedItem?.itemId}>
             <Controller
-              name={`rows[${newRows.length + 1}].input2`}
+              defaultValue={scannedItem?.itemId}
+              name={`rows[${index}].input4`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
+              render={({ field: inputField }) => {
+                let CommonProps = {
+                  ...inputField,
+                  label: "Id",
+                  //  error: !!errors[field.name],
+                  //  helperText: errors[field.name]?.message?.toString(),
+                };
+
+                return (
+                  <TextField
+                    {...CommonProps}
+                    type={"string"}
+                    fullWidth
+                    disabled={true}
+                  />
+                );
+              }}
+            />
+          </Grid>
+        ),
+        price: (
+          <Grid item xs={12} key={scannedItem?.itemId}>
+            <Controller
+              name={`rows[${index}].input2`}
+              control={control}
+              // rules={{ validate: (value) => schema.isValidSync(value) }}
               render={({ field: inputField }) => {
                 let CommonProps = {
                   ...inputField,
@@ -117,19 +133,16 @@ console.log(errors)
                   //defaultValue:defaultValue,
                 };
 
-                return <TextField {...CommonProps} type={"number"} fullWidth
-                
-                
-                />;
+                return <TextField {...CommonProps} type={"number"} fullWidth />;
               }}
             />
           </Grid>
         ),
 
         qty: (
-          <Grid item xs={12} key={scannedItem[0]?.itemId}>
+          <Grid item xs={12} key={scannedItem?.itemId}>
             <Controller
-              name={`rows[${newRows.length + 1}].input3`}
+              name={`rows[${index}].input3`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
               render={({ field: inputField }) => {
@@ -148,13 +161,19 @@ console.log(errors)
         ),
 
         actions: (
-          <Button
-          title="Delete"
-
-            onClick={() => {
-              setNewRows(newRows.filter((item) => item.index !== newRow.index));
-            }}
-          />
+          <DeleteButton
+          onClick={() => {
+            console.log("Deleting row with index:", newRow.index); // Debug statement
+            return
+            newRows.filter((item) =>{
+            const i=  item.index 
+            const x= newRow.index
+            console.log(item.item_id,newRow.item_id);
+            })
+           setNewRows(newRows.filter((item) => item.index !== newRow.index));
+          }}
+        />
+        
         ),
       };
 
@@ -162,6 +181,7 @@ console.log(errors)
     }
   }, [scannedItem]);
 
+  console.log({ newRows });
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
@@ -180,7 +200,7 @@ console.log(errors)
         alignContent="center"
         alignItems="center"
       >
-        <Header id={"truncatedUuid"} date={currentDate} />
+        <Header id={"truncatedUuid"} date={moment().format("DD/MM/YYYY")} />
         <TableContainer
           sx={{
             maxHeight: "calc(100vh - 200px)",
@@ -248,3 +268,13 @@ console.log(errors)
 };
 
 export default CustomeTable;
+const schema = yup.object().shape({
+  rows: yup.array().of(
+    yup.object().shape({
+      name: yup.string(),
+      price: yup.number(),
+      qty: yup.number(),
+      id: yup.string(),
+    })
+  ),
+});
