@@ -3,7 +3,7 @@ const columns = [
     {
       id: 10,
       label: "#",
-      name: "index",
+      name: "rowIndex",
       align: "center",
       minWidth: 300,
     },
@@ -12,6 +12,14 @@ const columns = [
       id: 1,
       label: "Item Name",
       name: "name",
+      align: "center",
+      minWidth: 300,
+    },
+  
+    {
+      id: 13,
+      label: "ID",
+      name: "id",
       align: "center",
       minWidth: 300,
     },
