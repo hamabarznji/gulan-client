@@ -49,7 +49,7 @@ const useBarcodeScanner = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   });
-  return item||null;
+  return item? item[0]: null;
 };
 
 export default useBarcodeScanner;
