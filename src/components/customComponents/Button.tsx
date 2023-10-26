@@ -6,6 +6,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   title,
   icon,
   isEdit=false,
+  type="button",
 
   ...rest
 }) => {
@@ -28,7 +29,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   };
 
   return (
-    <Button {...rest} style={styles}>
+    <Button {...rest} style={styles} type={type}>
       {icon && <Icon style={iconStyles}>{icon}</Icon>}
       <Typography>{title}</Typography>
     </Button>
