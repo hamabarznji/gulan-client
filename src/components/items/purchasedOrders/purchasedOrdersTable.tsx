@@ -75,7 +75,6 @@ export default function CustomizedTables() {
 }
 const columns = [
   { id: "index", label: "#", align: "center" },
-  { id: "vendor", label: "Vendor", align: "center" },
   { id: "purchased_at", label: "Date", align: "center" },
   { id: "actions", label: "View", align: "center" },
 ];
