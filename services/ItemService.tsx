@@ -5,7 +5,9 @@ import axiosInstance from "../utils/axiosInstance";
 class ItemsService {
   async getItems(): Promise<any> {
     try {
-      const response: AxiosResponse = await axiosInstance.get(`${base_url}/items`);
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/items`
+      );
       return response.data;
     } catch (error) {
       throw new Error(`Failed to get items: ${error.message}`);
@@ -13,7 +15,9 @@ class ItemsService {
   }
   async getItemsForPurchaseInvoice(): Promise<any> {
     try {
-      const response: AxiosResponse = await axiosInstance.get(`${base_url}/items/for_pruchase_invoice`);
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/items/for_pruchase_invoice`
+      );
       return response.data;
     } catch (error) {
       throw new Error(`Failed to get items: ${error.message}`);
@@ -22,7 +26,10 @@ class ItemsService {
 
   async addItem(data: any): Promise<AxiosResponse | AxiosError> {
     try {
-      const response: AxiosResponse = await axiosInstance.post(`${base_url}/items/add`, data);
+      const response: AxiosResponse = await axiosInstance.post(
+        `${base_url}/items/add`,
+        data
+      );
       return response;
     } catch (error) {
       throw new Error(`Failed to add item: ${error.message}`);
@@ -31,7 +38,9 @@ class ItemsService {
 
   async getItemById(id: string): Promise<any> {
     try {
-      const response: AxiosResponse = await axiosInstance.get(`${base_url}/items/${id}/purchased`);
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/items/${id}/purchased`
+      );
       return response.data;
     } catch (error) {
       throw new Error(`Failed to get item by ID: ${error.message}`);
@@ -40,31 +49,46 @@ class ItemsService {
 
   async getItemInfo(): Promise<any> {
     try {
-      const response: AxiosResponse = await axiosInstance.get(`${base_url}/items/info`);
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/items/info`
+      );
       return response.data;
     } catch (error) {
       throw new Error(`Failed to get item info: ${error.message}`);
     }
   }
 
-  async updateItem(id:string,item:any): Promise<any> {
+  async updateItem(id: string, item: any): Promise<any> {
     try {
-      const response: AxiosResponse = await axiosInstance.patch(`${base_url}/items/update/${id}`,item);
+      const response: AxiosResponse = await axiosInstance.patch(
+        `${base_url}/items/update/${id}`,
+        item
+      );
       return response;
-    } catch (error:any) {
+    } catch (error: any) {
       throw new Error(`Failed to update item: ${error.message}`);
     }
   }
-  async addPurchaseOrderInvoice(data:any): Promise<any> {
+  async addPurchaseOrderInvoice(data: any): Promise<any> {
     try {
-      const response: AxiosResponse = await axiosInstance.post(`${base_url}/orders/purchase/add`,data);
+      const filteredData = data.filter(
+        (item:any) =>
+          item.price !== null &&
+          item.price !== undefined &&
+          item.qty !== null &&
+          item.qty !== undefined
+      );
+      
+      const response: AxiosResponse = await axiosInstance.post(
+        `${base_url}/orders/purchase/add`,
+        filteredData
+      );
+      console.log(response);
       return response;
-    } catch (error:any) {
+    } catch (error: any) {
       throw new Error(`Failed to add items: ${error.message}`);
     }
   }
-
-
 }
 
 const ItemsServiceInstance = new ItemsService();
