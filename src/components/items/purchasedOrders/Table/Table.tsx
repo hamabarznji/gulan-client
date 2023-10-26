@@ -22,6 +22,7 @@ import columns from "./columns";
 import * as yup from "yup";
 import DeleteButton from "./DeleteBtn";
 import { useSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 const CustomeTable: React.FC<{
   rows: any[];
@@ -31,6 +32,7 @@ const CustomeTable: React.FC<{
 }> = () => {
   const scannedItem = useBarcodeScanner();
   const { enqueueSnackbar } = useSnackbar();
+  const router= useRouter()
 
   const {
     formState: { errors },
@@ -56,10 +58,10 @@ const CustomeTable: React.FC<{
         enqueueSnackbar("New Purchase Invoice Added Successfully!", {
           variant: "success",
         });
-        return; // Return early on success
+       router.push("/items/orders/purchased")  
+       return
       }
   
-      // Handle non-200 status codes
       enqueueSnackbar("Error: " + response.message, {
         variant: "error",
       });
@@ -80,12 +82,12 @@ const CustomeTable: React.FC<{
       const newRow = {
         index: index,
         rowIndex: rowIndex,
-        item_id: scannedItem?.itemId,
+        item_id: scannedItem?.id,
 
         id: (
-          <Grid item xs={12} key={scannedItem?.itemId}>
+          <Grid item xs={12} key={scannedItem?.id}>
             <Controller
-              defaultValue={scannedItem?.itemName}
+              defaultValue={scannedItem?.name}
               name={`rows[${index}].input1`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
@@ -110,9 +112,9 @@ const CustomeTable: React.FC<{
           </Grid>
         ),
         name: (
-          <Grid item xs={12} key={scannedItem?.itemId}>
+          <Grid item xs={12} key={scannedItem?.id}>
             <Controller
-              defaultValue={scannedItem?.itemId}
+              defaultValue={scannedItem?.id}
               name={`rows[${index}].input4`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
@@ -137,7 +139,7 @@ const CustomeTable: React.FC<{
           </Grid>
         ),
         price: (
-          <Grid item xs={12} key={scannedItem?.itemId}>
+          <Grid item xs={12} key={scannedItem?.id}>
             <Controller
               name={`rows[${index}].input2`}
               control={control}
@@ -158,7 +160,7 @@ const CustomeTable: React.FC<{
         ),
 
         qty: (
-          <Grid item xs={12} key={scannedItem?.itemId}>
+          <Grid item xs={12} key={scannedItem?.id}>
             <Controller
               name={`rows[${index}].input3`}
               control={control}
@@ -198,7 +200,6 @@ const CustomeTable: React.FC<{
     }
   }, [scannedItem]);
 
-  console.log(scannedItem);
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
