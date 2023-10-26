@@ -21,6 +21,7 @@ import { useQuery, QueryKey } from "@tanstack/react-query";
 import columns from "./columns";
 import * as yup from "yup";
 import DeleteButton from "./DeleteBtn";
+import { useSnackbar } from "notistack";
 
 const CustomeTable: React.FC<{
   rows: any[];
@@ -29,6 +30,7 @@ const CustomeTable: React.FC<{
   itemsLength: number;
 }> = () => {
   const scannedItem = useBarcodeScanner();
+  const { enqueueSnackbar } = useSnackbar();
 
   const {
     formState: { errors },
@@ -40,23 +42,39 @@ const CustomeTable: React.FC<{
 
   const [newRows, setNewRows] = useState([]);
 
-  const submitHandler = (data: any) => {
-    const { rows } = data;
-    console.log({ rows });
-    const newData = rows.map((row) => {
-      return {
+  const submitHandler = async ({ rows }: any) => {
+    try {
+      const newData = rows.map((row) => ({
         item_id: row.input4,
-        name: row.input1,
         price: row.input2,
         qty: row.input3,
-      };
-    });
-    console.log({ newData });
+      }));
+  
+      const response = await ItemsServiceInstance.addPurchaseOrderInvoice(newData);
+  
+      if (response.status === 200) {
+        enqueueSnackbar("New Purchase Invoice Added Successfully!", {
+          variant: "success",
+        });
+        return; // Return early on success
+      }
+  
+      // Handle non-200 status codes
+      enqueueSnackbar("Error: " + response.message, {
+        variant: "error",
+      });
+  
+      throw new Error(`Failed to add item: ${response.message}`);
+    } catch (error) {
+      enqueueSnackbar("Error: " + error.message, {
+        variant: "error",
+      });
+    }
   };
-  // console.log({errors});
+  
   useEffect(() => {
-    let index =newRows.length;
-    let rowIndex = newRows.length +1;
+    let index = newRows.length;
+    let rowIndex = newRows.length + 1;
 
     if (scannedItem) {
       const newRow = {
@@ -162,18 +180,17 @@ const CustomeTable: React.FC<{
 
         actions: (
           <DeleteButton
-          onClick={() => {
-            console.log("Deleting row with index:", newRow.index); // Debug statement
-            return
-            newRows.filter((item) =>{
-            const i=  item.index 
-            const x= newRow.index
-            console.log(item.item_id,newRow.item_id);
-            })
-           setNewRows(newRows.filter((item) => item.index !== newRow.index));
-          }}
-        />
-        
+            onClick={() => {
+              console.log("Deleting row with index:", newRow.index); // Debug statement
+              return;
+              newRows.filter((item) => {
+                const i = item.index;
+                const x = newRow.index;
+                console.log(item.item_id, newRow.item_id);
+              });
+              setNewRows(newRows.filter((item) => item.index !== newRow.index));
+            }}
+          />
         ),
       };
 
@@ -181,7 +198,7 @@ const CustomeTable: React.FC<{
     }
   }, [scannedItem]);
 
-  console.log({ newRows });
+  console.log(scannedItem);
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
@@ -255,7 +272,9 @@ const CustomeTable: React.FC<{
                       fontWeight: "bold",
                     }}
                   >
-                    <Button type="submit" title="ADD" />
+                    <Button type="submit" title="ADD">
+                      ADD
+                    </Button>
                   </TableCell>
                 </TableRow>
               )}
