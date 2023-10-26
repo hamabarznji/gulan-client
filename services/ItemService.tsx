@@ -39,7 +39,7 @@ class ItemsService {
   async getItemById(id: string): Promise<any> {
     try {
       const response: AxiosResponse = await axiosInstance.get(
-        `${base_url}/items/${id}/purchased`
+        `${base_url}/items/for_pruchase_invoice/${id}`
       );
       return response.data;
     } catch (error) {
