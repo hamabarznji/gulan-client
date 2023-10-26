@@ -53,7 +53,7 @@ const useBarcodeScanner = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   });
-  return item ? item[0] : null;
+  return item  || null;
 };
 
 export default useBarcodeScanner;
