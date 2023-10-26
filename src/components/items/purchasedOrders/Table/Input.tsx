@@ -10,6 +10,12 @@ interface InputFieldsWithValidationProps {
   disabled?: boolean;
   hidden?: boolean;
   errors: any;
+  LabelName:string,
+  inputType:string,
+  schema:any,
+  scannedItem:any,
+  newRows:any
+  
 }
 
 const Inputs: React.FC<InputFieldsWithValidationProps> = ({
@@ -19,37 +25,42 @@ const Inputs: React.FC<InputFieldsWithValidationProps> = ({
   disabled,
   hidden=false,
   errors,
+  LabelName,
+  inputType,
+  schema,
+  scannedItem,
+  newRows
 }) => {
  
 
   return (
-    <Grid item xs={12} key={field.name}>
-      <Controller
-        name={field.name}
-        control={control}
-        render={({ field: inputField }) => {
-          let CommonProps = {
-            ...inputField,
-            label: field.label,
-            error: !!errors[field.name],
-            helperText: errors[field.name]?.message?.toString(),
-            ref: null,
-            defaultValue: !field.isSensitive ? inputField.value : "",
-          };
+    <Grid item xs={12} key={scannedItem[0]?.itemId}>
+            <Controller
+              defaultValue={scannedItem[0]?.itemName}
+              name={`rows[${newRows.length + 1}].input1`}
+              control={control}
+              rules={{ validate: (value) => schema.isValidSync(value) }}
+              render={({ field: inputField }) => {
+                let CommonProps = {
+                  ...inputField,
+                  label: LabelName,
+                  //  error: !!errors[field.name],
+                  //  helperText: errors[field.name]?.message?.toString(),
+                };
 
-          return (
-            <TextField
-              {...CommonProps}
-              type={field.type}
-              fullWidth
-              defaultValue={defaultValue }
-              disabled={disabled}
-              hidden={hidden}
+                return (
+                  <TextField
+                    {...CommonProps}
+                    type={inputType}
+                    fullWidth
+                    defaultValue={defaultValue }
+                    disabled={disabled}
+                    hidden={hidden}
+                  />
+                );
+              }}
             />
-          );
-        }}
-      />
-    </Grid>
+          </Grid>
   );
 };
 

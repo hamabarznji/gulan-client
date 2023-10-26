@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import ItemsServiceInstance from "../../services/ItemService";
+import { useSnackbar } from "notistack";
 
 const useBarcodeScanner = () => {
   const [id, setId] = useState("");
   const [item, setItem] = useState();
 
   const [scannedValues, setScannedValues] = useState<string[]>([]);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -38,7 +40,9 @@ const useBarcodeScanner = () => {
           setItem(res);
         })
         .catch((error) => {
-          // Add more structured error handling here
+          enqueueSnackbar("Error: " + error.message, {
+            variant: "error",
+          });
           console.error("Error fetching item:", error);
         });
     };
@@ -49,7 +53,7 @@ const useBarcodeScanner = () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   });
-  return item? item[0]: null;
+  return item ? item[0] : null;
 };
 
 export default useBarcodeScanner;
