@@ -16,6 +16,8 @@ export default function FormDialog({
   submitHandler,
   modalType = true,
   isEdit = false,
+  customeStyles
+  
   
 }: Props) {
   const [open, setOpen] = React.useState(false);
@@ -45,7 +47,7 @@ export default function FormDialog({
         <DialogTitle color={COLORS.primary} sx={styles.dialogTitle}>
           {modalTitle}
         </DialogTitle>
-        <DialogContent sx={styles.contentStyle}>{children}</DialogContent>
+        <DialogContent sx={[styles.contentStyle,customeStyles.contentStyle]}>{children}</DialogContent>
         <DialogActions>
         <CustomButton
   onClick={handleClose}
@@ -61,6 +63,7 @@ export default function FormDialog({
           style={{
             backgroundColor: "#934eb0",
           }}
+          
             type="submit"
             title={processTitle}
             onClick={() => {
@@ -95,4 +98,5 @@ interface Props {
   modalType?: boolean;
   children?: React.ReactNode;
   isEdit?: boolean;
+  customeStyles?: any;
 }
