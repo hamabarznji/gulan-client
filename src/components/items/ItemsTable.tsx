@@ -36,6 +36,7 @@ const InvoiceTable: React.FC = () => {
       ...item,
       index: index + 1,
       name: item.name,
+      barcodePrice:item.selling_price,
       price: (
         <Chip
           key={`price-${item.id}`}
@@ -63,9 +64,9 @@ const InvoiceTable: React.FC = () => {
           <UpdateItem item={item} reFetchItems={refetch} />
         </>
       ),
-      barcode: <BarcodeGenerator price={item.sellingPrice} id={item.itemId} />,
+      barcode: <BarcodeGenerator price={item.selling_price} id={item.itemId} />,
     };
-  });
+  })
   return (
     <>
       <Grid container justifyContent="flex-start" spacing={2} direction="row">
