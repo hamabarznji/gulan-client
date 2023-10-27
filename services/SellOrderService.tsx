@@ -13,6 +13,16 @@ class SellOrderService {
       throw new Error(`Failed to get sell orders: ${error.message}`);
     }
   }
+  async getSellOrdersByOrderID(id: string): Promise<any> {
+    try {
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/orders/sell/${id}/items`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(`Failed to get sell order items: ${error.message}`);
+    }
+  }
   async createSellOrders(data: any): Promise<any> {
     try {
       const response: AxiosResponse = await axiosInstance.post(
@@ -21,6 +31,17 @@ class SellOrderService {
       );
       console.log(response);
       return response.status;
+    } catch (error) {
+      throw new Error(`Failed to get items: ${error.message}`);
+    }
+  }
+  async updateSellOrderItem(data: any): Promise<any> {
+    try {
+      const response: AxiosResponse = await axiosInstance.patch(
+        `${base_url}/orders/sell/${data.id}/update`,
+        data
+      );
+      return response.status
     } catch (error) {
       throw new Error(`Failed to get items: ${error.message}`);
     }
