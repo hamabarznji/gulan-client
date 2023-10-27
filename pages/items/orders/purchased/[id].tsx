@@ -39,7 +39,7 @@ const PruchasedOrder = ({ toggleTheme, user }: HomePageProps) => {
           ),
           actions: (
             <>
-              <UpdateItem item={item} reFetchItems={()=>console.log("here")} />
+              <UpdateItem item={item} reFetchItems={refetch} />
             </>
           ),
         }
@@ -50,7 +50,7 @@ const PruchasedOrder = ({ toggleTheme, user }: HomePageProps) => {
     }
   };
 
-  const { data: purchasedItems } = useQuery(opi, fetchPurchasedItems);
+  const { data: purchasedItems,refetch } = useQuery(opi, fetchPurchasedItems);
   return (
     <>
       <Typography variant="h4" component="h4" gutterBottom>
