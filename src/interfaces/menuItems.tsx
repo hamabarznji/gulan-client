@@ -26,10 +26,16 @@ const menuItems: MenuItem[] = [
     nestedLinks: false,
   },
   {
-    title: "Invoices",
+    title: "Sell Invoices",
     icon: ReceiptLongIcon,
     path: "/invoices",
     roles: ["admin", "user"],
+  },
+  {
+    title: "Purchase Invoices",
+    icon: AddShoppingCartIcon,
+    path: "/items/orders/purchased",
+    roles: ["admin"]
   },
   {
     title: "Items",
@@ -38,12 +44,7 @@ const menuItems: MenuItem[] = [
     roles: ["admin"],
     nestedLinks: true,
     nestedLinksItems: [
-      {
-        title: "Purchase Order",
-        icon: AddShoppingCartIcon,
-        path: "/items/orders/purchased",
-        roles: ["admin"]
-      },
+    
       {
         title: "Categories",
         icon: CategoryIcon,
