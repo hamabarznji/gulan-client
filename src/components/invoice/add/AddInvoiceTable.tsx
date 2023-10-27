@@ -10,17 +10,16 @@ import { Button } from "@mui/material";
 import useBarcodeScanner from "../../../hook/useBarcodeScanner";
 
 export default function SpanningTable() {
+  const [items, setItems]: any = React.useState([]);
 
-  const [items, setItems] = React.useState([]);
-
-  const scannedItem = useBarcodeScanner();
+  const scannedItem: any = useBarcodeScanner();
   React.useEffect(() => {
-    if (scannedItem && scannedItem?.length > 0) {
-      const id = scannedItem[0]?.itemId;
-      const existingItem = items.find((i) => id === i?.itemId);
+    if (scannedItem) {
+      const id = scannedItem?.itemId;
+      const existingItem = items.find((i: any) => id === i?.itemId);
 
       if (existingItem) {
-        const updatedItems = items.map((item) =>
+        const updatedItems: any = items.map((item: any) =>
           item.itemId === existingItem.itemId
             ? {
                 ...item,
@@ -31,24 +30,25 @@ export default function SpanningTable() {
         );
         setItems(updatedItems);
       } else {
-        setItems((prev) => [...prev, scannedItem[0]]);
+        setItems((prev: any) => [...prev, scannedItem]);
       }
     }
   }, [scannedItem]);
 
-  if (!items.length) {
-    return null;
-  }
+  // if (!items.length) {
+  //   return null;
+  // }
 
-  const data = items?.map((item, index) => {
+  const data = items?.map((item: any, index: number) => {
     return {
       num: index + 1,
+      id: item.id,
       product: item?.itemName,
       itemColor: item.itemColor,
       itemSize: item.itemSize,
       qty: item?.invoiceQty,
-      price: item?.sellingPrice,
-      total: item.sellingPrice * item.invoiceQty,
+      price: item?.selling_price,
+      total: item.selling_price * item.invoiceQty,
       action: (
         <Button
           variant="contained"
@@ -60,13 +60,15 @@ export default function SpanningTable() {
           }}
           onClick={() => {
             const id = item?.itemId;
-            const existingItem = items.find((i) => id === i?.itemId);
+            const existingItem = items.find((i: any) => id === i?.itemId);
             if (existingItem?.invoiceQty === 1) {
-              setItems((prevItems) => prevItems.filter((_, i) => i !== index));
+              setItems((prevItems: any) =>
+                prevItems.filter((_: any, i: number) => i !== index)
+              );
               return;
             }
 
-            const updatedItems = items.map((item) =>
+            const updatedItems = items.map((item: any) =>
               item.itemId === existingItem.itemId
                 ? {
                     ...item,
@@ -96,7 +98,7 @@ export default function SpanningTable() {
         <TableHead />
         <TableBody>
           <CustomTableRow rows={data || []} />
-          <InvoiceSummaryRow items={data||[]} />
+          <InvoiceSummaryRow items={data || []} />
         </TableBody>
       </Table>
     </TableContainer>
