@@ -8,7 +8,6 @@ import Table from "../../src/components/invoice/InvoicesTable";
 import { useRouter } from "next/router";
 
 const Invoice = () => {
-  const theme = useTheme();
   const router = useRouter();
   return (
     <Grid container justifyContent="flex-start" spacing={2} direction="row">
@@ -19,7 +18,7 @@ const Invoice = () => {
           onClick={() => router.push("/invoices/add")}
         />
       </Grid>
-      <Grid
+      {/* <Grid
         item
         container
         direction="row"
@@ -30,7 +29,7 @@ const Invoice = () => {
         <InvoiceCard />
         <InvoiceCard />
         <InvoiceCard />
-      </Grid>
+      </Grid> */}
       <Grid item container direction="row" justifyContent="center">
         <Table />
       </Grid>
