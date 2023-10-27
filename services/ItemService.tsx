@@ -72,13 +72,13 @@ class ItemsService {
   async addPurchaseOrderInvoice(data: any): Promise<any> {
     try {
       const filteredData = data.filter(
-        (item:any) =>
+        (item: any) =>
           item.price !== null &&
           item.price !== undefined &&
           item.qty !== null &&
           item.qty !== undefined
       );
-      
+
       const response: AxiosResponse = await axiosInstance.post(
         `${base_url}/orders/purchase/add`,
         filteredData
@@ -87,6 +87,25 @@ class ItemsService {
       return response;
     } catch (error: any) {
       throw new Error(`Failed to add items: ${error.message}`);
+    }
+  }
+  async updatePurchasedItem(
+    id: string,
+    qty: number,
+    price: number
+    
+  ): Promise<any> {
+    try {
+      const response: AxiosResponse = await axiosInstance.patch(
+        `${base_url}/orders/purchase/${id}/update`,
+        {
+          qty,
+          price,
+        }
+      );
+      return response;
+    } catch (error: any) {
+      throw new Error(`Failed to update item: ${error.message}`);
     }
   }
 }
