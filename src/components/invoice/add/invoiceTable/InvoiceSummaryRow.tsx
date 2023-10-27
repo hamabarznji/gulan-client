@@ -112,8 +112,8 @@ defaultValue={0}
           }}
           align="right"
         >
-          {items.reduce((sum, i) => sum + i.total , 0) -
-            items.reduce((sum, i) => sum + i.total  , 0) * (discount/100)}
+          {(items.reduce((sum, i) => sum + i.total , 0) -
+            items.reduce((sum, i) => sum + i.total  , 0) * (discount/100)).toFixed(2)}
         </TableCell>
       </TableRow>
     </>
