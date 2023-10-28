@@ -25,3 +25,25 @@ a {
     /* background: black; */
   }
 }
+/* Change border color and text color for MuiSelect component */
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.css-ta2i3p-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  border-color: #397568 !important;
+  color: black;
+}
+
+/* Change border color for fieldset and input */
+.MuiOutlinedInput-root fieldset,
+.MuiOutlinedInput-root input {
+  border-color: #397568 !important;
+}
+
+/* Change placeholder color */
+.MuiOutlinedInput-root input::placeholder {
+  color: #397568 !important;
+}
+
+/* Change label color for outlined inputs */
+.MuiInputLabel-outlined {
+  color: #397568 !important;
+}
+
