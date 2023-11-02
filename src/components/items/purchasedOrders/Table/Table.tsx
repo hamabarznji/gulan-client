@@ -202,7 +202,6 @@ const CustomeTable: React.FC<{
       setNewRows((prevRows) => [...prevRows, newRow]);
     }
   }, [scannedItem]);
-  console.log(isLoading);
 
   return (
     <form
