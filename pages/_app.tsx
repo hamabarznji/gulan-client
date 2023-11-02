@@ -8,6 +8,7 @@ import RootLayout from "../src/layouts/RootLayout";
 import { SnackbarProvider } from "notistack";
 import { UserProvider } from "../src/context/UserContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ErrorBoundary from "../src/components/ErrorBoundary";
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -27,12 +28,14 @@ export default function App({ Component, pageProps }: AppProps) {
       <CssBaseline />
       <QueryClientProvider client={queryClient}>
         <SnackbarProvider maxSnack={3} autoHideDuration={3000}>
+          <ErrorBoundary>
           <UserProvider>
-            {" "}
+            
             <RootLayout toggleTheme={toggleTheme} themeMode={themeMode}>
               <Component {...pageProps} />
             </RootLayout>
           </UserProvider>
+          </ErrorBoundary>
         </SnackbarProvider>
       </QueryClientProvider>
     </ThemeProvider>
