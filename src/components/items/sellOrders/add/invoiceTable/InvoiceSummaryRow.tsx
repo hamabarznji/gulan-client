@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import useUserContext from "../../../../../context/useUserContext";
 import SellOrderServiceInstance from "../../../../../../services/SellOrderService";
+import AlertModal from "../../../../customComponents/AlertModal";
 
 interface RowProps {
   items: Row[];
@@ -22,6 +23,8 @@ interface Row {
   total: number;
   action: React.ReactNode;
 }
+
+const msg="Proceed with invoice creation by clicking the button. Are you sure you want to continue?"
 
 const CustomTableRow: React.FC<RowProps> = ({ items }) => {
   const [discount, setDiscount] = useState(0);
@@ -168,31 +171,18 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell
-          colSpan={10}
-          sx={{
-            fontSize: "1rem",
-            padding: "8px",
-            color: COLORS.secondary,
-            fontWeight: "bold",
-          }}
-        >
-          <Modal
-            processTitle={"Add New Invoice"}
-            modalTitle={"Add New Invoice"}
-            submitHandler={submitHandler}
-            customeStyles={styles}
-          >
-            <Typography
-              variant="h5"
-              style={{ textAlign: "center", color: "black" }}
-            >
-              Proceed with invoice creation by clicking the button. Are you sure
-              you want to continue?
-            </Typography>
-          </Modal>
-        </TableCell>
-      </TableRow>
+  <TableCell colSpan={1}></TableCell>
+  <TableCell colSpan={1}></TableCell>
+  <TableCell colSpan={4} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <AlertModal
+      submitHandler={submitHandler}
+      processTitle="Add Invoice"
+      modalTitle="Add New Sell Invoice"
+      msg={msg}
+    />
+  </TableCell>
+</TableRow>
+
     </>
   );
 };

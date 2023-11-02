@@ -21,9 +21,9 @@ import DeleteButton from "./DeleteBtn";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import LinearIndeterminate from "../../../customComponents/Linear";
-import CustomButton from "../../../customComponents/Button";
-import AddIcon from "@mui/icons-material/Add";
+import AlertModal from "../../../customComponents/AlertModal";
 
+const msg="Proceed with purchase invoice creation by clicking the button. Are you sure you want to continue?"
 const CustomeTable: React.FC<{
   rows: any[];
   onAddItem: (data: any) => void;
@@ -60,7 +60,7 @@ const CustomeTable: React.FC<{
         enqueueSnackbar("New Purchase Invoice Added Successfully!", {
           variant: "success",
         });
-        router.push("/items/orders/purchased");
+        router.push("/invoices/purchase");
         return;
       }
 
@@ -291,12 +291,11 @@ const CustomeTable: React.FC<{
                       fontWeight: "bold",
                     }}
                   >
-                    {" "}
-                    <CustomButton
-                      icon={<AddIcon />}
-                      variant="contained"
-                      isEdit={false}
-                      type="submit"
+                    <AlertModal
+                      submitHandler={handleSubmit(submitHandler)}
+                      processTitle="Add Invoice"
+                      modalTitle="Add New Purchase Invoice"
+                      msg={msg}
                     />
                   </TableCell>
                 </TableRow>
