@@ -38,8 +38,8 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
       const data = items.map((item) => {
         return {
           item_id: item.id,
-          qty: item.qty,
-          price: item.price,
+          qty: item.invoiceQty,
+          price: item.selling_price,
         };
       });
       const order = {
@@ -47,6 +47,8 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
         items: data,
       };
       const response = await SellOrderServiceInstance.createSellOrders(order);
+
+      
       if (response === 200) {
         enqueueSnackbar("New Sell Order Created Successfully!", {
           variant: "success",
@@ -56,11 +58,19 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
         throw new Error("Failed to create new sell order");
       }
     } catch (error) {
-      enqueueSnackbar("Error: " + error.message, {
+      enqueueSnackbar("Error: " + error, {
         variant: "error",
       });
     }
   };
+  const total = items?
+    .map((item:any) => {
+      return {
+        item_id: item?.id,
+        qty: item?.invoiceQty,
+        price: item?.selling_price,
+      };
+    }).reduce((sum:any, i:any) => sum + i.price * i.qty, 0);
   return (
     <>
       <TableRow>
@@ -129,7 +139,7 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
             fontWeight: "bold",
           }}
         >
-          {items.reduce((sum, i) => sum + i.total, 0)}
+          {total?total:0}
         </TableCell>
       </TableRow>
 
@@ -154,10 +164,7 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
           }}
           align="right"
         >
-          {(
-            items.reduce((sum, i) => sum + i.total, 0) -
-            items.reduce((sum, i) => sum + i.total, 0) * (discount / 100)
-          ).toFixed(2)}
+          {(total - total * (discount / 100))?.toFixed(2)}
         </TableCell>
       </TableRow>
       <TableRow>
