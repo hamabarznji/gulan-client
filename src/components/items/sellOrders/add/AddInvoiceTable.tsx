@@ -8,11 +8,12 @@ import InvoiceSummaryRow from "./invoiceTable/InvoiceSummaryRow";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 import useBarcodeScanner from "../../../../hook/useBarcodeScanner";
+import LinearIndeterminate from "../../../customComponents/Linear";
 
 export default function SpanningTable() {
   const [items, setItems]: any = React.useState([]);
+  const { scannedItem, isLoading }: any = useBarcodeScanner();
 
-  const scannedItem: any = useBarcodeScanner();
   React.useEffect(() => {
     if (scannedItem) {
       const id = scannedItem?.itemId;
@@ -34,7 +35,6 @@ export default function SpanningTable() {
       }
     }
   }, [scannedItem]);
-
   const data = items?.map((item: any, index: number) => {
     return {
       num: index + 1,
@@ -90,6 +90,7 @@ export default function SpanningTable() {
 
   return (
     <TableContainer>
+      {isLoading && <LinearIndeterminate />}
       <Table sx={{ minWidth: 700 }} aria-label="spanning table">
         <TableHead />
         <TableBody>
