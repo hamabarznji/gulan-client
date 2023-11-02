@@ -9,15 +9,12 @@ import {
   TableBody,
   Grid,
 } from "@mui/material";
-import AddInvoiceModal from "./AddInvoiceModal";
 import Header from "./Header";
 import useBarcodeScanner from "../../../../hook/useBarcodeScanner";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import TextField from "../../../customComponents/TextField";
-import { Button } from "@mui/material";
 import ItemsServiceInstance from "../../../../../services/ItemService";
-import { useQuery, QueryKey } from "@tanstack/react-query";
 import columns from "./columns";
 import * as yup from "yup";
 import DeleteButton from "./DeleteBtn";
@@ -48,8 +45,6 @@ const CustomeTable: React.FC<{
   const [newRows, setNewRows] = useState([]);
 
   const submitHandler = async ({ rows }: any) => {
-    console.log(rows);
-    return;
     try {
       const newData = rows.map((row) => ({
         item_id: row.input4,
@@ -278,7 +273,7 @@ const CustomeTable: React.FC<{
                   ))}
                 </TableRow>
               ))}
-              {newRows.length >0 && (
+              {newRows.length > 0 && (
                 <TableRow>
                   <TableCell
                     colSpan={3}
