@@ -23,6 +23,7 @@ import * as yup from "yup";
 import DeleteButton from "./DeleteBtn";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
+import LinearIndeterminate from "../../../customComponents/Linear";
 
 const CustomeTable: React.FC<{
   rows: any[];
@@ -30,9 +31,9 @@ const CustomeTable: React.FC<{
   onSumitInvoice: (data: any) => void;
   itemsLength: number;
 }> = () => {
-  const scannedItem = useBarcodeScanner();
+  const { scannedItem, isLoading } = useBarcodeScanner();
   const { enqueueSnackbar } = useSnackbar();
-  const router= useRouter()
+  const router = useRouter();
 
   const {
     formState: { errors },
@@ -51,21 +52,23 @@ const CustomeTable: React.FC<{
         price: row.input2,
         qty: row.input3,
       }));
-  
-      const response = await ItemsServiceInstance.addPurchaseOrderInvoice(newData);
-  
+
+      const response = await ItemsServiceInstance.addPurchaseOrderInvoice(
+        newData
+      );
+
       if (response.status === 200) {
         enqueueSnackbar("New Purchase Invoice Added Successfully!", {
           variant: "success",
         });
-       router.push("/items/orders/purchased")  
-       return
+        router.push("/items/orders/purchased");
+        return;
       }
-  
+
       enqueueSnackbar("Error: " + response.message, {
         variant: "error",
       });
-  
+
       throw new Error(`Failed to add item: ${response.message}`);
     } catch (error) {
       enqueueSnackbar("Error: " + error.message, {
@@ -73,7 +76,7 @@ const CustomeTable: React.FC<{
       });
     }
   };
-  
+
   useEffect(() => {
     let index = newRows.length;
     let rowIndex = newRows.length + 1;
@@ -199,6 +202,7 @@ const CustomeTable: React.FC<{
       setNewRows((prevRows) => [...prevRows, newRow]);
     }
   }, [scannedItem]);
+  console.log(isLoading);
 
   return (
     <form
@@ -227,16 +231,19 @@ const CustomeTable: React.FC<{
             },
           }}
         >
+          {isLoading && <LinearIndeterminate />}
+
           <Table>
             <TableHead
               sx={{
-                backgroundColor: "#d3d3d3",
                 color: "#ff7f50",
                 fontWeight: "bold",
                 fontSize: "1.2rem",
                 "& th": {
                   color: "black",
                   fontWeight: "bold",
+                  backgroundColor: "#262B2B",
+                  color: "white",
                 },
               }}
             >
@@ -245,7 +252,12 @@ const CustomeTable: React.FC<{
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    sx={{ fontSize: "1rem", padding: "20px" }}
+                    sx={{
+                      fontSize: "1rem",
+                      padding: "20px",
+                      color: "white",
+                      fontWeight: "bold",
+                    }}
                   >
                     {column.label}
                   </TableCell>
