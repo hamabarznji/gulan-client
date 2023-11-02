@@ -18,10 +18,6 @@ const truncatedUuid = uuidv4().slice(0, 13); // Generate a truncated UUID
 export default function CreateInvoicePage() {
   const currentDate = moment().format("DD/MM/YYYY HH:mm");
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   // Handle form submission logic here
-  // };
 
   return (
     <Container maxWidth="md">

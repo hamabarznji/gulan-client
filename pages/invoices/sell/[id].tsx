@@ -32,7 +32,7 @@ const SellOrderItems: React.FC = () => {
   );
   const submitHandler = async (data: any) => {
     try {
-      const updateItems = await SellOrderServiceInstance.updateSellOrderItem(
+      await SellOrderServiceInstance.updateSellOrderItem(
         data
       );
 
@@ -41,7 +41,6 @@ const SellOrderItems: React.FC = () => {
       });
       refetch();
     } catch (err: any) {
-      console.log(err);
       enqueueSnackbar(`Failed to Update Sell Order Item:${err}`, {
         variant: "error",
       });
@@ -67,9 +66,7 @@ const SellOrderItems: React.FC = () => {
   }));
 
   return (
-    <>
       <Table columns={columns} rows={rows || []} />
-    </>
   );
 };
 

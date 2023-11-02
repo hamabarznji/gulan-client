@@ -12,7 +12,7 @@ import { useSnackbar } from "notistack";
 export const getServerSideProps = redirectUnauthorizedToLogin;
 
 const NewPurchaseOrder = () => {
-  const router=useRouter()
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const [items, setItems] = useState<any[]>([]); // Provide a type for 'items'
@@ -52,27 +52,25 @@ const NewPurchaseOrder = () => {
     ]);
   };
 
-  const onSumitInvoice = async() => {
-
-    try{
-      const addItems= await ItemsServiceInstance.addPurchaseOrderInvoice(items)
-     enqueueSnackbar("Items Added Successfully", { variant: "success" });
-     router.push("/items/orders/purchased")  
-
-    }
-    catch (err) {
+  const onSumitInvoice = async () => {
+    try {
+      await ItemsServiceInstance.addPurchaseOrderInvoice(items);
+      enqueueSnackbar("Items Added Successfully", { variant: "success" });
+      router.push("invoices/purchase");
+    } catch (err) {
       enqueueSnackbar(err.message, { variant: "error" });
     }
-  }
+  };
   return (
     <Container maxWidth="md">
       <Paper elevation={3} sx={{ padding: "2rem" }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Table rows={items || []} onAddItem={onAddItem} 
-            onSumitInvoice={onSumitInvoice}
-            itemsLength={items.length}
-            
+            <Table
+              rows={items || []}
+              onAddItem={onAddItem}
+              onSumitInvoice={onSumitInvoice}
+              itemsLength={items.length}
             />
           </Grid>
         </Grid>
