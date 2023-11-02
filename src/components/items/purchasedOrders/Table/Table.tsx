@@ -24,6 +24,8 @@ import DeleteButton from "./DeleteBtn";
 import { useSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import LinearIndeterminate from "../../../customComponents/Linear";
+import CustomButton from "../../../customComponents/Button";
+import AddIcon from "@mui/icons-material/Add";
 
 const CustomeTable: React.FC<{
   rows: any[];
@@ -46,6 +48,8 @@ const CustomeTable: React.FC<{
   const [newRows, setNewRows] = useState([]);
 
   const submitHandler = async ({ rows }: any) => {
+    console.log(rows);
+    return;
     try {
       const newData = rows.map((row) => ({
         item_id: row.input4,
@@ -274,8 +278,16 @@ const CustomeTable: React.FC<{
                   ))}
                 </TableRow>
               ))}
-              {newRows.length > 0 && (
+              {newRows.length >0 && (
                 <TableRow>
+                  <TableCell
+                    colSpan={3}
+                    sx={{
+                      fontSize: "1rem",
+                      padding: "12px",
+                      fontWeight: "bold",
+                    }}
+                  ></TableCell>
                   <TableCell
                     colSpan={6}
                     sx={{
@@ -284,9 +296,13 @@ const CustomeTable: React.FC<{
                       fontWeight: "bold",
                     }}
                   >
-                    <Button type="submit" title="ADD">
-                      ADD
-                    </Button>
+                    {" "}
+                    <CustomButton
+                      icon={<AddIcon />}
+                      variant="contained"
+                      isEdit={false}
+                      type="submit"
+                    />
                   </TableCell>
                 </TableRow>
               )}
