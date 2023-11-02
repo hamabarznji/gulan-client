@@ -35,10 +35,6 @@ export default function SpanningTable() {
     }
   }, [scannedItem]);
 
-  // if (!items.length) {
-  //   return null;
-  // }
-
   const data = items?.map((item: any, index: number) => {
     return {
       num: index + 1,
@@ -98,7 +94,7 @@ export default function SpanningTable() {
         <TableHead />
         <TableBody>
           <CustomTableRow rows={data || []} />
-          <InvoiceSummaryRow items={data || []} />
+          {items.length > 0 && <InvoiceSummaryRow items={items} />}
         </TableBody>
       </Table>
     </TableContainer>
