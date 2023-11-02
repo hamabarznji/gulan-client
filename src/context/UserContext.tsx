@@ -41,7 +41,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     setUser(null);
   };
 
-  console.log("UserContext:", user);
   return (
     <UserContext.Provider value={{ user, clearContext, fetchUserData }}>
       {children}
