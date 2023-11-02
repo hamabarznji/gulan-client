@@ -15,7 +15,6 @@ const bull = (
 );
 
 const card = (
-  <React.Fragment>
     <CardContent >
       <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
         Word of the Day
@@ -33,7 +32,6 @@ const card = (
       </Typography>
     </CardContent>
 
-  </React.Fragment>
 );
 
 export default function OutlinedCard() {
