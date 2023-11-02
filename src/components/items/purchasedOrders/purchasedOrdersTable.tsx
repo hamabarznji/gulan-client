@@ -52,14 +52,15 @@ export default function CustomizedTables() {
       />
     ),
   }));
-  console.log(data)
+
+
   return (
     <Grid container justifyContent="flex-start" spacing={3} direction="row">
       <Grid item container justifyContent="flex-start">
         <Button
           icon={<AddIcon />}
           variant="contained"
-          onClick={() => router.push("/items/orders/purchased/new")}
+          onClick={() => router.push("/invoices/purchase/new")}
         />
       </Grid>
 
