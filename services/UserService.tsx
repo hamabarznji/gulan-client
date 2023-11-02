@@ -69,7 +69,7 @@ class UserService{
     async getSession(){
         try{
             const response:AxiosResponse<any>=await axios.get('http://localhost:3000/api/get-session')
-            return response.data
+            return response
         }
         catch(error){
             return error

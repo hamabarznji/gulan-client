@@ -27,8 +27,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<UserData | null>(null);
   const fetchUserData = async () => {
     try {
-      const response: UserData = await UserServiceInstance.getSession();
-      setUser(response);
+      const response = await UserServiceInstance.getSession();
+      setUser(response?.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
@@ -41,6 +41,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     setUser(null);
   };
 
+  console.log("UserContext:", user);
   return (
     <UserContext.Provider value={{ user, clearContext, fetchUserData }}>
       {children}
