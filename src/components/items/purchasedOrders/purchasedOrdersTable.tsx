@@ -6,6 +6,7 @@ import { Chip, Grid } from "@mui/material";
 import { useRouter } from "next/router";
 import Button from "../../customComponents/Button";
 import AddIcon from "@mui/icons-material/Add";
+import moment from "moment";
 
 const queryKey: QueryKey = ["users"];
 
@@ -40,7 +41,7 @@ export default function CustomizedTables() {
   const transformedRows = data?.map((order: any, index: number) => ({
     ...order,
     index: index + 1,
-    purchased_at: order?.purchased_at?.split("T")[0],
+    purchased_at:moment(order.purchased_at).format("DD/MM/YYYY HH:mm"),
     actions: (
       <Button
         title="View"
@@ -51,6 +52,7 @@ export default function CustomizedTables() {
       />
     ),
   }));
+  console.log(data)
   return (
     <Grid container justifyContent="flex-start" spacing={3} direction="row">
       <Grid item container justifyContent="flex-start">

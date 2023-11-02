@@ -4,6 +4,7 @@ import SellOrderServiceInstance from "../../../../services/SellOrderService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import CustomButton from "../../customComponents/Button";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 const SELLORDERS: QueryKey = ["expenseCategories"];
 
@@ -28,9 +29,11 @@ const InvoiceTable: React.FC = () => {
   };
 
   const { data } = useQuery(SELLORDERS, getSellOrders);
-
+console.log(data);
   const rows = data?.map((row: any, index: number) => ({
     ...row,
+    createdAt:moment(row.createdAt).format("DD/MM/YYYY HH:mm"),
+    updatedAt:moment(row.updatedAt).format("DD/MM/YYYY HH:mm"),
     actions: (
       <CustomButton
         title="View"
