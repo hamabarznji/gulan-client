@@ -15,7 +15,7 @@ const Invoice = () => {
         <Button
           icon={<AddIcon />}
           variant="contained"
-          onClick={() => router.push("/invoices/add")}
+          onClick={() => router.push("/invoices/sell/add")}
         />
       </Grid>
       {/* <Grid
