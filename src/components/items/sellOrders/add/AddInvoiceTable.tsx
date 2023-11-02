@@ -7,7 +7,7 @@ import CustomTableRow from "./invoiceTable/TableRow";
 import InvoiceSummaryRow from "./invoiceTable/InvoiceSummaryRow";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
-import useBarcodeScanner from "../../../hook/useBarcodeScanner";
+import useBarcodeScanner from "../../../../hook/useBarcodeScanner";
 
 export default function SpanningTable() {
   const [items, setItems]: any = React.useState([]);

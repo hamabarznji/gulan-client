@@ -1,7 +1,7 @@
 import React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import COLORS from "../../../../../public/COLORS";
+import COLORS from "../../../../../../public/COLORS";
 import Row,{columns} from "./invoiceInfo";
 interface RowProps {
   rows: Row[];

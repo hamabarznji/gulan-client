@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Container, Grid, Paper, Button } from "@mui/material";
-import Table from "../../../../src/components/items/purchasedOrders/Table/Table";
-import inputFields from "../../../../src/interfaces/item/AddPurchaseItem";
-import redirectUnauthorizedToLogin from "../../../../src/utils/Redirect";
+import Table from "../../../src/components/items/purchasedOrders/Table/Table";
+import inputFields from "../../../src/interfaces/item/AddPurchaseItem";
+import redirectUnauthorizedToLogin from "../../../src/utils/Redirect";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Router, useRouter } from "next/router";
-import Item from "../../../../src/components/item";
-import ItemsServiceInstance from "../../../../services/ItemService";
+import Item from "../../../src/components/item";
+import ItemsServiceInstance from "../../../services/ItemService";
 import { useSnackbar } from "notistack";
 
 export const getServerSideProps = redirectUnauthorizedToLogin;

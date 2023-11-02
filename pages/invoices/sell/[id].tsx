@@ -1,11 +1,11 @@
 import React from "react";
-import Table from "../..//src/components/customComponents/Table";
-import SellOrderServiceInstance from "../../services/SellOrderService";
+import Table from "../../../src/components/customComponents/Table";
+import SellOrderServiceInstance from "../../../services/SellOrderService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
-import CustomButton from "../../src/components/customComponents/Button";
+import CustomButton from "../../../src/components/customComponents/Button";
 import { useRouter } from "next/router";
-import Modal from "../../src/components/customComponents/Modal";
-import InputFieldsWithValidation from "../../src/components/customComponents/InputFieldsWithValidation";
+import Modal from "../../../src/components/customComponents/Modal";
+import InputFieldsWithValidation from "../../../src/components/customComponents/InputFieldsWithValidation";
 import { useSnackbar } from "notistack";
 const SELLORDERS: QueryKey = ["expenseCategories"];
 

@@ -4,7 +4,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import CategoryIcon from '@mui/icons-material/Category';
 import BusinessIcon from '@mui/icons-material/Business';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import StoreIcon from '@mui/icons-material/Store';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import CropIcon from '@mui/icons-material/Crop';
@@ -28,13 +27,13 @@ const menuItems: MenuItem[] = [
   {
     title: "Sell Invoices",
     icon: ReceiptLongIcon,
-    path: "/invoices",
+    path: "/invoices/sell",
     roles: ["admin", "user"],
   },
   {
     title: "Purchase Invoices",
     icon: AddShoppingCartIcon,
-    path: "/items/orders/purchased",
+    path: "/invoices/purchase",
     roles: ["admin"]
   },
   {

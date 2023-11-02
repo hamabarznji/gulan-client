@@ -7,11 +7,11 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
-import Table from "../../src/components/invoice/add/AddInvoiceTable";
+import Table from "../../../src/components/items/sellOrders/add/AddInvoiceTable";
 import moment from "moment";
-import COLORS from "../../public/COLORS";
+import COLORS from "../../../public/COLORS";
 import { v4 as uuidv4 } from "uuid";
-import Header from "../../src/components/invoice/add/Header";
+import Header from "../../../src/components/items/sellOrders/add/Header";
 
 const truncatedUuid = uuidv4().slice(0, 13); // Generate a truncated UUID
 

@@ -1,14 +1,14 @@
 import React from "react";
 import { Grid, Typography,Chip } from "@mui/material";
 import { useQuery, QueryKey } from "@tanstack/react-query";
-import SizeChip from "../../../../src/components/customComponents/SizeChip";
-import inputFields from "../../../../src/interfaces/user/add";
-import redirectUnauthorizedToLogin from "../../../../src/utils/Redirect";
+import SizeChip from "../../../src/components/customComponents/SizeChip";
+import inputFields from "../../../src/interfaces/user/add";
+import redirectUnauthorizedToLogin from "../../../src/utils/Redirect";
 import { useRouter } from "next/router";
-import PurchasedServiceInstance from "../../../../services/orders/PurchasesService";
-import Table from "../../../../src/components/customComponents/Table";
-import UpdateItem from "../../../../src/components/items/purchasedOrders/UpdateItem";
-import ItemsServiceInstance from "../../../../services/ItemService";
+import PurchasedServiceInstance from "../../../services/orders/PurchasesService";
+import Table from "../../../src/components/customComponents/Table";
+import UpdateItem from "../../../src/components/items/purchasedOrders/UpdateItem";
+import ItemsServiceInstance from "../../../services/ItemService";
 
 const opi: QueryKey = ["opi"];
 

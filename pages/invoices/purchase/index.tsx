@@ -1,7 +1,7 @@
 import React from "react";
-import PurchasedOrdersTable from "../../../../src/components/items/purchasedOrders/purchasedOrdersTable";
+import PurchasedOrdersTable from "../../../src/components/items/purchasedOrders/purchasedOrdersTable";
 
-import redirectUnauthorizedToLogin from "../../../../src/utils/Redirect";
+import redirectUnauthorizedToLogin from "../../../src/utils/Redirect";
 export const getServerSideProps = redirectUnauthorizedToLogin;
 
 const Purchased = () => {

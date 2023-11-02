@@ -1,8 +1,8 @@
 import React from "react";
-import Table from "../../components/customComponents/Table";
-import SellOrderServiceInstance from "../../../services/SellOrderService";
+import Table from "../../customComponents/Table";
+import SellOrderServiceInstance from "../../../../services/SellOrderService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
-import CustomButton from "../customComponents/Button";
+import CustomButton from "../../customComponents/Button";
 import { Router, useRouter } from "next/router";
 
 const SELLORDERS: QueryKey = ["expenseCategories"];

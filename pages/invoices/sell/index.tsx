@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import InvoiceCard from "../../src/components/invoice/InvoiceCard";
-import Button from "../../src/components/customComponents/Button";
+import InvoiceCard from "../../../src/components/items/sellOrders/InvoiceCard";
+import Button from "../../../src/components/customComponents/Button";
 import AddIcon from "@mui/icons-material/Add";
-import Table from "../../src/components/invoice/InvoicesTable";
+import Table from "../../../src/components/items/sellOrders/InvoicesTable";
 import { useRouter } from "next/router";
 
 const Invoice = () => {
