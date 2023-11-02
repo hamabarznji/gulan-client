@@ -3,7 +3,7 @@ import Table from "../../customComponents/Table";
 import SellOrderServiceInstance from "../../../../services/SellOrderService";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import CustomButton from "../../customComponents/Button";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const SELLORDERS: QueryKey = ["expenseCategories"];
 
@@ -35,7 +35,7 @@ const InvoiceTable: React.FC = () => {
       <CustomButton
         title="View"
         onClick={() => {
-          router.push(`/invoices/${row.id}`);
+          router.push(`/invoices/sell/${row.id}`);
         }}
       />
     ),

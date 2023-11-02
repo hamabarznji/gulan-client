@@ -53,7 +53,7 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
         enqueueSnackbar("New Sell Order Created Successfully!", {
           variant: "success",
         });
-        router.push("/invoices");
+        router.push("/invoices/sell");
       } else {
         throw new Error("Failed to create new sell order");
       }
