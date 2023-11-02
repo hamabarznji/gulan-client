@@ -12,6 +12,16 @@ class ExpenseService {
       return error;
     }
   }
+  async getExpensesSummary() {
+    try {
+      const response: AxiosResponse = await axiosInstance.get(
+        `${base_url}/expenses/summary_report`
+      );
+      return response.data
+    } catch (error) {
+      return error;
+    }
+  }
   async addExpense(data:any) {
     try {
       const response: AxiosResponse = await axiosInstance.post(
