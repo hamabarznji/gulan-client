@@ -29,7 +29,6 @@ const InvoiceTable: React.FC = () => {
   };
 
   const { data } = useQuery(SELLORDERS, getSellOrders);
-console.log(data);
   const rows = data?.map((row: any, index: number) => ({
     ...row,
     createdAt:moment(row.createdAt).format("DD/MM/YYYY HH:mm"),
