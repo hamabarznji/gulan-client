@@ -1,8 +1,7 @@
 import * as React from "react";
 import ExpensesTable from "../../src/components/expense/ExpensesTable";
 import isCurrentUserAllowed from "../../src/utils/Redirect";
-import { Grid, Typography } from "@mui/material";
-import InvoiceCard from "../../src/components/invoice/InvoiceCard";
+import { Grid } from "@mui/material";
 import PieChartPage from "../../src/components/expense/Chart";
 import ExpenseSummaryPieChart from "../../src/components/expense/ExpenseSummary";
 export const getServerSideProps = isCurrentUserAllowed;
