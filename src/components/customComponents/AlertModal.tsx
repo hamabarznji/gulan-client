@@ -6,7 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import CustomButton from "./Button";
 import AddIcon from "@mui/icons-material/Add";
 import COLORS from "../../../public/COLORS";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 export default function AlertModal({
   children,
@@ -16,6 +16,7 @@ export default function AlertModal({
   submitHandler,
   isEdit = false,
   customeStyles,
+  msg
 }: Props) {
   const [open, setOpen] = React.useState(false);
 
@@ -42,7 +43,12 @@ export default function AlertModal({
           {modalTitle}
         </DialogTitle>
         <DialogContent sx={[styles.contentStyle, customeStyles?.contentStyle]}>
-          {children}
+        <Typography
+              variant="h5"
+              style={{ textAlign: "center", color: "black" }}
+            >
+            {msg}
+            </Typography>
         </DialogContent>
         <DialogActions>
           <CustomButton
@@ -54,18 +60,17 @@ export default function AlertModal({
             }}
           />
 
-          <Button
-            style={{
-              backgroundColor: "#934eb0",
-            }}
-            type="submit"
+          <CustomButton
+           style={{
+            backgroundColor: "#934eb0",
+          }}
+            variant="contained"
             title={processTitle}
             onClick={() => {
               handleClose();
               submitHandler!();
             }}
-            
-          >ADD</Button>
+          />
         </DialogActions>
       </Dialog>
     </>
@@ -93,4 +98,5 @@ interface Props {
   children?: React.ReactNode;
   isEdit?: boolean;
   customeStyles?: any;
+  msg: string;
 }
