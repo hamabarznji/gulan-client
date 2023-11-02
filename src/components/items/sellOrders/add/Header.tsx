@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Grid } from "@mui/material";
 import Image from "next/image";
-import icon from "../../../../public/icon.png";
+import icon from "../../../../../public/icon.png";
 import useUserContext from "../../../../context/useUserContext";
 interface HeaderProps {
   date: string;
@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({ id, date }) => {
       </Grid>
       <Grid item xs={12} sm={6}>
         <Typography variant="h3" align="right" gutterBottom color={"black"}>
-          INVOICE
+         SELL INVOICE
         </Typography>
       </Grid>
 
