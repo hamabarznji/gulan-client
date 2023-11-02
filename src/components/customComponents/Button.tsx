@@ -40,6 +40,7 @@ interface CustomButtonProps extends ButtonProps {
   title?: string;
   icon?: React.ReactNode;
   isEdit?: boolean;
+  type?: "button" | "submit" | "reset" ;
 }
 
 export default CustomButton;
