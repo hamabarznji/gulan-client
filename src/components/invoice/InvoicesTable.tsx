@@ -42,9 +42,7 @@ const InvoiceTable: React.FC = () => {
   }));
 
   return (
-    <>
       <Table rows={rows || []} columns={columns} />
-    </>
   );
 };
 
