@@ -3,8 +3,6 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import COLORS from "../../../../../../public/COLORS";
 import Textfield from "../../../../customComponents/TextField";
-import Modal from "../../../../customComponents/Modal";
-import { Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import useUserContext from "../../../../../context/useUserContext";
@@ -22,6 +20,12 @@ interface Row {
   price: number;
   total: number;
   action: React.ReactNode;
+  item:any,
+  invoiceQty:number,
+  id:string,
+  selling_price:number
+
+
 }
 
 const msg="Proceed with invoice creation by clicking the button. Are you sure you want to continue?"
@@ -42,7 +46,7 @@ const InvoiceSummaryRow: React.FC<RowProps> = ({ items }) => {
         return {
           item_id: item?.id,
           qty: item?.invoiceQty,
-          price: item?.selling_price,
+          price:item? item?.selling_price:0,
         };
       });
       const order = {
@@ -66,14 +70,18 @@ const InvoiceSummaryRow: React.FC<RowProps> = ({ items }) => {
       });
     }
   };
-  const total = items?
-    .map((item:any) => {
-      return {
-        item_id: item?.id,
-        qty: item?.invoiceQty,
-        price: item?.selling_price,
-      };
-    }).reduce((sum:any, i:any) => sum + i.price * i.qty, 0);
+  let total = 0;
+  if (items) {
+    total = items
+      .map((item: any) => {
+        return {
+          item_id: item?.id,
+          qty: item?.invoiceQty,
+          price: item?.selling_price,
+        };
+      })
+      .reduce((sum: any, i: any) => sum + i.price * i.qty, 0);
+  }
   return (
     <>
       <TableRow>
@@ -188,11 +196,3 @@ const InvoiceSummaryRow: React.FC<RowProps> = ({ items }) => {
 };
 
 export default InvoiceSummaryRow;
-
-const styles = {
-  contentStyle: {
-    minWidth: "200px",
-    minHeight: "100px",
-    marginTop: "1rem",
-  },
-};
