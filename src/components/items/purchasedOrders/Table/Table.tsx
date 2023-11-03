@@ -30,6 +30,7 @@ const CustomeTable: React.FC<{
   onSumitInvoice: (data: any) => void;
   itemsLength: number;
 }> = () => {
+  const [newRows, setNewRows] = useState<any[]>([]); // Initialize with an empty array
   const { scannedItem, isLoading } = useBarcodeScanner();
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
@@ -42,7 +43,6 @@ const CustomeTable: React.FC<{
     resolver: yupResolver(schema),
   });
 
-  const [newRows, setNewRows] = useState([]);
 
   const submitHandler = async ({ rows }: any) => {
     try {
@@ -198,10 +198,12 @@ const CustomeTable: React.FC<{
         ),
       };
 
-      setNewRows((prevRows) => [...prevRows, newRow]);
+      setNewRows((prevRows:any) =>{
+        return  [...prevRows, newRow]
+      });
+      
     }
-  }, [scannedItem]);
-
+  }, [scannedItem, control, setNewRows]);
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
