@@ -146,7 +146,7 @@ export default function MiniDrawer({
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-  const handleLogut = async (event: React.MouseEvent<HTMLElement>) => {
+  const handleLogut = async (event: any) => {
     event.preventDefault();
     try {
       const res = await UserServiceInstance.logout();
@@ -156,8 +156,9 @@ export default function MiniDrawer({
       if (res as AxiosResponse) {
         await router.push("/login");
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err:any) {
+      enqueueSnackbar(err, { variant: "error" });
+
     }
   };
 
@@ -233,13 +234,15 @@ export default function MiniDrawer({
           mobileMoreAnchorEl={mobileMoreAnchorEl}
           isMobileMenuOpen={isMobileMenuOpen}
           handleMobileMenuClose={handleMobileMenuClose}
-          handleProfileMenuOpen={handleProfileMenuOpen}
+          handleProfileMenuOpen={handleProfileMenuOpen as any}
         />
+        {/* @ts-ignore */}
         <RenderMenu
           anchorEl={anchorEl}
           isMenuOpen={isMenuOpen}
           handleMenuClose={handleMenuClose}
-          handleLogut={handleLogut}
+          //@ts-ignore
+          handleLogut={handleLogut as any}
         />
       </Box>
       <Drawer variant="permanent" open={open}>

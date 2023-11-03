@@ -6,7 +6,6 @@ import ItemsServiceInstance from "../../../../services/ItemService";
 import InputFields from "../../customComponents/InputFieldsWithValidation";
 import addItemInputs from '../../../interfaces/item/add';
 
-const ITEMINFO_QUERY_KEY: QueryKey = ["itemInfo"];
 
 type AddItemProps = {
   reFetchItems: () => Promise<QueryObserverResult<any, unknown>>;
@@ -38,9 +37,9 @@ const AddItem: React.FC<any> = ({ reFetchItems }: AddItemProps) => {
       const response = await ItemsServiceInstance.getItemInfo();
       const { categories, colors, sizes } = response;
 
-      addItemInputs[2].options = categories.map(category => ({ id: category.id, label: category.name, value: category.id }));
-      addItemInputs[3].options = colors.map(color => ({ id: color.id, label: color.color, value: color.id }));
-      addItemInputs[4].options = sizes.map(size => ({ id: size.id, label: size.size, value: size.id }));
+      addItemInputs[2].options = categories.map((category: { id: number, name: string }) => ({ id: category.id, label: category.name, value: category.id }));
+      addItemInputs[3].options = colors.map((color: { id: number, color: string }) => ({ id: color.id, label: color.color, value: color.id }));
+      addItemInputs[4].options = sizes.map((size: { id: number, size: string }) => ({ id: size.id, label: size.size, value: size.id }));
       return response;
     } catch (error) {
       throw new Error("Failed to fetch item info"); // Provide a more specific error message
@@ -53,7 +52,7 @@ useEffect(() => {
 , []);
 
   return (
-    <>
+    
       <InputFields
         inputFields={addItemInputs}
         processTitle="Add Item"
@@ -61,7 +60,7 @@ useEffect(() => {
         submitHandler={submitHandler}
         modalType={true}
       />
-    </>
+    
   );
 };
 

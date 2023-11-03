@@ -28,7 +28,8 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const fetchUserData = async () => {
     try {
       const response = await UserServiceInstance.getSession();
-      setUser(response?.data);
+      // @ts-ignore
+      setUser(response?.data) 
     } catch (error) {
       console.error("Error fetching user data:", error);
     }

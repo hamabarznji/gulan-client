@@ -90,7 +90,7 @@ export default function CustomizedTables() {
   return (
     <Grid container justifyContent="flex-start" spacing={3} direction="row">
       <Grid item container justifyContent="flex-start">
-        <AddExpense reFetchExpenses={refetch} expenseCategories={expenseCategories} />
+        <AddExpense reFetchExpenses={refetch as any} expenseCategories={expenseCategories as any} />
       </Grid>
 
       <Grid item container direction="row" justifyContent="center">

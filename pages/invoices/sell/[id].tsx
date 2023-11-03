@@ -10,7 +10,7 @@ import { useSnackbar } from "notistack";
 const SELLORDERS: QueryKey = ["expenseCategories"];
 
 const SellOrderItems: React.FC = () => {
-  const id = useRouter()?.query?.id?.toString();
+  const id = useRouter()?.query?.id as string
 
   const { enqueueSnackbar } = useSnackbar();
 

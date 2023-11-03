@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import ItemsServiceInstance from "../../services/ItemService";
 
 const useScanner = () => {
-  const [scannedValues, setScannedValues] = useState([]);
+  const [scannedValues, setScannedValues] =useState<any[]>([]);;
   const [isLoading, setIsLoading] = useState(false);
   const [scannedItem, setScannedItem] = useState(null);
 
@@ -13,7 +13,9 @@ const useScanner = () => {
         const scannedValue = event.key;
 
         if (scannedValue !== "Enter") {
-          setScannedValues((prevValues) => [...prevValues, scannedValue]);
+          setScannedValues((prevValues:any) =>{
+            return [...prevValues, scannedValue]
+          });
           return;
         }
         setIsLoading(true);

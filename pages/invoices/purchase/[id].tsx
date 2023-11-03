@@ -1,29 +1,25 @@
 import React from "react";
-import { Grid, Typography,Chip } from "@mui/material";
+import {  Typography,Chip } from "@mui/material";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import SizeChip from "../../../src/components/customComponents/SizeChip";
-import inputFields from "../../../src/interfaces/user/add";
 import redirectUnauthorizedToLogin from "../../../src/utils/Redirect";
 import { useRouter } from "next/router";
 import PurchasedServiceInstance from "../../../services/orders/PurchasesService";
 import Table from "../../../src/components/customComponents/Table";
 import UpdateItem from "../../../src/components/items/purchasedOrders/UpdateItem";
-import ItemsServiceInstance from "../../../services/ItemService";
 
 const opi: QueryKey = ["opi"];
 
 export const getServerSideProps = redirectUnauthorizedToLogin;
-type ToggleThemeFunction = () => void;
 
-interface HomePageProps {
-  toggleTheme: ToggleThemeFunction;
-  user: string;
-}
-
-const PruchasedOrder = ({ toggleTheme, user }: HomePageProps) => {
-  const { id } = useRouter().query;
+const PruchasedOrder = () => {
+  const id= useRouter().query.id as string
+  console.log(id,"here")
   const fetchPurchasedItems = async () => { 
     try {
+      if (!id) {
+        throw new Error("Purchased order ID is undefined");
+      }
       const response =
         await PurchasedServiceInstance.getItemsByPurchasedOrderId(id);
       const items=response.map((item:any,index:number)=>{
@@ -38,9 +34,7 @@ const PruchasedOrder = ({ toggleTheme, user }: HomePageProps) => {
             />
           ),
           actions: (
-            <>
               <UpdateItem item={item} reFetchItems={refetch} />
-            </>
           ),
         }
       })

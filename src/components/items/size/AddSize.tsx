@@ -24,7 +24,7 @@ const AddSize: React.FC<AddSizeProps> = ({ reFetchSizes, }) => {
       } else {
         throw new Error("Something went wrong");
       }
-    } catch (error: Error) {
+    } catch (error: any) {
       enqueueSnackbar("Error: " + error.message, {
         variant: "error",
       });
@@ -32,14 +32,12 @@ const AddSize: React.FC<AddSizeProps> = ({ reFetchSizes, }) => {
   };
 
   return (
-    <>
       <InputFields
         processTitle="Add New Size"
         modalTitle="Add New Size"
         submitHandler={submitHandler}
         inputFields={SizeInputs||[]} // Use the updatedInputs
       />
-    </>
   );
 };
 

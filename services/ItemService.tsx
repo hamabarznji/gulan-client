@@ -10,7 +10,7 @@ class ItemsService {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to get items: ${error.message}`);
+      throw new Error(`Failed to get items: ${error}`);
     }
   }
   async getItemsForPurchaseInvoice(): Promise<any> {
@@ -20,7 +20,7 @@ class ItemsService {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to get items: ${error.message}`);
+      throw new Error(`Failed to get items: ${error}`);
     }
   }
 
@@ -32,7 +32,7 @@ class ItemsService {
       );
       return response;
     } catch (error) {
-      throw new Error(`Failed to add item: ${error.message}`);
+      throw new Error(`Failed to add item: ${error}`);
     }
   }
 
@@ -43,7 +43,7 @@ class ItemsService {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to get item by ID: ${error.message}`);
+      throw new Error(`Failed to get item by ID: ${error}`);
     }
   }
 
@@ -54,7 +54,7 @@ class ItemsService {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to get item info: ${error.message}`);
+      throw new Error(`Failed to get item info: ${error}`);
     }
   }
 
@@ -66,7 +66,7 @@ class ItemsService {
       );
       return response;
     } catch (error: any) {
-      throw new Error(`Failed to update item: ${error.message}`);
+      throw new Error(`Failed to update item: ${error}`);
     }
   }
   async addPurchaseOrderInvoice(data: any): Promise<any> {
@@ -86,7 +86,7 @@ class ItemsService {
       console.log(response);
       return response;
     } catch (error: any) {
-      throw new Error(`Failed to add items: ${error.message}`);
+      throw new Error(`Failed to add items: ${error}`);
     }
   }
   async updatePurchasedItem(
@@ -105,7 +105,7 @@ class ItemsService {
       );
       return response;
     } catch (error: any) {
-      throw new Error(`Failed to update item: ${error.message}`);
+      throw new Error(`Failed to update item: ${error}`);
     }
   }
 }

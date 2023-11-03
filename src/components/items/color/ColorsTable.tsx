@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import ColorService from "../../../../services/ColorService";
-import ColorsTable from "../../customComponents/Table";
+import CustomeColorsTable from "../../customComponents/Table";
 import { Grid } from "@mui/material";
 import UpdateColor from "./UpdateColor";
 import AddColor from "./AddColor";
@@ -46,11 +46,11 @@ export default function ColorsTable() {
   return (
     <Grid container justifyContent="flex-start" spacing={3} direction="row">
       <Grid item container justifyContent="flex-start">
-        <AddColor reFetchColors={refetch} />
+        <AddColor reFetchColors={refetch as any} />
       </Grid>
 
       <Grid item container direction="row" justifyContent="center">
-        <ColorsTable rows={transformedRows || []} columns={columns} />
+        <CustomeColorsTable rows={transformedRows || []} columns={columns} />
       </Grid>
     </Grid>
   );

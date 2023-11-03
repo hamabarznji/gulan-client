@@ -48,7 +48,7 @@ const ListComponent: React.FC<ListComponentProps> = ({
     >
       {menuItems.map(
         ({ path, roles, title, icon, nestedLinks, nestedLinksItems }) =>
-          roles.includes(userRole) ? (
+          roles.includes(userRole as string) ? (
             <React.Fragment key={path}>
               <ListItem
                 disablePadding

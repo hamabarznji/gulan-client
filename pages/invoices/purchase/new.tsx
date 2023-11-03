@@ -57,7 +57,7 @@ const NewPurchaseOrder = () => {
       await ItemsServiceInstance.addPurchaseOrderInvoice(items);
       enqueueSnackbar("Items Added Successfully", { variant: "success" });
       router.push("invoices/purchase");
-    } catch (err) {
+    } catch (err:any) {
       enqueueSnackbar(err.message, { variant: "error" });
     }
   };

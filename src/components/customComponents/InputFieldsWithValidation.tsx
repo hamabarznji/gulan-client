@@ -78,7 +78,11 @@ const InputFieldsWithValidation: React.FC<InputFieldsWithValidationProps> = ({
                   <TextField
                     {...CommonProps}
                     type={field.type}
-                    isDate={field.type == "date" ? true : false}
+                    InputProps={{
+                      inputProps: {
+                        isDate: field.type === "date" ? true : false,
+                      },
+                    }}
                   />
                 );
               }}

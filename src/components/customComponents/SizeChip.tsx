@@ -22,5 +22,5 @@ export default function Chips({ label }: ChipsProps) {
     label = label?.toString()?.toUpperCase();
   }
 
-  return <Chip color={color} label={label?label:""} />;
+  return <Chip color={color as any} label={label?label:""} />;
 }

@@ -10,7 +10,7 @@ class SellOrderService {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to get sell orders: ${error.message}`);
+      throw new Error(`Failed to get sell orders: ${error}`);
     }
   }
   async getSellOrdersByOrderID(id: string): Promise<any> {
@@ -20,7 +20,7 @@ class SellOrderService {
       );
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to get sell order items: ${error.message}`);
+      throw new Error(`Failed to get sell order items: ${error}`);
     }
   }
   async createSellOrders(data: any): Promise<any> {
@@ -32,7 +32,7 @@ class SellOrderService {
       console.log(response);
       return response.status;
     } catch (error) {
-      throw new Error(`Failed to get items: ${error.message}`);
+      throw new Error(`Failed to get items: ${error}`);
     }
   }
   async updateSellOrderItem(data: any): Promise<any> {
@@ -43,7 +43,7 @@ class SellOrderService {
       );
       return response.status
     } catch (error) {
-      throw new Error(`Failed to get items: ${error.message}`);
+      throw new Error(`Failed to get items: ${error}`);
     }
   }
 }

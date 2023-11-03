@@ -28,23 +28,20 @@ const AddExpense: React.FC<AddExpenseProps> = ({ reFetchExpenses, expenseCategor
       } else {
         throw new Error("Something went wrong");
       }
-    } catch (error: Error) {
+    } catch (error: any) {
       enqueueSnackbar("Error: " + error.message, {
         variant: "error",
       });
     }
   };
 
-  // Update options property in the second element of addExpenseInputs
   return (
-    <>
       <InputFields
         processTitle="Add New Expense"
         modalTitle="Add New Expense"
         submitHandler={submitHandler}
         inputFields={expenseCategories||[]} // Use the updatedInputs
       />
-    </>
   );
 };
 

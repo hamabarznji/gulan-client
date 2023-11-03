@@ -12,9 +12,9 @@ const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => {
   const [errorState, setErrorState] = useState<ErrorBoundaryState>({ hasError: false });
 
   useEffect(() => {
-    const handleError = (error: Error, errorInfo: ErrorInfo): void => {
+    const handleError = (error: ErrorEvent): void => {
       // You can log the error to a service like Sentry or send it to your server
-      console.error('Error:', error, errorInfo);
+      console.error('Error:', error.error, error.error.stack);
       setErrorState({ hasError: true });
     };
 
@@ -28,7 +28,7 @@ const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => {
   if (errorState.hasError) {
     return (
       <div style={styles.errorContainer}>
-        <h1 style={styles.errorText}>Something went wrong.</h1>
+        <h1 style={styles.errorText as any}>Something went wrong.</h1>
       </div>
     );
   }

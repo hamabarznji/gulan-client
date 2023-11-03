@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery, QueryKey } from "@tanstack/react-query";
 import SizeService from "../../../../services/SizeService";
-import SizesTable from "../../customComponents/Table";
+import CustomeSizesTable from "../../customComponents/Table";
 import { Grid } from "@mui/material";
 import UpdateSize from "./UpdateSize";
 import AddSize from "./AddSize";
@@ -43,11 +43,11 @@ export default function SizesTable() {
   return (
     <Grid container justifyContent="flex-start" spacing={3} direction="row">
       <Grid item container justifyContent="flex-start">
-        <AddSize reFetchSizes={refetch} />
+        <AddSize reFetchSizes={refetch as any} />
       </Grid>
 
       <Grid item container direction="row" justifyContent="center">
-        <SizesTable rows={transformedRows || []} columns={columns} />
+        <CustomeSizesTable rows={transformedRows || []} columns={columns} />
       </Grid>
     </Grid>
   );

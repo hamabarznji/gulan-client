@@ -26,8 +26,8 @@ import menuItems from "../interfaces/menuItems";
       .filter(item => item.path === currentPath)
       .map(item => item.roles)
       .flat();
-
-    if (user.role !== "admin" && !allowedRoles.includes(user.role)) {
+        {/* @ts-ignore */}
+    if (user?.role as string !== "admin" && !allowedRoles.includes(user?.role as string)) {
       return {
         redirect: {
           destination: "/dashboard",

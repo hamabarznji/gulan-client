@@ -46,7 +46,7 @@ const CustomeTable: React.FC<{
 
   const submitHandler = async ({ rows }: any) => {
     try {
-      const newData = rows.map((row) => ({
+      const newData = rows.map((row:any) => ({
         item_id: row.input4,
         price: row.input2,
         qty: row.input3,
@@ -69,8 +69,8 @@ const CustomeTable: React.FC<{
       });
 
       throw new Error(`Failed to add item: ${response.message}`);
-    } catch (error) {
-      enqueueSnackbar("Error: " + error.message, {
+    } catch (error:any) {
+      enqueueSnackbar("Error: " + error, {
         variant: "error",
       });
     }
@@ -84,12 +84,16 @@ const CustomeTable: React.FC<{
       const newRow = {
         index: index,
         rowIndex: rowIndex,
+        // @ts-ignore
         item_id: scannedItem?.id,
 
         id: (
+          // @ts-ignore
           <Grid item xs={12} key={scannedItem?.id}>
             <Controller
+            // @ts-ignore
               defaultValue={scannedItem?.name}
+              // @ts-ignore
               name={`rows[${index}].input1`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
@@ -114,9 +118,12 @@ const CustomeTable: React.FC<{
           </Grid>
         ),
         name: (
+          // @ts-ignore
           <Grid item xs={12} key={scannedItem?.id}>
             <Controller
+            // @ts-ignore
               defaultValue={scannedItem?.id}
+              // @ts-ignore
               name={`rows[${index}].input4`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
@@ -141,8 +148,10 @@ const CustomeTable: React.FC<{
           </Grid>
         ),
         price: (
+          // @ts-ignore
           <Grid item xs={12} key={scannedItem?.id}>
             <Controller
+            // @ts-ignore
               name={`rows[${index}].input2`}
               control={control}
               // rules={{ validate: (value) => schema.isValidSync(value) }}
@@ -162,8 +171,10 @@ const CustomeTable: React.FC<{
         ),
 
         qty: (
+          // @ts-ignore
           <Grid item xs={12} key={scannedItem?.id}>
             <Controller
+            // @ts-ignore 
               name={`rows[${index}].input3`}
               control={control}
               rules={{ validate: (value) => schema.isValidSync(value) }}
@@ -236,14 +247,12 @@ const CustomeTable: React.FC<{
           <Table>
             <TableHead
               sx={{
-                color: "#ff7f50",
                 fontWeight: "bold",
                 fontSize: "1.2rem",
                 "& th": {
-                  color: "black",
+                  color: "white",
                   fontWeight: "bold",
                   backgroundColor: "#262B2B",
-                  color: "white",
                 },
               }}
             >
@@ -251,7 +260,7 @@ const CustomeTable: React.FC<{
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
-                    align={column.align}
+                    align={column.align.toString() as any}
                     sx={{
                       fontSize: "1rem",
                       padding: "20px",

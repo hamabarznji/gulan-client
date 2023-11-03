@@ -16,7 +16,7 @@ const CustomTableRow: React.FC<RowProps> = ({ rows }) => {
   <TableRow key={row.num}>
     {columns.map((column) => {
       const id = column.id.toString();
-      const value = row[id];
+      const value = row[id as keyof Row] as string;
       return (
         <TableCell
           key={column.id}

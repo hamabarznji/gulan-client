@@ -30,7 +30,7 @@ const textStyle = {
 };
 
 const PrintableContent: React.FC<BarcodeGeneratorProps> = ({ id, price }) => (
-  <Grid container style={barcodeStyle} display={"flex"} id="printingContent">
+  <Grid container style={barcodeStyle as any} display={"flex"} id="printingContent">
     <Grid item>
       <Barcode value={id} width={1} height={50} />
     </Grid>
@@ -44,7 +44,6 @@ const PrintableContent: React.FC<BarcodeGeneratorProps> = ({ id, price }) => (
 
 const BarcodeGenerator: React.FC<BarcodeGeneratorProps> = ({ id, price }) => {
   const handleGenerateBarcode = () => {
-    console.log(`${id} is submitted to be generated barcode`);
 
     const iframe = document.createElement("iframe");
     iframe.style.display = "none";
@@ -65,7 +64,7 @@ const BarcodeGenerator: React.FC<BarcodeGeneratorProps> = ({ id, price }) => {
   };
 
   return (
-    <>
+   
       <Modal
         processTitle="Generate"
         modalTitle="Generate Barcode"
@@ -75,7 +74,7 @@ const BarcodeGenerator: React.FC<BarcodeGeneratorProps> = ({ id, price }) => {
       >
         <PrintableContent id={id} price={price} />
       </Modal>
-    </>
+   
   );
 };
 

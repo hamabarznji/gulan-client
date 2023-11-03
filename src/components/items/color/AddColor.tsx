@@ -24,7 +24,7 @@ const AddColor: React.FC<AddColorProps> = ({ reFetchColors, }) => {
       } else {
         throw new Error("Something went wrong");
       }
-    } catch (error: Error) {
+    } catch (error: any) {
       enqueueSnackbar("Error: " + error.message, {
         variant: "error",
       });
@@ -32,14 +32,14 @@ const AddColor: React.FC<AddColorProps> = ({ reFetchColors, }) => {
   };
 
   return (
-    <>
+  
       <InputFields
         processTitle="Add New Color"
         modalTitle="Add New Color"
         submitHandler={submitHandler}
         inputFields={ColorInputs||[]} // Use the updatedInputs
       />
-    </>
+
   );
 };
 

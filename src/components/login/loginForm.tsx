@@ -37,7 +37,7 @@ export default function LoginForm() {
 
     try {
       const user = await UserServiceInstance.login(username, password);
-      const { status } = user;
+      const { status } = user as any;
       const isUser = status === 200;
       if (isUser) {
         await fetchUserData();

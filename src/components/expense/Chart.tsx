@@ -74,12 +74,13 @@ const PieChartPage = () => {
         datalabels: {
           display: true,
           color: "#fff",
-          formatter: (value) => {
+          formatter: (value:any) => {
             return (
               value +
               " (" +
               Math.round(
-                (value / data.datasets[0].data.reduce((a, b) => a + b, 0)) * 100
+                // @ts-ignore
+                (value / data?.datasets[0]?.data?.reduce((a:any, b:any) => a + b, 0)) * 100
               ) +
               "%)"
             );
@@ -91,6 +92,7 @@ const PieChartPage = () => {
 
   return (
     <div>
+     {/* @ts-ignore */}
       <Doughnut {...config} />
     </div>
   );

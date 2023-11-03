@@ -93,6 +93,7 @@ const ExpenseSummary = () => {
 
   return (
     <div>
+      {/* @ts-ignore */}
       <Doughnut {...config} />
     </div>
   );
