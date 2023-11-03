@@ -21,7 +21,7 @@ interface ExpenseResponse {
   data: ExpenseData[];
 }
 
-export default function CustomizedTables() {
+export default function SizesTable() {
   const fetchSizes = async () => {
     try {
       const response = await SizeService.getSizes();

@@ -9,7 +9,7 @@ interface Props {
   category: any;
   reFetchCategories: () => Promise<QueryObserverResult>;
 }
-const updateCategory: React.FC<any> = ({ category,reFetchCategories }: Props) => {
+const UpdateCategory: React.FC<any> = ({ category,reFetchCategories }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -49,4 +49,4 @@ const updateCategory: React.FC<any> = ({ category,reFetchCategories }: Props) =>
   );
 };
 
-export default updateCategory;
+export default UpdateCategory;

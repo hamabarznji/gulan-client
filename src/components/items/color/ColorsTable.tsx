@@ -22,7 +22,7 @@ interface ExpenseResponse {
   data: ExpenseData[];
 }
 
-export default function CustomizedTables() {
+export default function ColorsTable() {
   const fetchColors = async () => {
     try {
       const response = await ColorService.getColors();

@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import useBarcodeScanner from "../../../../hook/useBarcodeScanner";
 import LinearIndeterminate from "../../../customComponents/Linear";
 
-export default function SpanningTable() {
+export default function AddInvoiceTable() {
   const [items, setItems]: any = React.useState([]);
   const { scannedItem, isLoading }: any = useBarcodeScanner();
 

@@ -20,7 +20,7 @@ interface OrderResponse {
   data: OrderData[];
 }
 
-export default function CustomizedTables() {
+export default function PurchasedOrdersTable() {
   const router = useRouter();
 
   const fetchOrders = async () => {

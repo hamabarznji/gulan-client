@@ -9,7 +9,7 @@ type AddColorProps = {
   reFetchColors: () => Promise<QueryObserverResult<any, unknown>>;
 };
 
-const AddSize: React.FC<AddColorProps> = ({ reFetchColors, }) => {
+const AddColor: React.FC<AddColorProps> = ({ reFetchColors, }) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -43,4 +43,4 @@ const AddSize: React.FC<AddColorProps> = ({ reFetchColors, }) => {
   );
 };
 
-export default AddSize;
+export default AddColor;

@@ -12,7 +12,7 @@ const columns = [
   { id: "actions", label: "Actions", align: "center" },
 ];
 
-const InvoiceTable: React.FC = () => {
+const VendorsTable: React.FC = () => {
   const fetchItems = async () => {
     try {
       const response = await VendorService.getVendors();
@@ -45,4 +45,4 @@ const InvoiceTable: React.FC = () => {
   );
 };
 
-export default InvoiceTable;
+export default VendorsTable;

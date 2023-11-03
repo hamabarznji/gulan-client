@@ -26,7 +26,7 @@ interface Row {
 
 const msg="Proceed with invoice creation by clicking the button. Are you sure you want to continue?"
 
-const CustomTableRow: React.FC<RowProps> = ({ items }) => {
+const InvoiceSummaryRow: React.FC<RowProps> = ({ items }) => {
   const [discount, setDiscount] = useState(0);
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
@@ -40,9 +40,9 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
       };
       const data = items.map((item) => {
         return {
-          item_id: item.id,
-          qty: item.invoiceQty,
-          price: item.selling_price,
+          item_id: item?.id,
+          qty: item?.invoiceQty,
+          price: item?.selling_price,
         };
       });
       const order = {
@@ -187,7 +187,7 @@ const CustomTableRow: React.FC<RowProps> = ({ items }) => {
   );
 };
 
-export default CustomTableRow;
+export default InvoiceSummaryRow;
 
 const styles = {
   contentStyle: {

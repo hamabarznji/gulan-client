@@ -13,7 +13,7 @@ const queryKey: QueryKey = ["items"];
 
   ];
 
-const InvoiceTable: React.FC = () => {
+const CategoriesTable: React.FC = () => {
 
   const fetchItems = async () => {
     try {
@@ -59,4 +59,4 @@ const rows=data?.map((item:any,index:any)=>{
   );
 }
 
-export default InvoiceTable;
+export default CategoriesTable;

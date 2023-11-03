@@ -21,7 +21,7 @@ const columns = [
   { id: "barcode", label: "Barcode", align: "center" },
 ];
 
-const InvoiceTable: React.FC = () => {
+const ItemsTable: React.FC = () => {
   const fetchItems = async () => {
     try {
       const response = await ItemsServiceInstance.getItems();
@@ -82,4 +82,4 @@ const InvoiceTable: React.FC = () => {
   );
 };
 
-export default InvoiceTable;
+export default ItemsTable;

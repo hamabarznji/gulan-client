@@ -9,7 +9,7 @@ import COLORS from "../../../../../public/COLORS";
 import EditIcon from "@mui/icons-material/Edit";
 import { Typography } from "@mui/material";
 
-export default function FormDialog({
+export default function AddInvoiceModal({
   title,
   processTitle,
   modalTitle,

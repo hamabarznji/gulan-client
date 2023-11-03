@@ -10,7 +10,7 @@ interface Props {
   color: any;
   reFetchColors: () => Promise<QueryObserverResult>;
 }
-const updateSize: React.FC<any> = ({ color,reFetchColors }: Props) => {
+const UpdateColor: React.FC<any> = ({ color,reFetchColors }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -52,4 +52,4 @@ const updateSize: React.FC<any> = ({ color,reFetchColors }: Props) => {
   );
 };
 
-export default updateSize;
+export default UpdateColor;

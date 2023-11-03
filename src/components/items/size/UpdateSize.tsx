@@ -10,7 +10,7 @@ interface Props {
   size: any;
   reFetchSizes: () => Promise<QueryObserverResult>;
 }
-const updateSize: React.FC<any> = ({ size,reFetchSizes }: Props) => {
+const UpdateSize: React.FC<any> = ({ size,reFetchSizes }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const submitHandler = async (data: any) => {
@@ -52,4 +52,4 @@ const updateSize: React.FC<any> = ({ size,reFetchSizes }: Props) => {
   );
 };
 
-export default updateSize;
+export default UpdateSize;
