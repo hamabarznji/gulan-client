@@ -1,6 +1,6 @@
 import  { AxiosResponse, AxiosError } from "axios";
 import axiosInstance from "../utils/axiosInstance";
-import base_url from './url';
+import base_url from '../url';
 class SellOrderService {
   async getSellOrders(): Promise<any> {
     try {

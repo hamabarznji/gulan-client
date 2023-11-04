@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import base_url from './url';
+import base_url from '../url';
 import axiosInstance from "../utils/axiosInstance";
 class ColorsService {
   async getColors() {

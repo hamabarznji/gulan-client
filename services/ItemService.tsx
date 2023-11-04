@@ -1,5 +1,5 @@
 import  { AxiosResponse, AxiosError } from "axios";
-import base_url from './url';
+import base_url from '../url';
 import axiosInstance from "../utils/axiosInstance";
 
 class ItemsService {
