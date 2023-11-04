@@ -1,6 +1,6 @@
 
 import axios, { AxiosResponse } from 'axios';
-const  base_url:string="http://localhost:3001/api"
+import base_url from './url';
 import Cookies from 'js-cookie';
 import axiosInstance from '../utils/axiosInstance';
 

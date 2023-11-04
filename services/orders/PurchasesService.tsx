@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from "axios";
-const base_url: string = "http://localhost:3001/api/orders";
+import  { AxiosResponse, AxiosError } from "axios";
 import axiosInstance from "../../utils/axiosInstance";
+import base_url from '../url';
 class PurchasedService {
   async getOrders() {
     try {

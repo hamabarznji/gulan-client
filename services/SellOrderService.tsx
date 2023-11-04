@@ -1,7 +1,6 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
-const base_url: string = "http://localhost:3001/api";
+import  { AxiosResponse, AxiosError } from "axios";
 import axiosInstance from "../utils/axiosInstance";
-
+import base_url from './url';
 class SellOrderService {
   async getSellOrders(): Promise<any> {
     try {

@@ -1,5 +1,5 @@
-import axios, { AxiosResponse, AxiosError } from "axios";
-const base_url: string = "http://localhost:3001/api";
+import  { AxiosResponse, AxiosError } from "axios";
+import base_url from './url';
 import axiosInstance from "../utils/axiosInstance";
 
 class ItemsService {

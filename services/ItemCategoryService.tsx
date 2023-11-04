@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from "axios";
-const base_url: string = "http://localhost:3001/api";
+import{ AxiosResponse } from "axios";
+import base_url from './url';
 import axiosInstance from "../utils/axiosInstance";
 class ItemCategoriesService {
   async getItemCategories() {
