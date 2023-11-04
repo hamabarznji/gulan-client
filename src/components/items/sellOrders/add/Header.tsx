@@ -3,6 +3,7 @@ import { Typography, Grid } from "@mui/material";
 import Image from "next/image";
 import icon from "../../../../../public/icon.png";
 import useUserContext from "../../../../context/useUserContext";
+import {name} from "../../../../../package.json"
 interface HeaderProps {
   date: string;
   id: string;
@@ -10,7 +11,6 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ id, date }) => {
   const user = useUserContext().user?.username
-
   return (
     <>
       <Grid item xs={12} sm={6}>
@@ -24,10 +24,10 @@ const Header: React.FC<HeaderProps> = ({ id, date }) => {
 
       <Grid item xs={12} sm={6}>
         <Typography variant="h6" align="left" color="black">
-          GUL GUL Shoping
+          {name.toUpperCase()} SHOPING
         </Typography>
         <Typography variant="h6" align="left" color="black">
-          Erbil Gullan Mall
+          Erbil Gulan Mall
         </Typography>
         <Typography variant="h6" align="left" color="black">
           +964 750 000 0000
