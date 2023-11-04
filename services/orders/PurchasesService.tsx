@@ -5,7 +5,7 @@ class PurchasedService {
   async getOrders() {
     try {
       const response: AxiosResponse = await axiosInstance.get(
-        `${base_url}/purchased`
+        `${base_url}/orders/purchased/`
       );
       return response;
     } catch (error) {
@@ -16,7 +16,7 @@ class PurchasedService {
   async getItemsByPurchasedOrderId(id:string) {
     try {
       const response: AxiosResponse = await axiosInstance.get(
-        `${base_url}/purchased/${id}/items`
+        `${base_url}/orders/purchased/${id}/items`
       );
       return response.data
     } catch (error) {

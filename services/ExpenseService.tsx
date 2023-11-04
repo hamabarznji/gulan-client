@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import  { AxiosResponse } from "axios";
 import base_url from '../url';
 import axiosInstance from "../utils/axiosInstance";
 class ExpenseService {
@@ -44,7 +44,7 @@ class ExpenseService {
   }
   async getTopExpenses() {
     try {
-      const response: AxiosResponse = await axiosInstance.get('http://localhost:3001/api/expenses/top')
+      const response: AxiosResponse = await axiosInstance.get(`${base_url}/expenses/top`)
       return response.data
     } catch (error) {
       return error;
@@ -52,7 +52,7 @@ class ExpenseService {
   }
   async getExpenseCategories() {
     try {
-      const response: AxiosResponse = await axiosInstance.get('http://localhost:3001/api/expenses/categories')
+      const response: AxiosResponse = await axiosInstance.get(`${base_url}/expenses/categories`)
       return response.data
     } catch (error) {
       return error;
