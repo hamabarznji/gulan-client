@@ -1,11 +1,11 @@
-import  { AxiosResponse, AxiosError } from "axios";
+import  { AxiosResponse } from "axios";
 import axiosInstance from "../../utils/axiosInstance";
 import base_url from '../../url';
 class PurchasedService {
   async getOrders() {
     try {
       const response: AxiosResponse = await axiosInstance.get(
-        `${base_url}/orders/purchased/`
+        `${base_url}/orders/purchased`
       );
       return response;
     } catch (error) {
