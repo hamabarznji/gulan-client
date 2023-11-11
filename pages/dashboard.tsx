@@ -1,4 +1,5 @@
 import React from "react";
+import isCurrentUserAllowed from "../src/utils/Redirect";
 
 type ToggleThemeFunction = () => void;
 
@@ -6,6 +7,7 @@ interface HomePageProps {
   toggleTheme: ToggleThemeFunction;
   user: string;
 }
+export const getServerSideProps = isCurrentUserAllowed;
 
 const Dashboard = () => {
 
