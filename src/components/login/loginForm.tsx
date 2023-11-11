@@ -37,6 +37,7 @@ export default function LoginForm() {
 
     try {
       const user = await UserServiceInstance.login(username, password);
+      // @ts-ignore
       const { status } = user;
       const isUser = status === 200;
       if (isUser) {
