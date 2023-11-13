@@ -1,6 +1,6 @@
 import axios from "axios";
 import { withSessionRoute } from "../../utils/withSession";
-import base_url from '../../url';
+// import base_url from '../../url';
 
 
 export default withSessionRoute(createSessionRoute);
