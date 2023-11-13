@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = ({
         <title>{title}</title>
       </Head>
       <main style={{ padding: "2rem", backgroundColor: "#f5f5f5" }}>
-        {router.pathname === "/login" ? (
+        {router.pathname === "/login" ||router.pathname === "/" ? (
           children
         ) : (
           <PersistentDrawerLeft toggleTheme={toggleTheme} themeMode={themeMode}>
