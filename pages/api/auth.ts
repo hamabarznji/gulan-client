@@ -9,7 +9,7 @@ async function createSessionRoute(req: any, res: any) {
   try {
     const { username, password } = req.body;
 
-    const user = await axios.post("http://139.59.238.16:3001/api/users/login", {
+    const user = await axios.post("https://139.59.238.16:3001/api/users/login", {
       username: username,
       password: password
     });
