@@ -58,7 +58,7 @@ class UserService{
     }
     async logout(){
         try{
-            const response:AxiosResponse<{token:string}>=await axios.get('http://localhost:3000/api/logout')
+            const response:AxiosResponse<{token:string}>=await axios.get('/api/logout')
             return response.data
         }
         catch(error){
@@ -67,7 +67,7 @@ class UserService{
     }
     async getSession(){
         try{
-            const response:AxiosResponse<any>=await axios.get('http://localhost:3000/api/get-session')
+            const response:AxiosResponse<any>=await axios.get('/api/get-session')
             return response
         }
         catch(error){
